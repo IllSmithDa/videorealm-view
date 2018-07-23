@@ -1,0 +1,35 @@
+.video-container {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.video-key {
+  margin-top:15px;
+  width: 222px;
+  margin-right: 3px;
+  padding-left: 3px
+}
+.video-div{
+  flex-direction: column;
+}
+
+.video-videoName {
+  font-weight:bolder;
+}
+.video-videoName:hover {
+  cursor: pointer;
+}
+
+.video-player {
+  width: 33%;
+  height: 600px; 
+}
+.video-delete {
+  display: none;
+}
+
+.text-reply {
+  text-indent: 25px;
+}
