@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import ReduxPromise from 'redux-promise';
+import Thunk from 'redux-thunk';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import './index.css';
 import App from './App';
@@ -14,8 +16,10 @@ import VideoPlayer from './components/VideoPlayer';
 import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers';
 
+const createStoreWithMiddleware = applyMiddleware(Thunk)(createStore);
+
 ReactDOM.render(
-  <Provider store = {createStore(reducers)}>
+  <Provider store = {createStoreWithMiddleware(reducers)}>
     <Router>
       <div>
         <Route exact path = '/' component={App} />
