@@ -1,6 +1,7 @@
 .Page-Container {
   margin-left: 20%;
   margin-right: 20%;
+
 }
 
 /* The Modal (background) */
@@ -38,4 +39,15 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.app-title {
+  margin-top: 5em;
+  margin-bottom: 5em;
+}
+.app-userform {
+}
+
+.video-title {
+  margin-top: 1em;
 }
