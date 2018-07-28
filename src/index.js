@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import ReduxPromise from 'redux-promise';
+import Thunk from 'redux-thunk';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import './index.css';
 import App from './App';
@@ -10,17 +14,23 @@ import Login from './components/Login';
 import AdminPage from './components/AdminPage';
 import VideoPlayer from './components/VideoPlayer';
 import registerServiceWorker from './registerServiceWorker';
+import reducers from './reducers';
+
+const createStoreWithMiddleware = applyMiddleware(Thunk)(createStore);
 
 ReactDOM.render(
-<Router>
-  <div>
-    <Route exact path = '/' component={App} />
-    <Route path = '/profile' component={Profile} />
-    <Route path = '/news' component={News} />
-    <Route path = '/account' component={Account} />
-    <Route path = '/login' component={Login} />
-    <Route path = '/adminpage' component={AdminPage}/>
-    <Route path = '/video/:videoID' component={VideoPlayer}/>
-  </div>
-</Router>, document.getElementById('root'));
+  <Provider store = {createStoreWithMiddleware(reducers)}>
+    <Router>
+      <div>
+        <Route exact path = '/' component={App} />
+        <Route path = '/profile' component={Profile} />
+        <Route path = '/news' component={News} />
+        <Route path = '/account' component={Account} />
+        <Route path = '/login' component={Login} />
+        <Route path = '/adminpage' component={AdminPage}/>
+        <Route path = '/video/:videoID' component={VideoPlayer}/>
+      </div>
+    </Router>
+  </Provider>, document.getElementById('root'));
+  
 registerServiceWorker();
