@@ -36,8 +36,8 @@ export default class Account extends Component {
     return(
       <div>
         <Navbar />
-        <div class = 'Page-Container'>
-          <h1>Login Page</h1>
+        <div className = 'Page-Container'>
+          <h1>Login to Friendrealm</h1>
           <div className="form-group">
           <label htmlFor="name">Name:</label>
           <input type="name" className="form-control" id="name" value = { this.state.username } onChange = { this.handleSetUsername }/>

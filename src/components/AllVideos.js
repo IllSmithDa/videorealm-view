@@ -21,7 +21,7 @@ class AllVideos extends Component {
   render() {
     return(
       <div>
-        <h1> Latest Videos </h1>
+        <h1 className="video-title"> Latest Videos </h1>
         <div className="video-container">
           {this.props.videoList.map((post, index) => {
             return (

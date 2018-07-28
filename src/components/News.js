@@ -8,7 +8,7 @@ export default class News extends Component {
     return (
       <div>
         <Navbar />
-        <div class = 'Page-Container'>
+        <div className = 'Page-Container'>
           <AllVideos/>
         </div>
       </div>

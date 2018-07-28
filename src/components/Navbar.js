@@ -38,7 +38,12 @@ export default class Navbar extends Component {
     window.location = '/news';
   }
   homePage = () => {
-    window.location = '/';
+    if (this.state.loginState === 'LOGOUT') {
+      window.location = '/news';
+    } else {
+      window.location = '/';
+    }
+    
   }
   componentDidMount() {
     axios
