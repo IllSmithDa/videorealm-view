@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Profile from './components/Profile';
-import HomePage from './components/HomePage';
 import Account from './components/Account';
 import Login from './components/Login';
 import CreateUser from './components/CreateUser';
