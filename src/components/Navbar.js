@@ -15,6 +15,7 @@ export default class Navbar extends Component {
       loginState: 'LOGIN',
       accountState: '',
       searchItem: '',
+      createState: 'NEW ACCOUNT'
     }
   }
   myProfile = () => {
@@ -23,8 +24,10 @@ export default class Navbar extends Component {
   myAccount = () => {
     window.location = '/account';
   }
+  createUser = () => {
+    window.location = '/createUser';
+  }
   loginPage = () => {
-    // window.location = '/login';
     if (this.state.loginState === 'LOGIN') {
       window.location = '/login';
     }
@@ -36,16 +39,9 @@ export default class Navbar extends Component {
       })
     }
   }
-  newsPage = () => {
-    window.location = '/news';
-  }
   homePage = () => {
-    if (this.state.loginState === 'LOGOUT') {
-      window.location = '/news';
-    } else {
-      window.location = '/';
-    }
-    
+    window.location = '/homepage';
+
   }
   searchForVideos = () => {
 		if (this.state.searchItem !== '') {
@@ -63,9 +59,10 @@ export default class Navbar extends Component {
       .then((userData) => {
         // console.log('username:', userData);
         if (userData.data === '' || userData.data === null || userData.data === undefined) {
-          this.setState({ loginState: 'LOGIN',  accountState: '' });
+          this.setState({ loginState: 'LOGIN',  accountState: '', createState: 'NEW ACCOUNT'});
         } else {
-          this.setState({ loginState: 'LOGOUT', accountState: 'ACCOUNT',  profileName: userData.data.toUpperCase() });
+          this.setState({ loginState: 'LOGOUT', accountState: 'ACCOUNT',  profileName: userData.data.toUpperCase(),
+          createState: ''});
         }
       })
       .catch(err => {
@@ -78,13 +75,13 @@ export default class Navbar extends Component {
         <div className = 'test'>
           <div className = "navbar-item-container">        
             <img className = "navbar-icon-item" alt='home-page' src = "https://png.icons8.com/ios/1600/home.png" onClick = {this.homePage} />
-            <img className = "navbar-icon-item" alt='messages' src="https://png.icons8.com/wired/40/000000/activity-feed-2.png" onClick = {this.newsPage} />
             <input className="searchbar-field" type="text" onChange={this.handleSearchTerm} placeholder="Search for videos"></input> 
 				    <button onClick={this.searchForVideos}>Search</button>
           </div>
           <div className = "navbar-item-container2">
             <button onClick = {this.myProfile} className = "navbar-button">{this.state.profileName}</button>
             <button onClick = {this.myAccount} className = "navbar-button">{this.state.accountState}</button>
+            <button onClick = {this.createUser} className = "navbar-button">{this.state.createState}</button>
             <button onClick = {this.loginPage} className = "navbar-button">{this.state.loginState}</button>
           </div>
         </div>

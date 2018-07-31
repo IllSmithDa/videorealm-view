@@ -20,6 +20,7 @@ class SearchBar extends Component {
 	searchForVideos() {
 		if (this.state.searchItem !== '') {
 			setTimeout(() => {
+				console.log()
 				window.location = `/video_search/${this.state.searchItem}`;
 			})
 		}
