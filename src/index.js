@@ -26,7 +26,6 @@ ReactDOM.render(
       <div>
         <Route exact path = '/' component={App} />
         <Route path = '/profile' component={Profile} />
-        <Route path = '/homepage' component={HomePage} />
         <Route path = '/account' component={Account} />
         <Route path = '/login' component={Login} />
         <Route path = '/createUser' component={CreateUser} />

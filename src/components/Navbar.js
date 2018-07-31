@@ -40,7 +40,7 @@ export default class Navbar extends Component {
     }
   }
   homePage = () => {
-    window.location = '/homepage';
+    window.location = '/';
 
   }
   searchForVideos = () => {
