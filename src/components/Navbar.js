@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Searchbar from './Searchbar';
 import reqURL from './RequestURL';
 import '../CSS/Navbar.css';
 
@@ -13,6 +14,7 @@ export default class Navbar extends Component {
       profileName: '',
       loginState: 'LOGIN',
       accountState: '',
+      searchItem: '',
     }
   }
   myProfile = () => {
@@ -45,6 +47,16 @@ export default class Navbar extends Component {
     }
     
   }
+  searchForVideos = () => {
+		if (this.state.searchItem !== '') {
+			setTimeout(() => {
+				window.location = `/video_search/${this.state.searchItem}`;
+			})
+		}
+  }
+	handleSearchTerm = (event) => {
+		this.setState({searchItem: event.target.value})
+	}
   componentDidMount() {
     axios
       .get(`${reqURL}/getUsername`)
@@ -64,15 +76,17 @@ export default class Navbar extends Component {
     return(
       <div className = "navbar-container">
         <div className = 'test'>
-        <div className = "navbar-item-container">        
+          <div className = "navbar-item-container">        
             <img className = "navbar-icon-item" alt='home-page' src = "https://png.icons8.com/ios/1600/home.png" onClick = {this.homePage} />
             <img className = "navbar-icon-item" alt='messages' src="https://png.icons8.com/wired/40/000000/activity-feed-2.png" onClick = {this.newsPage} />
-        </div>
-        <div className = "navbar-item-container2">
-          <button onClick = {this.myProfile} className = "navbar-button">{this.state.profileName}</button>
-          <button onClick = {this.myAccount} className = "navbar-button">{this.state.accountState}</button>
-          <button onClick = {this.loginPage} className = "navbar-button">{this.state.loginState}</button>
-        </div>
+            <input className="searchbar-field" type="text" onChange={this.handleSearchTerm} placeholder="Search for videos"></input> 
+				    <button onClick={this.searchForVideos}>Search</button>
+          </div>
+          <div className = "navbar-item-container2">
+            <button onClick = {this.myProfile} className = "navbar-button">{this.state.profileName}</button>
+            <button onClick = {this.myAccount} className = "navbar-button">{this.state.accountState}</button>
+            <button onClick = {this.loginPage} className = "navbar-button">{this.state.loginState}</button>
+          </div>
         </div>
       </div>
     )

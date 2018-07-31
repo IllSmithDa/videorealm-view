@@ -13,6 +13,7 @@ import Account from './components/Account';
 import Login from './components/Login';
 import AdminPage from './components/AdminPage';
 import VideoPlayer from './components/VideoPlayer';
+import SearchPage from './components/SearchPage';
 import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers';
 
@@ -29,6 +30,7 @@ ReactDOM.render(
         <Route path = '/login' component={Login} />
         <Route path = '/adminpage' component={AdminPage}/>
         <Route path = '/video/:videoID' component={VideoPlayer}/>
+        <Route path = '/video_search/:searchterm' component={SearchPage}/>
       </div>
     </Router>
   </Provider>, document.getElementById('root'));
