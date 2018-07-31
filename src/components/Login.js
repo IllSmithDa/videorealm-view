@@ -17,10 +17,13 @@ export default class Account extends Component {
     event.preventDefault();
     const user = { username: this.state.username, password: this.state.password };
     axios.post(`${reqURL}/mongoLogin`, user)
-    .then(() => {
-      setTimeout(() => {
+    .then((data) => {
+      if (data.data.error) {
+        let loginDoc = document.getElementById('badLogin');
+        loginDoc.style.display = 'block';
+      } else {
         window.location = `/profile`;
-      })
+      }
     })
     .catch(err => {
       console.log(err);
@@ -37,7 +40,7 @@ export default class Account extends Component {
       <div>
         <Navbar />
         <div className = 'Page-Container'>
-          <h1>Login to Friendrealm</h1>
+          <h1 className= "video-title">Login to Friendrealm</h1>
           <div className="form-group">
           <label htmlFor="name">Name:</label>
           <input type="name" className="form-control" id="name" value = { this.state.username } onChange = { this.handleSetUsername }/>
@@ -46,6 +49,7 @@ export default class Account extends Component {
           <label htmlFor="pwd">Password:</label>
           <input type="password" className="form-control" id="pwd" value = { this.state.password } onChange = { this.handleSetPassword }/>
         </div>
+        <p id = 'badLogin' className ="email-Warning">Error: Incorrect username and/or password! </p> 
         <div className="checkbox">
           <label><input type="checkbox"/> Remember me</label>
         </div>

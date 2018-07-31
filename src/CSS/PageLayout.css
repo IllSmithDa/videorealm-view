@@ -42,7 +42,7 @@
 }
 
 .app-title {
-  margin-top: 5em;
+  margin-top: 3em;
   margin-bottom: 5em;
 }
 .app-userform {
@@ -50,4 +50,8 @@
 
 .video-title {
   margin-top: 1em;
+}
+.email-Warning {
+  color: red;
+  display: none;
 }
