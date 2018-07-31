@@ -57,7 +57,7 @@ export default class Profile extends Component {
       <div>
         <Navbar />
         <div className = 'Page-Container'>
-          <h1>{this.state.profileName}'s Profile</h1>
+          <h1 className = 'profile-title app-title-item'>{this.state.profileName}'s Profile</h1>
           
           <div className = 'profile-image-container'>
             <button className='image-button' onClick={this.openImageModal}>Update Profile Picture</button>
@@ -67,18 +67,18 @@ export default class Profile extends Component {
           <div id='imageUploadModal' className='image-modal'>
             <div className='modal-content'>
               <span className='modal-close' onClick={this.closeImageModal}>&times;</span>
-              <h1>Upload new Profile picture</h1>
+              <h1 className='upload-title'>Upload new Profile picture</h1>
               <form ref='uploadForm' 
                 id='uploadForm' 
                 action= {this.state.uploadImageUrl}
                 method='post' 
                 encType="multipart/form-data">
                 <input type="file" name="profPictureFile" onChange = {this.setTimer}/>
-                <input type='submit' value='Upload'/>
+                <input className='upload-title' type='submit' value='Upload'/>
               </form> 
             </div>
           </div>
-          <h1> {this.state.profileName}'s Videos</h1>
+          <h1 className = 'profile-title app-title-item'> {this.state.profileName}'s Videos</h1>
           <UserVideoList/>
         </div>
       </div>

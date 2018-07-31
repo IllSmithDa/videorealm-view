@@ -55,7 +55,8 @@ export default class ReplyComments extends Component {
     // grabs video url inside current url 
     let getID = (window.location.href).split("/").pop();
     console.log(this.state.commentIndex);
-    const replyData = { videoID: getID, videoUploader: this.state.videoUploader, replyStatement: this.state.replyStatement, commentIndex: this.state.commentIndex};
+    const replyData = { videoID: getID, videoUploader: this.state.videoUploader, 
+      replyStatement: this.state.replyStatement, commentIndex: this.state.commentIndex};
     axios.post(`${reqURL}/addReplies`, replyData)
       .then((data) => {
         console.log('mydata', data)
@@ -83,15 +84,15 @@ export default class ReplyComments extends Component {
               {this.state.replyList.map((props) => {
                 return(
                   <div>
-                      <p className='text-reply'> {props.username}: {props.comment} </p>
+                      <p className='text-reply'> <b>{props.username[0].toUpperCase() + props.username.slice(1)}</b>: {props.comment} </p>
                   </div>
                 )
               })}
             </div>
-            <textarea placeholder = 'Add reply here' onChange = {this.handleReplyChange}/>
+            <textarea className = 'reply-area' placeholder = 'Add reply here' onChange = {this.handleReplyChange}/>
           </div>
           <div>
-            <button onClick = {this.onReplyCancel}>Cancel</button> <tab/>
+            <button className ='replay-button' onClick = {this.onReplyCancel}>Cancel</button> <tab/>
             <button onClick = {this.onReplySubmit}>Submit</button>
           </div>
         </div>
@@ -103,13 +104,13 @@ export default class ReplyComments extends Component {
           <div>
               {this.state.replyList.map((props) => {
                 return(
-                  <div>
-                    <p className='text-reply'> {props.username}: {props.comment} </p>
+                  <div >
+                    <p className='text-reply '> <b>{props.username[0].toUpperCase() + props.username.slice(1)}</b>: {props.comment} </p>
                   </div>
                 )
               })}
           </div>
-          <button onClick = {this.onRepliesHide}> Hide Replies </button> <tab/>
+          <button className ='replay-button' onClick = {this.onRepliesHide}> Hide Replies </button> <tab/>
           <button onClick = {this.onReplyClick}>Reply</button>
         </div>
       )

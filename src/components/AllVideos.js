@@ -21,7 +21,7 @@ class AllVideos extends Component {
   render() {
     return(
       <div>
-        <h1 className="video-title"> Latest Videos </h1>
+        <h1 className="video-title  app-title-item"> Latest Videos </h1>
         <div className="video-container">
           {this.props.videoList.map((post, index) => {
             return (
@@ -30,8 +30,8 @@ class AllVideos extends Component {
                   <Player src = {post.videoURL} >
                     <BigPlayButton position="center" />
                   </Player>
-                  <p className  = "video-videoName" >{post.videoName}</p>
-                  <p className = "video-channelName"> channel: {post.userName}</p>  
+                  <p className  = "video-videoName" >{post.videoName} <br/>
+                  {post.userName[0].toUpperCase() + post.userName.slice(1)}</p>  
                 </Link>
               </div>
             ); 

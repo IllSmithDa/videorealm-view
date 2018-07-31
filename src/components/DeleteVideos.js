@@ -83,23 +83,23 @@ export default class DeleteVideos extends Component {
         <div id='DeleteVideos' className='modal'>
            <div className="modal-content">
               <span className="close" onClick={this.closeModal}>&times;</span>
-              <h1>Select Which Videos you want to delete</h1>
-              {this.state.videoList.map((post, index) => {
-                return (
-                  <div key = {post.id} className = "video-key"> 
-                    <div className = "HomePage-div"> 
-                      <Link to={`/video/${post.videoID}`} className = "video-div"> 
-                        <Player src = {post.videoURL} >
-                          <BigPlayButton position="center" />
-                        </Player>
-                      </Link>
-                      <p className  = "HomePage-videoName"> {post.videoName} </p>
+              <h1 className = 'delete-title'>Select videos you want to delete <br/></h1>
+              <div className="video-container">
+                {this.state.videoList.map((post, index) => {
+                  return (
+                    <div key = {post.id} className = "video-key video-item"> 
+                        <Link to={`/video/${post.videoID}`} className = "video-div"> 
+                          <Player src = {post.videoURL} >
+                            <BigPlayButton position="center" />
+                          </Player>
+                        </Link>
+                        <p className  = "HomePage-videoName"> {post.videoName} </p>
+                      <input type="checkbox" value = { post.videoID } onChange = { this.handleDeleteCheck } />
                     </div>
-                    <input type="checkbox" value = { post.videoID } onChange = { this.handleDeleteCheck } />
-                  </div>
-                );
-              })}
-              <button type="submit"  onClick={ this.deleteSubmission }>Delete Video(s)</button>
+                  );
+                })}
+              </div>
+              <button className='delete-button' type="submit"  onClick={ this.deleteSubmission }>Delete Video(s)</button>
             </div>
         </div>
       </div>

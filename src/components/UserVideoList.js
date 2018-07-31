@@ -42,8 +42,7 @@ export default class UserVideoList extends Component {
                   <Player src = {post.videoURL} >
                     <BigPlayButton position="center" />
                   </Player>
-                  <p className  = "video-videoName" >{post.videoName}</p>
-                  <p className = "video-channelName"> channel: {post.userName}</p>  
+                  <p className  = "video-videoName" >{post.videoName} </p>
                 </Link>
               </div>
             ); 

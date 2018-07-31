@@ -39,7 +39,7 @@ export default class AdminPage extends Component {
       <div>
         <Navbar/>
         <div  class = 'Page-Container'>
-          <h1>Admin's Profile</h1>
+        <br/><br/> <h1>Admin's Profile</h1><br/>
           <div class = 'profile-image-container'>
             <button className='image-button' onClick={this.openImageModal}>Update Profile Picture</button>
             <img class = 'Profile-Image'src = {this.state.defaultProfilePic}/>
@@ -49,19 +49,19 @@ export default class AdminPage extends Component {
             <div className='modal-content'>
               <span className='modal-close' onClick={this.closeImageModal}>&times;</span>
               <h1>Upload new Profile picture</h1>
+              <br/>
               <form ref='uploadForm' 
                 id='uploadForm' 
                 action= {this.state.uploadImageUrl}
                 method='post' 
                 encType="multipart/form-data">
                 <input type="file" name="profPictureFile" onChange = {this.setTimer}/>
-                <input type='submit' value='Upload'/>
+                <input type='submit' value='Upload'/><br/>
               </form> 
             </div>
           </div>
           <AllVideos/>
         </div>
-      
       </div>
     );
   }

@@ -34,9 +34,12 @@ export default class VideoPlayer extends Component {
       .then((videoData) => {
         console.log('videoData id', videoData.data._id);
         this.state.videoURL = videoData.data.videoURL;
-        this.setState({ videoID: videoData.data.videoID, videoName: videoData.data.videoName, videoUploader: videoData.data.userName, 
+        this.setState({ videoID: videoData.data.videoID, videoName: videoData.data.videoName, 
+          videoUploader: videoData.data.userName[0].toUpperCase() + videoData.data.userName.slice(1), 
           views: videoData.data.views, videoThumbnail: videoData.data.videoThumbURL });
-          console.log('videoName', this.state.videoName);
+          console.log('videoName', this.state.videoUploader);
+        console.log('size', document.documentElement.clientWidth);
+        console.log('size', document.documentElement.clientHeight);
       })
       .catch((err) => {
         console.log(err);
@@ -48,19 +51,19 @@ export default class VideoPlayer extends Component {
       <div>
         <Navbar/>
         <div className='Page-Container'>
-        
-          <h1>{this.state.videoName} </h1>
 
-          <Player 
-            fluid={false}
-            width={800}
-            height={600}
-            src={this.state.videoURL}
-          >
-            <BigPlayButton position="center" />
-          </Player>
-
-          <h3>{this.state.videoUploader}</h3>
+          <h1 className = 'video-title'><b>{this.state.videoName}</b> </h1>
+          <div className = 'video-container'>
+            <Player
+              fluid={false}
+              width='100%'
+              height={document.documentElement.clientHeight/1.475}
+              src={this.state.videoURL}
+            >
+              <BigPlayButton position="center" />
+            </Player>
+          </div>
+          <h3 className = 'video-uploader'>{this.state.videoUploader}</h3>
           
           <CommentList/>
         </div>

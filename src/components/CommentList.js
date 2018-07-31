@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReplyComments from '../components/ReplyComments';
 import reqURL from './RequestURL';
+import '../CSS/VideoLayout.css';
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
 
@@ -29,7 +30,7 @@ export default class CommentList extends Component {
         for (let i = 0; i < videoData.data.comments.length; i++) {
           this.state.commentList.push(videoData.data.comments[i])
         }
-        this.setState({ videoID: getVideoID, videoUploader: videoData.data.userName });
+        this.setState({ videoID: getVideoID, videoUploader: videoData.data.userName, comment: '' });
         
       })
       .catch((err) => {
@@ -62,13 +63,14 @@ export default class CommentList extends Component {
   render() {
     return(
       <div>
-        <textarea onChange = {this.handleTextChange} placeholder = "Add comment here"></textarea>
+        <textarea className = 'comment-text' onChange = {this.handleTextChange} placeholder = "Add comment here"></textarea>
         <button onClick={this.submitComment}>submit</button>
+        <h3 className = 'comments-title'> Comments</h3>
         {this.state.commentList.map((val, index) => {
           return(
             <div>
-              <p>{val.username}: {val.comment} </p>
-              <ReplyComments commentIndex={index}/>
+              <p><b>{val.username[0].toUpperCase() + val.username.slice(1)} </b>: {val.comment}
+              <ReplyComments commentIndex={index}/></p>
             </div>
           );
         })}

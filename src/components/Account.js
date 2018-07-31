@@ -33,29 +33,46 @@ export default class Account extends Component {
   handleVideoName = (event) => {
     this.setState({ userVideoName: event.target.value });
   }
-  
+  componentDidMount() {
+    axios.get(`${reqURL}/getVideoList`)
+      .then(data => {
+        if (data.data.length >= 5) {
+          let warningDoc = document.getElementById('videoWarning');
+          warningDoc.style.display = 'block';
+        }
+      })
+      .catch(err => {
+        throw err;
+      })
+  }
+
   render() {
     return(
       <div>
         <Navbar />
         <div class = 'Page-Container'>
-          <h1>Account Page</h1>
-          <button id="myBtn2" onClick={this.openModal}> Upload Video </button>
-          <DeleteVideos deleteVideoList={this.state.videoList} />
+          <h1 className = 'accountTitle app-title-item'>Your Videos</h1>
+          <div className ='group-button'>
+            <button id="myBtn2" className ='button-item' onClick={this.openModal}> Upload Video </button>
+            <DeleteVideos deleteVideoList={this.state.videoList} />
+          </div>
+          <p id = 'videoWarning' className='email-Warning'> <b>Notice: You have reached the maximum number of videos allowed on this account! Delete
+            existing video(s) to add new ones.</b></p>
           <div id="myModal" className="modal">
             <div className="modal-content">
               <span className="close" onClick={this.closeModal}>&times;</span>
-              <h1>Upload Video Here</h1>
+              <h1 className = 'upload-title'>Upload Video Here</h1>
               <form ref='uploadForm' 
                 id='uploadForm' 
                 action= {this.state.videoUploadReq}
                 method='post' 
                 encType="multipart/form-data">
-                 <h2> {'Enter Video Name: '}
+                 <h3 className='video-name'> {'Enter Video Name: '}
                     <input tupe= 'text' name='videoName' onChange = {this.handleVideoName}/>
-                </h2>
+                </h3>
                 <input type="file" name="videoFile" onChange = {this.setTimer}/>
-                <input type='submit' value='Upload'/>
+                <input className='upload-button' type='submit' value='Upload'/>
+                
               </form> 
             </div>
           </div>

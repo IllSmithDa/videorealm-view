@@ -7,29 +7,70 @@
 }
 .video-key {
   margin-top:15px;
-  width: 222px;
+  width: 225px;
   margin-right: 3px;
   padding-left: 3px
 }
-.video-div{
-  flex-direction: column;
-}
 
 .video-videoName {
+  margin-top: 5px;
   font-weight:bolder;
 }
 .video-videoName:hover {
   cursor: pointer;
 }
-
+.video-container {
+  width: 100%;
+  height: 100%;
+}
 .video-player {
-  width: 33%;
+  width: 100%;
   height: 600px; 
 }
 .video-delete {
   display: none;
 }
-
+.video-title {
+  margin-top: 1em;
+}
 .text-reply {
-  text-indent: 25px;
+  margin-top: 0.7em;
+  text-indent: 3%;
+}
+.comment-text {
+  width: 100%;
+}
+.video-uploader {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.comments-title {
+  margin-top: 1em;
+}
+.replies-title {
+  margin-top: 4px;
+}
+.comments-content {
+  margin-bottom: 1em;
+}
+.reply-area {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 3%;
+  width: 97%;
+}
+.replay-button {
+  margin-left: 3%;
+}
+.video-delete {
+  display: flex;
+  
+}
+.delete-button {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  width: 20%;
+}
+.delete-title{
+  margin-bottom: 0.7em;
 }

@@ -40,7 +40,7 @@ export default class Account extends Component {
       <div>
         <Navbar />
         <div className = 'Page-Container'>
-          <h1 className= "video-title">Login to Friendrealm</h1>
+          <h1 className= "video-title app-title-item">Login to Friendrealm</h1>
           <div className="form-group">
           <label htmlFor="name">Name:</label>
           <input type="name" className="form-control" id="name" value = { this.state.username } onChange = { this.handleSetUsername }/>
