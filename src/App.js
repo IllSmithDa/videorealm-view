@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import axios from 'axios';
 import HomePage from './components/HomePage';
 import './CSS/App.css';

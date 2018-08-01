@@ -3,7 +3,6 @@ import * as EmailValidator from 'email-validator';
 import axios from 'axios';
 import Navbar from './Navbar';
 import reqURL from './RequestURL';
-import '../CSS/App.css';
 import '../CSS/PageLayout.css';
 axios.defaults.withCredentials = true;
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Navbar from './Navbar';
 import AllVideos from './AllVideos';
 import '../CSS/PageLayout.css';
-import '../CSS/App.css';
 
 export default class HomePage extends Component {
   render() {
