@@ -34,6 +34,7 @@ export default class Navbar extends Component {
     axios
       .get(`${reqURL}/logoutUser`)
       .then(() => {
+        document.getElementById('create-button').style.display = 'block';
         window.location = '/login';
       })
     }
@@ -59,6 +60,7 @@ export default class Navbar extends Component {
         // console.log('username:', userData.data);
         if (userData.data === '' || userData.data === null || userData.data === undefined) {
           this.setState({ loginState: 'LOGIN',  accountState: '', createState: 'NEW ACCOUNT'});
+
         } else {
           this.setState({ loginState: 'LOGOUT', accountState: 'ACCOUNT',  profileName: userData.data.toUpperCase(),
           createState: ''});
@@ -67,6 +69,11 @@ export default class Navbar extends Component {
       .catch(err => {
         console.log(err);
       })
+  }
+  componentDidUpdate() {
+    if (this.state.loginState === 'LOGOUT') {
+      document.getElementById('create-button').style.display = 'none';
+    }
   }
   render() {
     return(
@@ -80,7 +87,7 @@ export default class Navbar extends Component {
           <div className = "navbar-item-container2">
             <button onClick = {this.myProfile} className = "navbar-button">{this.state.profileName}</button>
             <button onClick = {this.myAccount} className = "navbar-button">{this.state.accountState}</button>
-            <button onClick = {this.createUser} className = "navbar-button">{this.state.createState}</button>
+            <button id='create-button' onClick = {this.createUser} className = "navbar-button">{this.state.createState}</button>
             <button onClick = {this.loginPage} className = "navbar-button">{this.state.loginState}</button>
           </div>
         </div>
