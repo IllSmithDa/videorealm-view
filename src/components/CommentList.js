@@ -38,10 +38,25 @@ export default class CommentList extends Component {
       })
       
   }
+  //check state after component updates
+  componentDidUpdate() {
+    let commentDoc = document.getElementById('comment-button');
+    if (this.state.comment === '') {
+      commentDoc.style.display = 'none';
+    }
+
+  }
 
   handleTextChange = (event) => {
     const newComment = event.target.value;
+    console.log(this.state.comment);
     this.setState({ comment: newComment });
+    let commentDoc = document.getElementById('comment-button');
+    // only show submit button if comment is written
+    if (commentDoc.style.display === 'none') {
+      commentDoc.style.display = 'block'
+    }
+
   }
   submitComment = () => {
     const commentData = ({ commentUsername: this.state.commentUsername, videoUploader: this.state.videoUploader, 
@@ -63,8 +78,8 @@ export default class CommentList extends Component {
   render() {
     return(
       <div>
-        <textarea className = 'comment-text' onChange = {this.handleTextChange} placeholder = "Add comment here"></textarea>
-        <button onClick={this.submitComment}>submit</button>
+        <textarea  className = 'comment-text' onChange = {this.handleTextChange} placeholder = "Add comment here"></textarea>
+        <button id='comment-button' className='comment-button-item' onClick={this.submitComment}>submit</button>
         <h3 className = 'comments-title'> Comments</h3>
         {this.state.commentList.map((val, index) => {
           return(

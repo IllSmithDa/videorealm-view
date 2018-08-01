@@ -14,7 +14,6 @@ import CreateUser from './components/CreateUser';
 import AdminPage from './components/AdminPage';
 import VideoPlayer from './components/VideoPlayer';
 import SearchPage from './components/SearchPage';
-import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(Thunk)(createStore);
@@ -34,5 +33,3 @@ ReactDOM.render(
       </div>
     </Router>
   </Provider>, document.getElementById('root'));
-  
-registerServiceWorker();

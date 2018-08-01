@@ -47,6 +47,9 @@
 .comments-title {
   margin-top: 1em;
 }
+.comment-button-item {
+  display: none;
+}
 .replies-title {
   margin-top: 4px;
 }
