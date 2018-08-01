@@ -18,31 +18,42 @@ export default class CommentList extends Component {
     }
   }
   componentDidMount() {
-    const getVideoID = (window.location.href).split("/").pop();
-    // grabs video url inside current url 
-    console.log('videoID', getVideoID);
-
-    const videoReqID = { videoID: getVideoID }
-    axios
-      .post(`${reqURL}/getVideo`, videoReqID)
-      .then((videoData) => {
-        console.log('video data ', videoData.data);
-        for (let i = 0; i < videoData.data.comments.length; i++) {
-          this.state.commentList.push(videoData.data.comments[i])
+    let userName = '';
+    axios.get(`${reqURL}/getUsername`)
+      .then(data => {
+        if (data.data.error) {
+          document.getElementById("comment-textarea").disabled = true;
+          document.getElementById("comment-textarea").placeholder = 'Please login to comment!';
+        } else {
+          userName = data.data;
         }
-        this.setState({ videoID: getVideoID, videoUploader: videoData.data.userName, comment: '' });
-        
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      
+        const getVideoID = (window.location.href).split("/").pop();
+        // grabs video url inside current url 
+        console.log('videoID', getVideoID);
+
+        const videoReqID = { videoID: getVideoID }
+        axios
+          .post(`${reqURL}/getVideo`, videoReqID)
+          .then((videoData) => {
+            console.log('video data ', videoData.data);
+            for (let i = 0; i < videoData.data.comments.length; i++) {
+              this.state.commentList.push(videoData.data.comments[i])
+            }
+            this.setState({ videoID: getVideoID, videoUploader: videoData.data.userName, comment: '', commentUsername: userName });
+
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          })
+          .catch(err => {
+            throw err;
+          })
   }
   //check state after component updates
   componentDidUpdate() {
-    let commentDoc = document.getElementById('comment-button');
-    if (this.state.comment === '') {
-      commentDoc.style.display = 'none';
+    if (this.state.comment === '' || this.state.userName === '' ) {
+      document.getElementById("comment-button").disabled = true;
     }
 
   }
@@ -51,10 +62,10 @@ export default class CommentList extends Component {
     const newComment = event.target.value;
     console.log(this.state.comment);
     this.setState({ comment: newComment });
-    let commentDoc = document.getElementById('comment-button');
+
     // only show submit button if comment is written
-    if (commentDoc.style.display === 'none') {
-      commentDoc.style.display = 'block'
+    if (document.getElementById("comment-button").disabled) {
+      document.getElementById("comment-button").disabled = false;
     }
 
   }
@@ -78,14 +89,14 @@ export default class CommentList extends Component {
   render() {
     return(
       <div>
-        <textarea  className = 'comment-text' onChange = {this.handleTextChange} placeholder = "Add comment here"></textarea>
+        <textarea id='comment-textarea' className = 'comment-text' onChange = {this.handleTextChange} placeholder = "Add comment here"></textarea>
         <button id='comment-button' className='comment-button-item' onClick={this.submitComment}>submit</button>
         <h3 className = 'comments-title'> Comments</h3>
         {this.state.commentList.map((val, index) => {
           return(
             <div>
               <p><b>{val.username[0].toUpperCase() + val.username.slice(1)} </b>: {val.comment}
-              <ReplyComments commentIndex={index}/></p>
+              <ReplyComments commentIndex={index} commentUsername={this.state.commentUsername}/></p>
             </div>
           );
         })}

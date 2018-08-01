@@ -15,11 +15,13 @@ export default class ReplyComments extends Component {
       replyStatement: '',
       videoUploader:'',
       replyList: [],
+      replyUsername: this.props.commentUsername,
       commentIndex: this.props.commentIndex
     }
   }
   handleReplyChange = (event) => {
     this.setState({ replyStatement: event.target.value });
+   
   }
   onReplyClick = () => {
     this.setState({ isReplyClicked: true });
@@ -51,6 +53,19 @@ export default class ReplyComments extends Component {
         console.log(err);
       })
   }
+  componentDidUpdate() {
+    if (this.state.replyUsername === '' && this.state.isReplyClicked) {
+      document.getElementById('reply-text').disabled = true;
+      document.getElementById('reply-text').placeholder = 
+      'Please login to reply to comments!';
+    }
+    if (this.state.isReplyClicked && this.state.replyStatement === '') {
+      document.getElementById('reply-submit').disabled = true;
+    }
+    if (this.state.replyStatement !== '') {
+      document.getElementById('reply-submit').disabled = false;
+    }
+  }
   onReplySubmit = () => {
     // grabs video url inside current url 
     let getID = (window.location.href).split("/").pop();
@@ -60,7 +75,8 @@ export default class ReplyComments extends Component {
     axios.post(`${reqURL}/addReplies`, replyData)
       .then((data) => {
         console.log('mydata', data)
-        this.setState({replyList: data.data, isReplyClicked: false, isRepliesHidden: false});
+        this.setState({replyList: data.data, isReplyClicked: false, isRepliesHidden: false,
+          replyStatement:'' });
       })
       .catch((err) => {
         console.log(err);
@@ -89,11 +105,11 @@ export default class ReplyComments extends Component {
                 )
               })}
             </div>
-            <textarea className = 'reply-area' placeholder = 'Add reply here' onChange = {this.handleReplyChange}/>
+            <textarea id='reply-text' className='reply-area' placeholder='Add reply here' onChange={this.handleReplyChange}/>
           </div>
           <div>
-            <button className ='replay-button' onClick = {this.onReplyCancel}>Cancel</button> <tab/>
-            <button onClick = {this.onReplySubmit}>Submit</button>
+            <button className='reply-button' onClick={this.onReplyCancel}>Cancel</button> <tab/>
+            <button id='reply-submit' className='reply-submit-button' onClick={this.onReplySubmit} >Submit</button>
           </div>
         </div>
       )
@@ -102,16 +118,16 @@ export default class ReplyComments extends Component {
       return (
         <div>
           <div>
-              {this.state.replyList.map((props) => {
-                return(
-                  <div >
-                    <p className='text-reply '> <b>{props.username[0].toUpperCase() + props.username.slice(1)}</b>: {props.comment} </p>
-                  </div>
-                )
-              })}
+            {this.state.replyList.map((props) => {
+              return(
+                <div >
+                  <p className='text-reply'> <b>{props.username[0].toUpperCase() + props.username.slice(1)}</b>: {props.comment} </p>
+                </div>
+              )
+            })}
           </div>
-          <button className ='replay-button' onClick = {this.onRepliesHide}> Hide Replies </button> <tab/>
-          <button onClick = {this.onReplyClick}>Reply</button>
+          <button className='reply-button' onClick={this.onRepliesHide}>Hide Replies</button>
+          <button onClick={this.onReplyClick}>Reply</button>
         </div>
       )
     }

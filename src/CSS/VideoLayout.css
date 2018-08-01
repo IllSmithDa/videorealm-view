@@ -48,13 +48,15 @@
   margin-top: 1em;
 }
 .comment-button-item {
-  display: none;
+}
+.comments-content {
+  margin-bottom: 1em;
 }
 .replies-title {
   margin-top: 4px;
 }
-.comments-content {
-  margin-bottom: 1em;
+.reply-list-item {
+  display: none;
 }
 .reply-area {
   margin-top: 0.5em;
@@ -62,8 +64,11 @@
   margin-left: 3%;
   width: 97%;
 }
-.replay-button {
+.reply-button {
   margin-left: 3%;
+}
+.reply-submit-button {
+  disabled: true;
 }
 .video-delete {
   display: flex;
