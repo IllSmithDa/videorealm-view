@@ -22,13 +22,13 @@ export default class Profile extends Component {
     axios
       .get(`${reqURL}/getUsername`)
       .then((userData) => {
-        console.log('username:', userData.data );
+        // console.log('username:', userData.data );
         axios.get(`${reqURL}/getUserImage`)
         .then((imageData) => {
-          console.log(imageData.data);
+          // console.log(imageData.data);
           // uppercase first letter only and slice rest of the string onto the first to be kept lowercase
           this.setState({ profileName: userData.data[0].toUpperCase() + userData.data.slice(1), profilePictureSrc: imageData.data })
-          console.log(this.state.profilePictureSrc);
+          // console.log(this.state.profilePictureSrc);
         })
         .catch(err => {
           console.log(err);

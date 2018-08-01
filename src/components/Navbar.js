@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Searchbar from './Searchbar';
 import reqURL from './RequestURL';
 import '../CSS/Navbar.css';
 
@@ -57,7 +56,7 @@ export default class Navbar extends Component {
     axios
       .get(`${reqURL}/getUsername`)
       .then((userData) => {
-        // console.log('username:', userData);
+        // console.log('username:', userData.data);
         if (userData.data === '' || userData.data === null || userData.data === undefined) {
           this.setState({ loginState: 'LOGIN',  accountState: '', createState: 'NEW ACCOUNT'});
         } else {

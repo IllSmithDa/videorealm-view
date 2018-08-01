@@ -32,12 +32,10 @@ export default class VideoPlayer extends Component {
      axios
       .post(`${reqURL}/getVideo`, videoID)
       .then((videoData) => {
-        console.log('videoData id', videoData.data._id);
-        this.state.videoURL = videoData.data.videoURL;
         this.setState({ videoID: videoData.data.videoID, videoName: videoData.data.videoName, 
           videoUploader: videoData.data.userName[0].toUpperCase() + videoData.data.userName.slice(1), 
-          views: videoData.data.views, videoThumbnail: videoData.data.videoThumbURL });
-          console.log('videoName', this.state.videoUploader);
+          views: videoData.data.views, videoThumbnail: videoData.data.videoThumbURL,
+          videoURL: videoData.data.videoURL });
         console.log('size', document.documentElement.clientWidth);
         console.log('size', document.documentElement.clientHeight);
       })

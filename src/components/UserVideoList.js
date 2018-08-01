@@ -25,7 +25,7 @@ export default class UserVideoList extends Component {
             videoList.push(data.data[i])
         }
         this.setState({videoList: videoList})
-        console.log(this.state.videoList);
+        // console.log(this.state.videoList);
       })
       .catch(err => {
         console.log(err);

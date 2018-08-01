@@ -44,10 +44,10 @@ export default class ReplyComments extends Component {
     let reqVideoID = { videoID: getID };
     axios.post(`${reqURL}/getVideo`, reqVideoID)
       .then((videoData) => {
-        console.log('replies', videoData.data.comments[this.state.commentIndex].replies);
+        // console.log('replies', videoData.data.comments[this.state.commentIndex].replies);
         this.setState({videoUploader: videoData.data.userName, 
           replyList: videoData.data.comments[this.state.commentIndex].replies });
-        console.log('uploader', this.state.videoUploader)
+        // console.log('uploader', this.state.videoUploader)
       })
       .catch((err) => {
         console.log(err);
@@ -69,12 +69,12 @@ export default class ReplyComments extends Component {
   onReplySubmit = () => {
     // grabs video url inside current url 
     let getID = (window.location.href).split("/").pop();
-    console.log(this.state.commentIndex);
+    // console.log(this.state.commentIndex);
     const replyData = { videoID: getID, videoUploader: this.state.videoUploader, 
       replyStatement: this.state.replyStatement, commentIndex: this.state.commentIndex};
     axios.post(`${reqURL}/addReplies`, replyData)
       .then((data) => {
-        console.log('mydata', data)
+        // console.log('mydata', data)
         this.setState({replyList: data.data, isReplyClicked: false, isRepliesHidden: false,
           replyStatement:'' });
       })
@@ -86,7 +86,7 @@ export default class ReplyComments extends Component {
     if ( this.state.isRepliesHidden && !this.state.isReplyClicked) {
       return(
         <div>
-          <button onClick={this.onRepliesShow}>Show Replies </button> <tab/>
+          <button onClick={this.onRepliesShow}>Show Replies </button>
           <button onClick={this.onReplyClick}> Reply </button>
         </div>
       )
@@ -99,7 +99,7 @@ export default class ReplyComments extends Component {
             <div>
               {this.state.replyList.map((props) => {
                 return(
-                  <div>
+                  <div key={props.id}>
                       <p className='text-reply'> <b>{props.username[0].toUpperCase() + props.username.slice(1)}</b>: {props.comment} </p>
                   </div>
                 )
@@ -108,7 +108,7 @@ export default class ReplyComments extends Component {
             <textarea id='reply-text' className='reply-area' placeholder='Add reply here' onChange={this.handleReplyChange}/>
           </div>
           <div>
-            <button className='reply-button' onClick={this.onReplyCancel}>Cancel</button> <tab/>
+            <button className='reply-button' onClick={this.onReplyCancel}>Cancel</button>
             <button id='reply-submit' className='reply-submit-button' onClick={this.onReplySubmit} >Submit</button>
           </div>
         </div>
@@ -118,9 +118,9 @@ export default class ReplyComments extends Component {
       return (
         <div>
           <div>
-            {this.state.replyList.map((props) => {
+            {this.state.replyList.map((props, index) => {
               return(
-                <div >
+                <div key={props._id}>
                   <p className='text-reply'> <b>{props.username[0].toUpperCase() + props.username.slice(1)}</b>: {props.comment} </p>
                 </div>
               )

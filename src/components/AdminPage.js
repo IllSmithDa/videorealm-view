@@ -42,7 +42,7 @@ export default class AdminPage extends Component {
         <br/><br/> <h1>Admin's Profile</h1><br/>
           <div class = 'profile-image-container'>
             <button className='image-button' onClick={this.openImageModal}>Update Profile Picture</button>
-            <img class = 'Profile-Image'src = {this.state.defaultProfilePic}/>
+            <img class = 'Profile-Image'src = {this.state.defaultProfilePic} alt='admin-profile-picture'/>
           </div>
 
           <div id='imageUploadModal' className='image-modal'>

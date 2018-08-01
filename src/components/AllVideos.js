@@ -10,9 +10,6 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 class AllVideos extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     // calls action to get all videos
     this.props.getAllVideos();

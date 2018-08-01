@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import ReduxPromise from 'redux-promise';
 import Thunk from 'redux-thunk';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import './index.css';
