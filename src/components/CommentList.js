@@ -89,13 +89,13 @@ export default class CommentList extends Component {
   render() {
     return(
       <div>
-        <textarea id='comment-textarea' className = 'comment-text' onChange = {this.handleTextChange} placeholder = "Add comment here"></textarea>
-        <button id='comment-button' className='comment-button-item' onClick={this.submitComment}>submit</button>
-        <h4 className = 'comments-title'> Comments</h4>
+        <textarea id='comment-textarea' className = 'comment-text text-items ' onChange = {this.handleTextChange} placeholder = "Add comment here"></textarea>
+        <button id='comment-button' className='comment-button-item text-items all-buttons' onClick={this.submitComment}>Submit</button>
+        <h4 className = 'comments-title text-items'> Comments</h4>
         {this.state.commentList.map((val, index) => {
           return(
             <div key={val._id}>
-              <p><b>{val.username[0].toUpperCase() + val.username.slice(1)} </b>: {val.comment}</p>
+              <p className='text-items'><b>{val.username[0].toUpperCase() + val.username.slice(1)} </b>: {val.comment}</p>
               <ReplyComments commentIndex={index} commentUsername={this.state.commentUsername}/>
               <br/>
             </div>

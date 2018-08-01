@@ -50,8 +50,8 @@ export default class VideoPlayer extends Component {
         <Navbar/>
         <div className='Page-Container'>
 
-          <h1 className = 'video-title'><b>{this.state.videoName}</b> </h1>
-          <div className = 'video-container'>
+          <h1 className='video-title text-items'><b>{this.state.videoName}</b> </h1>
+          <div className='video-container'>
             <Player
               fluid={false}
               width='100%'
@@ -61,7 +61,7 @@ export default class VideoPlayer extends Component {
               <BigPlayButton position="center" />
             </Player>
           </div>
-          <h4 className = 'video-uploader'>{this.state.videoUploader}</h4>
+          <h4 className='video-uploader text-items'>{this.state.videoUploader}</h4>
           
           <CommentList/>
         </div>

@@ -1,6 +1,7 @@
 .Page-Container {
   margin-left: 20%;
   margin-right: 20%;
+
 }
 
 /* The Modal (background) */
@@ -84,4 +85,51 @@
 .app-title-item {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin-top: 1em;
+  margin-left: 0.5%;
+}
+
+.text-items {
+  margin-left: 0.5%;
+}
+.form-input {
+  margin-left: 0.5%;
+  width: 99%;
+}
+.all-buttons {
+  background-color: rgb(50, 156, 255);
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-right: 10px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+} 
+.all-buttons:hover{
+  background-color: rgba(20, 120, 255);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.reply-buttons {
+  background-color: rgb(50, 156, 255);
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 3px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-right: 10px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.reply-buttons:hover{
+  background-color: rgba(20, 120, 255);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }

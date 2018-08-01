@@ -22,10 +22,9 @@ export default class UserVideoList extends Component {
       .then(data => {  
         let videoList = []
         for (let i = 0; i < data.data.length; i++) {
-            videoList.push(data.data[i])
+            videoList.push(data.data[i]);
         }
-        this.setState({videoList: videoList})
-        // console.log(this.state.videoList);
+        this.setState({videoList: videoList});
       })
       .catch(err => {
         console.log(err);

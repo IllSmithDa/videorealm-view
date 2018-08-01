@@ -135,24 +135,24 @@ export default class CreateUser extends Component {
         <div className = 'Page-Container'>
           <div className='form-group app-userform'>
             <h1 className = 'app-title-item'> Create Your Videorealm Account </h1>
-            <label htmlFor='name' id='username-message'> <b>Choose your username:</b></label>
-            <input type='name' className='form-control' id='name' value = { this.state.username } onChange = { this.handleSetUsername }/>
-            <p id = 'shortUsername' className ='email-warning'>Error: Username must be at least 3 letters</p> 
-            <p id = 'badUsername' className ='email-warning'>Error: Username already exists</p> 
+            <label className='text-items' htmlFor='name' id='username-message'> <b>Choose your username:</b></label>
+            <input type='name' className='form-control form-input' id='name' value = { this.state.username } onChange = { this.handleSetUsername }/>
+            <p id = 'shortUsername' className ='email-warning text-items'>Error: Username must be at least 3 letters</p> 
+            <p id = 'badUsername' className ='email-warning text-items'>Error: Username already exists</p> 
           </div>
           <div className='form-group'>
-            <label htmlFor='pwd'><b>Create your password:</b></label>
-            <input type='password' className='form-control' id='pwd' value = { this.state.password } onChange = { this.handleSetPassword }/>
-            <p id = 'badPassword' className ='email-warning'>Error: invalid password. Password must be at least 8 characters long and must 
+            <label className='text-items' htmlFor='pwd'><b>Create your password:</b></label>
+            <input type='password' className='form-control form-input' id='pwd' value = { this.state.password } onChange = { this.handleSetPassword }/>
+            <p id = 'badPassword' className ='email-warning text-items'>Error: invalid password. Password must be at least 8 characters long and must 
             include at least one number and one special character </p> 
           </div>
           <div className='form-group'>
-            <label htmlFor='pwd'><b>Enter a valid Email:</b></label>
-            <input type='email' className='form-control' id='email' value = { this.state.email } onChange = { this.handleSetEmail }/>
-            <p id = 'badEmail' className ='email-warning'>Please enter an existing email</p>
-            <p id = 'dupEmail' className ='email-warning'>Error: Only one account allowed per email</p> 
+            <label className='text-items' htmlFor='pwd'><b>Enter a valid Email:</b></label>
+            <input type='email' className='form-control form-input' id='email' value = { this.state.email } onChange = { this.handleSetEmail }/>
+            <p id = 'badEmail' className ='email-warning text-items'>Please enter an existing email</p>
+            <p id = 'dupEmail' className ='email-warning text-items'>Error: Only one account allowed per email</p> 
           </div>
-          <button type='submit' className='btn btn-default' onClick = { this.createUser }>Submit</button>
+          <button type='submit' className='all-buttons text-items' onClick = { this.createUser }>Submit</button>
         </div>
       </div>
     );

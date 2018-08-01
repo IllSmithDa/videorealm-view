@@ -86,8 +86,8 @@ export default class ReplyComments extends Component {
     if ( this.state.isRepliesHidden && !this.state.isReplyClicked) {
       return(
         <div>
-          <button onClick={this.onRepliesShow}>Show Replies </button>
-          <button onClick={this.onReplyClick}> Reply </button>
+          <button className='text-items reply-buttons' onClick={this.onRepliesShow}>Show Replies </button>
+          <button className='reply-buttons' onClick={this.onReplyClick}> Reply </button>
         </div>
       )
     }
@@ -108,8 +108,8 @@ export default class ReplyComments extends Component {
             <textarea id='reply-text' className='reply-area' placeholder='Add reply here' onChange={this.handleReplyChange}/>
           </div>
           <div>
-            <button className='reply-button' onClick={this.onReplyCancel}>Cancel</button>
-            <button id='reply-submit' className='reply-submit-button' onClick={this.onReplySubmit} >Submit</button>
+            <button className='reply-button reply-buttons' onClick={this.onReplyCancel}>Cancel</button>
+            <button id='reply-submit' className='reply-submit-button reply-buttons' onClick={this.onReplySubmit} >Submit</button>
           </div>
         </div>
       )
@@ -126,8 +126,8 @@ export default class ReplyComments extends Component {
               )
             })}
           </div>
-          <button className='reply-button' onClick={this.onRepliesHide}>Hide Replies</button>
-          <button onClick={this.onReplyClick}>Reply</button>
+          <button className='reply-button reply-buttons' onClick={this.onRepliesHide}>Hide Replies</button>
+          <button className='reply-buttons' onClick={this.onReplyClick}>Reply</button>
         </div>
       )
     }
