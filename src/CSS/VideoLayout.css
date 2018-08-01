@@ -32,6 +32,7 @@
 }
 .video-title {
   margin-top: 1em;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .text-reply {
   margin-top: 0.7em;
@@ -43,11 +44,11 @@
 .video-uploader {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .comments-title {
   margin-top: 1em;
-}
-.comment-button-item {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .comments-content {
   margin-bottom: 1em;

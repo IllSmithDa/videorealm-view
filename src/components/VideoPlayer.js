@@ -61,7 +61,7 @@ export default class VideoPlayer extends Component {
               <BigPlayButton position="center" />
             </Player>
           </div>
-          <h3 className = 'video-uploader'>{this.state.videoUploader}</h3>
+          <h4 className = 'video-uploader'>{this.state.videoUploader}</h4>
           
           <CommentList/>
         </div>

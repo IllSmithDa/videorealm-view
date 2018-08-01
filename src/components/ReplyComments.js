@@ -120,7 +120,7 @@ export default class ReplyComments extends Component {
           <div>
             {this.state.replyList.map((props, index) => {
               return(
-                <div key={props._id}>
+                <div key={props.id}>
                   <p className='text-reply'> <b>{props.username[0].toUpperCase() + props.username.slice(1)}</b>: {props.comment} </p>
                 </div>
               )
