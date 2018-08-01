@@ -17,6 +17,7 @@
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
@@ -51,8 +52,9 @@
 .video-title {
   margin-top: 1em;
 }
-.email-Warning {
+.email-warning {
   color: red;
+  font-weight: bold;
   display: none;
 }
 .profile-title {
@@ -66,7 +68,6 @@
 }
 .app-title {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-style: bold;
 }
 .button-item {
   margin-right: 2em;
