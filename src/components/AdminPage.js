@@ -39,7 +39,7 @@ export default class AdminPage extends Component {
       <div>
         <Navbar/>
         <div  class = 'Page-Container'>
-        <br/><br/> <h1>Admin's Profile</h1><br/>
+        <h1 className = 'app-title-item'>Admin's Profile</h1><br/>
           <div class = 'profile-image-container'>
             <button className='image-button' onClick={this.openImageModal}>Update Profile Picture</button>
             <img class = 'Profile-Image'src = {this.state.defaultProfilePic} alt='admin-profile-picture'/>
@@ -60,6 +60,7 @@ export default class AdminPage extends Component {
               </form> 
             </div>
           </div>
+          <h1 className = 'app-title-item'> Admin's Videos</h1>
           <AllVideos/>
         </div>
       </div>
