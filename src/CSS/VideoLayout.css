@@ -19,19 +19,32 @@
 .video-videoName:hover {
   cursor: pointer;
 }
+.video-player-item {
+  width: 99%;
+  margin-left:0.5%;
+}
 .video-container {
   width: 100%;
-  height: 100%;
+  padding-left:0.3%;
 }
-.video-player {
-  width: 100%;
-  height: 600px; 
+.video-control-container {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 99%;
+  margin-left: 0.5%;
+}
+.video-seek-bar {
+  margin-top: 1%;
+  width: 59%;
+}
+.play-icon {
+  width: 10px;
+  height: 10px;
 }
 .video-delete {
   display: none;
 }
 .video-title {
-  margin-top: 1em;
+  margin-top: 2em;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .text-reply {
