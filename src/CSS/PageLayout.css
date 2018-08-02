@@ -41,7 +41,9 @@
   text-decoration: none;
   cursor: pointer;
 }
-
+.app-header {
+  padding-top: 1em;
+}
 .app-title {
   margin-top: 3em;
   margin-bottom: 5em;
@@ -132,4 +134,11 @@
 .reply-buttons:hover{
   background-color: rgba(20, 120, 255);
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+@media all and (max-width: 450px) { 
+  .Page-Container {
+    margin-left: 5%;
+    margin-right: 5%;
+    
+  }
 }

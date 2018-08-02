@@ -61,9 +61,11 @@ export default class ReplyComments extends Component {
     }
     if (this.state.isReplyClicked && this.state.replyStatement === '') {
       document.getElementById('reply-submit').disabled = true;
+      document.getElementById("reply-submit").style.backgroundColor = 'lightblue';
     }
     if (this.state.replyStatement !== '') {
       document.getElementById('reply-submit').disabled = false;
+      document.getElementById("reply-submit").style.backgroundColor = 'rgb(50, 156, 255)';
     }
   }
   onReplySubmit = () => {
@@ -96,7 +98,7 @@ export default class ReplyComments extends Component {
       return(
         <div>
           <div>
-            <div>
+            <div className='reply-container'>
               {this.state.replyList.map((props) => {
                 return(
                   <div key={props.id}>

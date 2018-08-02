@@ -54,6 +54,7 @@ export default class CommentList extends Component {
   componentDidUpdate() {
     if (this.state.comment === '' || this.state.userName === '' ) {
       document.getElementById("comment-button").disabled = true;
+      document.getElementById("comment-button").style.backgroundColor = 'lightblue';
     }
 
   }
@@ -66,6 +67,7 @@ export default class CommentList extends Component {
     // only show submit button if comment is written
     if (document.getElementById("comment-button").disabled) {
       document.getElementById("comment-button").disabled = false;
+      document.getElementById("comment-button").style.backgroundColor = 'rgb(50, 156, 255)';
     }
 
   }
@@ -94,7 +96,7 @@ export default class CommentList extends Component {
         <h4 className = 'comments-title text-items'> Comments</h4>
         {this.state.commentList.map((val, index) => {
           return(
-            <div key={val._id}>
+            <div className='comments-container' key={val._id}>
               <p className='text-items'><b>{val.username[0].toUpperCase() + val.username.slice(1)} </b>: {val.comment}</p>
               <ReplyComments commentIndex={index} commentUsername={this.state.commentUsername}/>
               <br/>

@@ -25,8 +25,8 @@ export default class VideoPlayer extends Component {
   componentDidMount() {
     
     // set default slider at 0. 
-    const seekSlider = document.getElementById("seek-bar");
-    seekSlider.value = 0;
+   //  const seekSlider = document.getElementById("seek-bar");
+    // seekSlider.value = 0;
     // grabs the current url
     let getID = window.location.href;
     // grabs username inside current url 
@@ -51,11 +51,11 @@ export default class VideoPlayer extends Component {
     if (videoDoc.paused) {
       //play video and change text to Pause
       videoDoc.play();
-      playButton.innerHTML = 'Pause';
+      playButton.src =  require('./assets/pausebutton.png');
     }
     else {
       videoDoc.pause();
-      playButton.innerHTML = 'Play';
+      playButton.src =  require('./assets/playbutton2.png');
     }
   }
   seekVideo = () => {
@@ -94,7 +94,7 @@ export default class VideoPlayer extends Component {
     let playButton = document.getElementById("play-pause");
     if(curtimetext.innerHTML === durtimetext.innerHTML) {
       // sets seeker back to beginning of video and turns pause into play
-      playButton.innerHTML = 'Play';
+      playButton.src =  require('./assets/playbutton2.png');
       seekSlider.value = 0;
     }
   }
@@ -108,10 +108,10 @@ export default class VideoPlayer extends Component {
     const muteButton = document.getElementById('mute-button');
     if (videoDoc.muted) {
       videoDoc.muted = false;
-      muteButton.innerHTML = 'Mute';
+      muteButton.src = require('./assets/mutebutton.png')
     } else {
       videoDoc.muted = true;
-      muteButton.innerHTML = 'Unmute';
+      muteButton.src =  require('./assets/unmutebutton.png')
     }
   }
   fullScreenMode = () => {
@@ -134,19 +134,10 @@ export default class VideoPlayer extends Component {
         <div className='Page-Container'>
           <h1 className='video-title text-items'><b>{this.state.videoName}</b> </h1>
           <div className='video-container'>
-            <video id='video-player' className='video-player-item' onTimeUpdate={this.updateVideoSeek}>
+            <video id='video-player' className='video-player-item' controls /*onTimeUpdate={this.updateVideoSeek}*/>
               <source src={this.state.videoURL} type="video/mp4" />
               <source src={this.state.videoURL} type="video/mov" />
             </video>
-            <div id="video-controls" className='video-control-container'>
-              <img src='C:\Users\Samuel Kim\Documents\Lambda School\friendrealm-view\src\components\assets\playbutton2.png' className='play-icon' onClick={this.playVideo} id="play-pause"/>
-              <input  className='video-seek-bar' onInput={this.seekVideo} type="range" id="seek-bar" />
-              <span id="curtimetext">00:00</span> / <span id="durtimetext">00:00</span>
-              <button type="button" id="mute-button" onClick={this.muteVideo}>Mute</button>
-              <input onInput={this.volumeChange}  type="range" id="volume-slider" min="0" max="100" step="1" />
-              <button type="button" id="full-screen" onClick={this.fullScreenMode}>[]</button>
-              
-            </div>
           </div>
           <h4 className='video-uploader text-items'>{this.state.videoUploader}</h4>
           <CommentList/>
@@ -155,14 +146,14 @@ export default class VideoPlayer extends Component {
     );
   }
 }
-/* old video player 
-
-<Player
-  fluid={false}
-  width='100%'
-  height='50%'
-  src={this.state.videoURL}
->
-  <BigPlayButton position="center" />
-</Player> 
+/*  Custom controls test
+<div id="video-controls" className='video-control-container'>
+  <img src={ require('./assets/playbutton2.png') } alt='play-button' className='play-icon' onClick={this.playVideo} id="play-pause"/>
+  <input  className='video-seek-bar' onInput={this.seekVideo} type="range" id="seek-bar" />
+  <span id="curtimetext" className='video-current-time'><b>00:00</b></span><span className='time-divde'><b> / </b></span> 
+    <span id="durtimetext" className='video-total-time'><b>00:00</b></span>
+  <img src={ require('./assets/mutebutton.png') } className='mute-icon' id="mute-button" onClick={this.muteVideo}/>
+  <input className='volumne-slider-item' onInput={this.volumeChange}  type="range" id="volume-slider" min="0" max="100" step="1" />
+  <img src={ require('./assets/fullscreenbtn.png') } className='fullscreen-icon' id="full-screen" onClick={this.fullScreenMode}/>
+</div>
 */

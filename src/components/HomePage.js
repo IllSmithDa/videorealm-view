@@ -9,7 +9,7 @@ export default class HomePage extends Component {
       <div>
         <Navbar />
         <div className = 'Page-Container'>
-        <h1 className="app-title-item video-title"> <b> Welcome to  Videorealm</b> </h1>
+        <h1 className="app-title-item app-header"> <b> Welcome to  Videorealm</b> </h1>
         <h4 className='app-title-item'>Your next video sharing app!</h4>
         <h1 className='app-title-item'><br />Latest Videos </h1>
           <AllVideos/>
