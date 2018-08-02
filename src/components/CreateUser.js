@@ -13,13 +13,15 @@ export default class CreateUser extends Component {
       username: '',
       password: '',
       email:'',
+      secretKey:'',
     }
   }
   createUser = () => {
     let badPassword = false;
     let badEmail = false;
     let badUsername = false;
-
+    let badSecretKey = false;
+    
     // check username length
     if (this.state.username.length < 3) {
       badUsername = true;
@@ -50,7 +52,6 @@ export default class CreateUser extends Component {
       const paswordDoc = document.getElementById('badPassword');
       paswordDoc.style.display = 'none';
     }
-
     const usernameReq = {username: this.state.username};
     const emailReq = {email: this.state.email};
     axios
@@ -75,19 +76,35 @@ export default class CreateUser extends Component {
               const emailDoc = document.getElementById('dupEmail');
               emailDoc.style.display = 'none';
             }
-
-            // if it passes all tests 
-            if (!badPassword && !badEmail && !badUsername) {
-              const userData = { username: this.state.username, password: this.state.password, email: this.state.email };
-              axios
-                .post(`${reqURL}/usercreate`, userData)
-                .then(() => {
-                  window.location = `/profile`;
-                })
-                .catch((err) => {
-                  console.log(err);
-                })
-            }
+            
+            const secretKey = { secretKey: this.state.secretKey };
+            axios.post(`${reqURL}/checkSecretKey`, secretKey)
+              .then((data) => {
+                console.log('data', data.data.error);
+                if (data.data.error) {
+                  document.getElementById('badkey').style.display='block';
+                  badSecretKey = true;
+                } else {
+                  document.getElementById('badkey').style.display = 'none';
+                  badSecretKey = false;
+                }
+                // if it passes all tests 
+                if (!badPassword && !badEmail && !badUsername && !badSecretKey) {
+                  const userData = { username: this.state.username, password: this.state.password, email: this.state.email };
+                  axios
+                    .post(`${reqURL}/usercreate`, userData)
+                    .then((userData) => {
+                      if (userData.data.error) {}
+                      window.location = `/profile`;
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                    })
+                }
+              })
+              .catch((err) => {
+                throw err;
+              })
           })
           .catch(err => {
             throw err;
@@ -96,20 +113,8 @@ export default class CreateUser extends Component {
       .catch(err => {
         throw err;
       })
-
-    // if it passes all tests 
-    if (!badPassword && !badEmail && !badUsername) {
-      const userData = { username: this.state.username, password: this.state.password, email: this.state.email };
-      axios
-        .post(`${reqURL}/usercreate`, userData)
-        .then(() => {
-          window.location = `/profile`;
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    }
   }
+
   handleSetUsername = (event) => {
     this.setState({ username: event.target.value });
   }
@@ -119,6 +124,12 @@ export default class CreateUser extends Component {
   }
   handleSetEmail = (event) => {
     this.setState({ email: event.target.value });
+  }
+  handleSecretKey = (event) => {
+    this.setState({ secretKey: event.target.value });
+  }
+  componentDidMount() {
+    console.log(process.env.SECRET_KEY);
   }
   componentDidUpdate() {
     let eventEnter = document.getElementById('page-event');
@@ -152,7 +163,12 @@ export default class CreateUser extends Component {
             <p id = 'badEmail' className ='email-warning text-items'>Please enter an existing email</p>
             <p id = 'dupEmail' className ='email-warning text-items'>Error: Only one account allowed per email</p> 
           </div>
-          <button type='submit' className='all-buttons text-items' onClick = { this.createUser }>Submit</button>
+          <div className='form-group'>
+            <label className='text-items' htmlFor='pwd'><b>Enter the secret key:</b></label>
+            <input type='password' className='form-control form-input' id='secretkey' value = { this.state.secretKey } onChange = { this.handleSecretKey }/>
+            <p id = 'badkey' className ='email-warning text-items'>That is not the secret key</p>
+          </div>
+          <button type='submit' className='all-buttons text-items' id='submit-button' onClick={ this.createUser }>Submit</button>
         </div>
       </div>
     );
