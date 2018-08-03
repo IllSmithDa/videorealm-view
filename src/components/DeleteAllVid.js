@@ -9,23 +9,19 @@ import '../CSS/PageLayout.css';
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
 
-export default class DeleteVideos extends Component {
+export default class DeleteAllVid extends Component {
   constructor(props) {
     super(props);
     this.state = {
       idVideoDeleteList: [],
       videoList: [],
-      loginState: true
     }
   }
   componentDidMount() {
-    axios.get(`${reqURL}/getVideoList`)
+    axios.get(`${reqURL}/getAllVideos`)
     .then((videoData) => {
-      if (videoData.data.error) {
-        this.setState({ loginState: false });
-      } else {
-        this.setState({ videoList: videoData.data, loginState: true});
-      }
+      this.setState({ videoList: videoData.data });
+      console.log(this.state.videoList);
     })
     .catch((err) => {
       console.log(err);
@@ -81,36 +77,32 @@ export default class DeleteVideos extends Component {
     }
   }
   render() {
-    if (!this.state.loginState) {
-      window.location = '/login';
-    } else {
-      return(
-        <div>
-          <button id='DeleteButton' className='all-buttons' onClick={this.deleteModal}> Delete Video(s) </button>
-          <div id='DeleteVideos' className='modal'>
-             <div className="modal-content">
-                <span className="close" onClick={this.closeModal}>&times;</span>
-                <h1 className = 'delete-title'>Select videos you want to delete <br/></h1>
-                <div className="video-container">
-                  {this.state.videoList.map((post, index) => {
-                    return (
-                      <div key = {post.id} className = "video-key video-item"> 
-                          <Link to={`/video/${post.videoID}`} className = "video-div"> 
-                            <Player src = {post.videoURL} >
-                              <BigPlayButton position="center" />
-                            </Player>
-                          </Link>
-                          <p className  = "HomePage-videoName"> {post.videoName} </p>
-                        <input type="checkbox" value = { post.videoID } onChange = { this.handleDeleteCheck } />
-                      </div>
-                    );
-                  })}
-                </div>
-                <button className='delete-button' type="submit"  onClick={ this.deleteSubmission }>Delete Video(s)</button>
+    return(
+      <div>
+        <button id='DeleteButton' onClick={this.deleteModal}> Delete Video(s) </button>
+        <div id='DeleteVideos' className='modal'>
+           <div className="modal-content">
+              <span className="close" onClick={this.closeModal}>&times;</span>
+              <h1 className = 'delete-title'>Select videos you want to delete <br/></h1>
+              <div className="video-container">
+                {this.state.videoList.map((post, index) => {
+                  return (
+                    <div key = {post.id} className = "video-key video-item"> 
+                        <Link to={`/video/${post.videoID}`} className = "video-div"> 
+                          <Player src = {post.videoURL} >
+                            <BigPlayButton position="center" />
+                          </Player>
+                        </Link>
+                        <p className  = "HomePage-videoName"> {post.videoName} </p>
+                      <input type="checkbox" value = { post.videoID } onChange = { this.handleDeleteCheck } />
+                    </div>
+                  );
+                })}
               </div>
-          </div>
+              <button className='delete-button' type="submit"  onClick={ this.deleteSubmission }>Delete Video(s)</button>
+            </div>
         </div>
-      );
-    }
+      </div>
+    );
   }
 }

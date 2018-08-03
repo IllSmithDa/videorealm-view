@@ -5,7 +5,7 @@ import UserVideoList from './UserVideoList';
 import reqURL from './RequestURL';
 import '../CSS/PageLayout.css';
 import '../CSS/Profile.css';
-
+import '../CSS/VideoLayout.css';
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
 
@@ -16,24 +16,40 @@ export default class Profile extends Component {
       profileName: '',
       uploadImageUrl: `${reqURL}/uploadProfilePic`,
       profilePictureSrc:'',
+      loginState: true,
+      currentUsername: '',
+      imageFileTrack:''
     }
   }
   componentDidMount() {
+    
+    document.getElementById('uploadImagebtn').disabled = true;
+    let getUsername = window.location.href;
+    // grabs username inside current url 
+    getUsername = getUsername.split("/").pop();
+    console.log(getUsername);
+    const username = {username: getUsername};
     axios
-      .get(`${reqURL}/getUsername`)
+      .post(`${reqURL}/userNameMatch`, username)
       .then((userData) => {
+        if (userData.data.error) {
+          this.setState({ loginState: false })
+          document.getElementById('userImageUpload').style.display = 'none';
+        } else {
+          this.setState({ loginState: true })
+        }
         // console.log('username:', userData.data );
-        axios.get(`${reqURL}/getUserImage`)
+        axios.post(`${reqURL}/getUserImage`, username)
         .then((imageData) => {
           // console.log(imageData.data);
           // uppercase first letter only and slice rest of the string onto the first to be kept lowercase
-          this.setState({ profileName: userData.data[0].toUpperCase() + userData.data.slice(1), profilePictureSrc: imageData.data })
-          // console.log(this.state.profilePictureSrc);
+          this.setState({ profileName: getUsername[0].toUpperCase() + getUsername.slice(1), 
+            profilePictureSrc: imageData.data, currentUsername: getUsername })
+          console.log(this.state.profilePictureSrc);
         })
         .catch(err => {
           console.log(err);
         })
-      
       })
       .catch(err => {
         console.log(err);
@@ -47,20 +63,25 @@ export default class Profile extends Component {
     let modal = document.getElementById('imageUploadModal');
     modal.style.display = "none";
   }
-  setTimer() {
-    window.setTimeout(() => {
-      console.log('image loaded')
-    }, 5000 )
+  trackFileUpload = (event) => {
+    this.setState({ imageFileTrack: event.target.value });
   };
+  componentDidUpdate() {
+    if (this.state.imageFileTrack !== '') {
+      document.getElementById('uploadImagebtn').disabled = false;
+    } else {
+      document.getElementById('uploadImagebtn').disabled = true;
+    }
+  }
   render() {
     return(
       <div>
         <Navbar />
         <div className = 'Page-Container'>
-          <h1 className = 'profile-title app-title-item'>{this.state.profileName}'s Profile</h1>
+          <h1 className = 'profile-title app-title-item'>{this.state.profileName}</h1>
           
           <div className = 'profile-image-container'>
-            <button className='image-button' onClick={this.openImageModal}>Update Profile Picture</button>
+            <button id='userImageUpload' className='image-button' onClick={this.openImageModal}>Update Profile Picture</button>
             <img className = 'Profile-Image'src = {this.state.profilePictureSrc} alt='profilePicture'/>
           </div>
 
@@ -73,13 +94,13 @@ export default class Profile extends Component {
                 action= {this.state.uploadImageUrl}
                 method='post' 
                 encType="multipart/form-data">
-                <input type="file" name="profPictureFile" onChange = {this.setTimer}/>
-                <input className='upload-title' type='submit' value='Upload'/>
+                <input  className='upload-image-button' type="file" name="profPictureFile" onChange = {this.trackFileUpload}/>
+                <input id='uploadImagebtn' className='upload-title-button' type='submit' value='Upload'/>
               </form> 
             </div>
           </div>
           <h1 className = 'profile-title app-title-item'> {this.state.profileName}'s Videos</h1>
-          <UserVideoList/>
+          <UserVideoList username={this.state.currentUsername}/>
         </div>
       </div>
     );

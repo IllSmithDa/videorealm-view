@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
 import reqURL from './RequestURL'
+import DeleteAllVid from './DeleteAllVid';
 import AllVideos from './AllVideos';
 import '../CSS/PageLayout.css';
 import '../CSS/Profile.css';
@@ -15,7 +16,8 @@ export default class AdminPage extends Component {
     super();
     this.state = {
       defaultProfilePic: 'https://s3.amazonaws.com/my.unique.bucket.userimages/DefaultPic.jpg',
-      uploadImageUrl:`${reqURL}/addDefaultPic`
+      uploadImageUrl:`${reqURL}/addDefaultPic`,
+      adminPassword: ''
     }
   }
   componentDidMount() {
@@ -28,6 +30,23 @@ export default class AdminPage extends Component {
   closeImageModal = () =>{
     let modal = document.getElementById('imageUploadModal');
     modal.style.display = "none";
+  }
+  handleAdminPassword = (event) =>{
+    this.setState({ adminPassword: event.target.value })
+  }
+  checkPassword = () => {
+    const adminPW = { adminPassword: this.state.adminPassword};
+    axios.post(`${reqURL}/checkAdminKey`, adminPW)
+      .then(adminData => {
+        if (adminData.data.error) {
+          document.getElementById('wrongKey').style.display = 'block';
+        } else {
+          document.getElementById('adminModal').style.display = 'none';
+        }
+      })
+      .catch(err => {
+        throw err;
+      })
   }
   setTimer() {
     window.setTimeout(() => {
@@ -60,7 +79,16 @@ export default class AdminPage extends Component {
               </form> 
             </div>
           </div>
+          <div id='adminModal' className='image-modal-admin'>
+            <div className='modal-content'>
+              <h1>Enter admin key to access webpage</h1><br/>
+              <input type= 'password' onChange = {this.handleAdminPassword }/><br/>
+              <p id='wrongKey' className='email-warning'>Error: Admin key is not correct! </p><br/>
+              <button onClick={this.checkPassword}>Submit</button>
+            </div>
+          </div>
           <h1 className = 'app-title-item'> Admin's Videos</h1>
+          <DeleteAllVid/>
           <AllVideos/>
         </div>
       </div>

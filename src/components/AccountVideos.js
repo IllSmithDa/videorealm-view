@@ -9,7 +9,7 @@ import '../CSS/VideoLayout.css';
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
 
-export default class UserVideoList extends Component {
+export default class AccountVideos extends Component {
   constructor() {
     super();
     this.state = {
@@ -19,13 +19,8 @@ export default class UserVideoList extends Component {
     }
   }
   componentDidMount() {
-    let getUsername = window.location.href;
-    // grabs username inside current url 
-    getUsername = getUsername.split("/").pop();
-    console.log(getUsername);
-    const username = {username: getUsername};
 
-    axios.post(`${reqURL}/postVideoList`, username)
+    axios.get(`${reqURL}/getVideoList`)
       .then(data => {
         console.log(data.data);
         if (data.data.error) {

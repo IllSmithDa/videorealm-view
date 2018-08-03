@@ -110,7 +110,7 @@ export default class ReplyComments extends Component {
             <textarea id='reply-text' className='reply-area' placeholder='Add reply here' onChange={this.handleReplyChange}/>
           </div>
           <div>
-            <button className='reply-button reply-buttons' onClick={this.onReplyCancel}>Cancel</button>
+            <button className='reply-button-cancel reply-buttons' onClick={this.onReplyCancel}>Cancel</button>
             <button id='reply-submit' className='reply-submit-button reply-buttons' onClick={this.onReplySubmit} >Submit</button>
           </div>
         </div>
@@ -128,7 +128,7 @@ export default class ReplyComments extends Component {
               )
             })}
           </div>
-          <button className='reply-button reply-buttons' onClick={this.onRepliesHide}>Hide Replies</button>
+          <button className='reply-button-cancel reply-buttons' onClick={this.onRepliesHide}>Hide Replies</button>
           <button className='reply-buttons' onClick={this.onReplyClick}>Reply</button>
         </div>
       )

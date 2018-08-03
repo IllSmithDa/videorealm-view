@@ -22,7 +22,7 @@ export default class Account extends Component {
         let loginDoc = document.getElementById('badLogin');
         loginDoc.style.display = 'block';
       } else {
-        window.location = `/profile`;
+        window.location = `/profile/${this.state.username}`;
       }
     })
     .catch(err => {

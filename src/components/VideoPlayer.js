@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Player, BigPlayButton, } from 'video-react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import CommentList from '../components/CommentList';
@@ -20,6 +20,7 @@ export default class VideoPlayer extends Component {
       videoURL: `https://s3.amazonaws.com/my.unique.bucket.uservideos/${ (window.location.href).split("/").pop() }`,
       views: null,
       videoThumbnail: '',
+      uploaderProfileName:'',
     }
   }
   componentDidMount() {
@@ -39,7 +40,7 @@ export default class VideoPlayer extends Component {
         this.setState({ videoID: videoData.data.videoID, videoName: videoData.data.videoName, 
           videoUploader: videoData.data.userName[0].toUpperCase() + videoData.data.userName.slice(1), 
           views: videoData.data.views, videoThumbnail: videoData.data.videoThumbURL,
-          videoURL: videoData.data.videoURL });
+          videoURL: videoData.data.videoURL, uploaderProfileName: videoData.data.userName });
       })
       .catch((err) => {
         console.log(err);
@@ -132,14 +133,16 @@ export default class VideoPlayer extends Component {
       <div>
         <Navbar/>
         <div className='Page-Container'>
-          <h1 className='video-title text-items'><b>{this.state.videoName}</b> </h1>
-          <div className='video-container'>
+          <h1 className='video-title'><b>{this.state.videoName}</b> </h1>
+          <div>
             <video id='video-player' className='video-player-item' controls /*onTimeUpdate={this.updateVideoSeek}*/>
               <source src={this.state.videoURL} type="video/mp4" />
               <source src={this.state.videoURL} type="video/mov" />
             </video>
           </div>
-          <h4 className='video-uploader text-items'>{this.state.videoUploader}</h4>
+          <Link to={`/profile/${this.state.uploaderProfileName}`}>
+            <h4 className='video-uploader text-items'>{this.state.videoUploader}</h4>
+          </Link>
           <CommentList/>
         </div>
       </div>

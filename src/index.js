@@ -22,7 +22,7 @@ ReactDOM.render(
     <Router>
       <div>
         <Route exact path = '/' component={App} />
-        <Route path = '/profile' component={Profile} />
+        <Route path = '/profile/:username' component={Profile} />
         <Route path = '/account' component={Account} />
         <Route path = '/login' component={Login} />
         <Route path = '/createUser' component={CreateUser} />

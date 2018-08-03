@@ -2,7 +2,7 @@
   height: 3em;
   background-color: #add8e6;
 }
-.test {
+.navbar-margins {
   display: flex;
   justify-content: space-between;
   margin-left: 20%;

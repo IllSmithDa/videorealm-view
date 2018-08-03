@@ -14,7 +14,6 @@ class AllVideos extends Component {
     // calls action to get all videos
     this.props.getAllVideos();
   }
-
   render() {
     return(
       <div>
@@ -26,8 +25,10 @@ class AllVideos extends Component {
                   <Player src = {post.videoURL} >
                     <BigPlayButton position="center" />
                   </Player>
-                  <p className  = "video-videoName" >{post.videoName} <br/>
-                  {post.userName[0].toUpperCase() + post.userName.slice(1)}</p>  
+                  <span className  = "video-videoName" >{post.videoName} </span><br/>
+                </Link>
+                <Link to={`/profile/${post.userName}`}>
+                <span> {post.userName[0].toUpperCase() + post.userName.slice(1)} </span> 
                 </Link>
               </div>
             ); 
