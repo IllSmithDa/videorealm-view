@@ -24,23 +24,32 @@ export default class UserVideoList extends Component {
     getUsername = getUsername.split("/").pop();
     console.log(getUsername);
     const username = {username: getUsername};
-
-    axios.post(`${reqURL}/postVideoList`, username)
-      .then(data => {
-        console.log(data.data);
-        if (data.data.error) {
-          this.setState({ loginState: false})
-        } else {
-          let videoList = []
-          for (let i = 0; i < data.data.length; i++) {
-              videoList.push(data.data[i]);
+    axios.post(`${reqURL}/checkUsername`, username)
+    .then(userData => {
+      if (userData.data.success) {
+        window.location = '/errorpage';
+      } else {
+        axios.post(`${reqURL}/postVideoList`, username)
+        .then(data => {
+          console.log(data.data);
+          if (data.data.error) {
+            this.setState({ loginState: false})
+          } else {
+            let videoList = []
+            for (let i = 0; i < data.data.length; i++) {
+                videoList.push(data.data[i]);
+            }
+            this.setState({videoList: videoList, loginState: true });
           }
-          this.setState({videoList: videoList, loginState: true });
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      })
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      }
+    })
+    .catch(err => {
+      throw err;
+    })
   }
 
   render() {

@@ -37,10 +37,14 @@ export default class VideoPlayer extends Component {
     axios
       .post(`${reqURL}/getVideo`, videoID)
       .then((videoData) => {
-        this.setState({ videoID: videoData.data.videoID, videoName: videoData.data.videoName, 
-          videoUploader: videoData.data.userName[0].toUpperCase() + videoData.data.userName.slice(1), 
-          views: videoData.data.views, videoThumbnail: videoData.data.videoThumbURL,
-          videoURL: videoData.data.videoURL, uploaderProfileName: videoData.data.userName });
+        if (videoData.data.error) {
+          window.location = '/errorpage'
+        } else {
+          this.setState({ videoID: videoData.data.videoID, videoName: videoData.data.videoName, 
+            videoUploader: videoData.data.userName[0].toUpperCase() + videoData.data.userName.slice(1), 
+            views: videoData.data.views, videoThumbnail: videoData.data.videoThumbURL,
+            videoURL: videoData.data.videoURL, uploaderProfileName: videoData.data.userName });
+          }
       })
       .catch((err) => {
         console.log(err);

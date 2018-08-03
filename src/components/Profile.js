@@ -22,37 +22,48 @@ export default class Profile extends Component {
     }
   }
   componentDidMount() {
-    
+
     document.getElementById('uploadImagebtn').disabled = true;
     let getUsername = window.location.href;
     // grabs username inside current url 
     getUsername = getUsername.split("/").pop();
     console.log(getUsername);
     const username = {username: getUsername};
-    axios
-      .post(`${reqURL}/userNameMatch`, username)
-      .then((userData) => {
-        if (userData.data.error) {
-          this.setState({ loginState: false })
-          document.getElementById('userImageUpload').style.display = 'none';
+
+    axios.post(`${reqURL}/checkUsername`, username)
+      .then(userData => {
+        if (userData.data.success) {
+          window.location ='/errorpage';
         } else {
-          this.setState({ loginState: true })
+          axios
+            .post(`${reqURL}/userNameMatch`, username)
+            .then((userData) => {
+              if (userData.data.error) {
+                console.log('error occured')
+                this.setState({ loginState: false })
+                document.getElementById('userImageUpload').style.display = 'none';
+              } else {
+                this.setState({ loginState: true })
+              }
+              // console.log('username:', userData.data );
+              axios.post(`${reqURL}/getUserImage`, username)
+                .then((imageData) => {
+                  // console.log(imageData.data);
+                  // uppercase first letter only and slice rest of the string onto the first to be kept lowercase
+                  this.setState({ profileName: getUsername[0].toUpperCase() + getUsername.slice(1), 
+                    profilePictureSrc: imageData.data, currentUsername: getUsername });
+                })
+                .catch(err => {
+                  console.log(err);
+                })
+            })
+            .catch(err => {
+              console.log(err);
+            })
         }
-        // console.log('username:', userData.data );
-        axios.post(`${reqURL}/getUserImage`, username)
-        .then((imageData) => {
-          // console.log(imageData.data);
-          // uppercase first letter only and slice rest of the string onto the first to be kept lowercase
-          this.setState({ profileName: getUsername[0].toUpperCase() + getUsername.slice(1), 
-            profilePictureSrc: imageData.data, currentUsername: getUsername })
-          console.log(this.state.profilePictureSrc);
-        })
-        .catch(err => {
-          console.log(err);
-        })
       })
       .catch(err => {
-        console.log(err);
+        throw err
       })
   }
   openImageModal = () => {

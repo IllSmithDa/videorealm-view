@@ -13,6 +13,7 @@ import CreateUser from './components/CreateUser';
 import AdminPage from './components/AdminPage';
 import VideoPlayer from './components/VideoPlayer';
 import SearchPage from './components/SearchPage';
+import ErrorPage from './components/Errorpage';
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(Thunk)(createStore);
@@ -29,6 +30,7 @@ ReactDOM.render(
         <Route path = '/adminpage' component={AdminPage}/>
         <Route path = '/video/:videoID' component={VideoPlayer}/>
         <Route path = '/video_search/:searchterm' component={SearchPage}/>
+        <Route path = '/errorpage' component = {ErrorPage}/>
       </div>
     </Router>
   </Provider>, document.getElementById('root'));
