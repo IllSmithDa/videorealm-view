@@ -11,6 +11,8 @@
 8. basic custom controls for video
 9. view other user's profile and your own while distinguishing between the two.
 10. better functionality and css for mobile users 
+11. eslinter fullstack
+12. better functioning reply list 
 # Features to implement
 
 1. view counter that takes account of how much of the video user has watched, skipping through a video and what to do 
@@ -22,4 +24,4 @@
    to use space bar to play video with custom controls (long term)
 6. expand storage capacity?
 7. Tests
-8. eslinter
+

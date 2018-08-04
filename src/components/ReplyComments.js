@@ -43,10 +43,13 @@ export default class ReplyComments extends Component {
   }
 
   componentDidUpdate() {
-    const { replyUsername, isReplyClicked, replyStatement, commentIndex } = this.state;
+    const { isReplyClicked, replyStatement, commentIndex, isRepliesHidden } = this.state;
+    const { commentUsername } = this.props;
     // console.log(document.getElementsByClassName('reply-area')[commentIndex]);
-
-    if (replyUsername === '' && isReplyClicked) {
+    // console.log('replystate', isReplyClicked);
+    // console.log('loginstate', commentUsername);
+    // console.log('reply statement', replyStatement);
+    if (commentUsername === undefined && isReplyClicked && isRepliesHidden) {
       if (document.getElementsByClassName('reply-submit-button')[commentIndex] === undefined) {
         document.getElementsByClassName('reply-submit-button')[0].disabled = true;
         document.getElementsByClassName('reply-submit-button')[0].style.backgroundColor = 'lightblue';
@@ -58,23 +61,29 @@ export default class ReplyComments extends Component {
         document.getElementsByClassName('reply-area')[commentIndex].disabled = true;
         document.getElementsByClassName('reply-area')[commentIndex].placeholder = 'Please login to reply to comments!';
       }
-    }
-    if (isReplyClicked && replyStatement === '') {
+    } else if (isReplyClicked && replyStatement === '' && commentUsername !== undefined) {
       if (document.getElementsByClassName('reply-submit-button')[commentIndex] === undefined) {
         document.getElementsByClassName('reply-submit-button')[0].disabled = true;
         document.getElementsByClassName('reply-submit-button')[0].style.backgroundColor = 'lightblue';
+        document.getElementsByClassName('reply-area')[0].disabled = false;
+        document.getElementsByClassName('reply-area')[0].placeholder = 'Add reply here';
       } else {
         document.getElementsByClassName('reply-submit-button')[commentIndex].disabled = true;
         document.getElementsByClassName('reply-submit-button')[commentIndex].style.backgroundColor = 'lightblue';
+        document.getElementsByClassName('reply-area')[commentIndex].disabled = false;
+        document.getElementsByClassName('reply-area')[commentIndex].placeholder = 'Add reply here';
       }
-    }
-    if (replyStatement !== '' && replyUsername !== '') {
+    } else if (replyStatement !== '' && commentUsername !== undefined && isReplyClicked) {
       if (document.getElementsByClassName('reply-submit-button')[commentIndex] === undefined) {
         document.getElementsByClassName('reply-submit-button')[0].disabled = false;
         document.getElementsByClassName('reply-submit-button')[0].style.backgroundColor = 'rgb(50, 156, 255)';
+        document.getElementsByClassName('reply-area')[0].disabled = false;
+        document.getElementsByClassName('reply-area')[0].placeholder = 'Add reply here';
       } else {
         document.getElementsByClassName('reply-submit-button')[commentIndex].disabled = false;
         document.getElementsByClassName('reply-submit-button')[commentIndex].style.backgroundColor = 'rgb(50, 156, 255)';
+        document.getElementsByClassName('reply-area')[commentIndex].disabled = false;
+        document.getElementsByClassName('reply-area')[commentIndex].placeholder = 'Add reply here';
       }
     }
   }
@@ -154,6 +163,7 @@ export default class ReplyComments extends Component {
           <div>
             <button type="button" className="reply-button-cancel reply-buttons" onClick={this.onReplyCancel}>Cancel</button>
             <button id="reply-submit" type="submit" className="reply-submit-button reply-buttons" onClick={this.onReplySubmit}>Submit</button>
+            <p id="reply-warning" className="reply-button-cancel email-warning"> Error: must be logged in and reply must be made to accept reply</p>
           </div>
         </div>
       );
