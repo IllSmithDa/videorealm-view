@@ -42,18 +42,20 @@ export default class ReplyComments extends Component {
   }
 
   componentDidUpdate() {
-    const { replyUsername, isReplyClicked, replyStatement } = this.state;
+    const { replyUsername, isReplyClicked, replyStatement, commentIndex } = this.state;
     if (replyUsername === '' && isReplyClicked) {
-      document.getElementById('reply-text').disabled = true;
-      document.getElementById('reply-text').placeholder = 'Please login to reply to comments!';
+      document.getElementsByClassName('reply-submit-button')[commentIndex].disabled = true;
+      document.getElementsByClassName('reply-submit-button')[commentIndex].style.backgroundColor = 'lightblue';
+      document.getElementsByClassName('reply-area')[commentIndex].disabled = true;
+      document.getElementsByClassName('reply-area')[commentIndex].placeholder = 'Please login to reply to comments!';
     }
     if (isReplyClicked && replyStatement === '') {
-      document.getElementById('reply-submit').disabled = true;
-      document.getElementById('reply-submit').style.backgroundColor = 'lightblue';
+      document.getElementsByClassName('reply-submit-button')[commentIndex].disabled = true;
+      document.getElementsByClassName('reply-submit-button')[commentIndex].style.backgroundColor = 'lightblue';
     }
-    if (replyStatement !== '') {
-      document.getElementById('reply-submit').disabled = false;
-      document.getElementById('reply-submit').style.backgroundColor = 'rgb(50, 156, 255)';
+    if (replyStatement !== '' && replyUsername !== '') {
+      document.getElementsByClassName('reply-submit-button')[commentIndex].disabled = false;
+      document.getElementsByClassName('reply-submit-button')[commentIndex].style.backgroundColor = 'rgb(50, 156, 255)';
     }
   }
 
