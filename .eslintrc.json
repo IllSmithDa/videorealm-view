@@ -27,6 +27,7 @@
       "jsx-a11y/no-noninteractive-element-interactions": "off",
       "react/no-unused-state":"off",
       "jsx-a11y/media-has-caption": "off",
+      "object-curly-newline": "off",
       "max-len": 0,
       "jsx-a11y/label-has-for": [ 2, {
           "components": [ "Label" ],

@@ -47,15 +47,16 @@ export default class Profile extends Component {
                 this.setState({ loginState: true });
               }
               // console.log('username:', userData.data );
-              axios.post(`${reqURL}/getUserImage`, username)
+              axios.post(`${reqURL}/getUserData`, username)
                 .then((imageData) => {
                   // console.log(imageData.data);
                   // uppercase first letter only and slice rest of the string onto the first to be kept lowercase
                   this.setState({
                     profileName: getUsername[0].toUpperCase() + getUsername.slice(1),
-                    profilePictureSrc: imageData.data,
+                    profilePictureSrc: imageData.data[0].profilePictureID,
                     currentUsername: getUsername,
                   });
+                  // console.log(this.state.profilePictureSrc);
                 })
                 .catch((err) => {
                   throw err;
