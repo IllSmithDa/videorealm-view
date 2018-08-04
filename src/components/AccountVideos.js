@@ -14,47 +14,46 @@ export default class AccountVideos extends Component {
     super();
     this.state = {
       videoList: [],
-      index: 0,
-      loginState:true
-    }
+      loginState: true,
+    };
   }
-  componentDidMount() {
 
+  componentDidMount() {
     axios.get(`${reqURL}/getVideoList`)
-      .then(data => {
-        console.log(data.data);
+      .then((data) => {
+        // console.log(data.data);
         if (data.data.error) {
-          this.setState({ loginState: false})
+          this.setState({ loginState: false });
         } else {
-          let videoList = []
-          for (let i = 0; i < data.data.length; i++) {
-              videoList.push(data.data[i]);
+          const videoList = [];
+          for (let i = 0; i < data.data.length; i += 1) {
+            videoList.push(data.data[i]);
           }
-          this.setState({videoList: videoList, loginState: true });
+          this.setState({ videoList, loginState: true });
         }
       })
-      .catch(err => {
-        console.log(err);
-      })
+      .catch((err) => {
+        throw err;
+      });
   }
 
   render() {
-    return(
+    const { videoList } = this.state;
+    return (
       <div className="video-container">
-         {this.state.videoList.map((post, index) => {
-            return (
-              <div key = {post.id} className = "video-key"> 
-                <Link to={`/video/${post.videoID}`} className = "video-div"> 
-                  <Player src = {post.videoURL} >
-                    <BigPlayButton position="center" />
-                  </Player>
-                  <p className  = "video-videoName" >{post.videoName} </p>
-                </Link>
-              </div>
-            ); 
-          })}
+        {videoList.map((post) => {
+          return (
+            <div key={post.id} className="video-key">
+              <Link to={`/video/${post.videoID}`} className="video-div">
+                <Player src={post.videoURL}>
+                  <BigPlayButton position="center" />
+                </Player>
+                <p className="video-videoName">{post.videoName} </p>
+              </Link>
+            </div>
+          );
+        })}
       </div>
     );
-    
   }
 }

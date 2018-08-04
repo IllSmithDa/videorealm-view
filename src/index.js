@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import Thunk from 'redux-thunk';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Profile from './components/Profile';
@@ -19,18 +19,19 @@ import reducers from './reducers';
 const createStoreWithMiddleware = applyMiddleware(Thunk)(createStore);
 
 ReactDOM.render(
-  <Provider store = {createStoreWithMiddleware(reducers)}>
+  <Provider store={createStoreWithMiddleware(reducers)}>
     <Router>
       <div>
-        <Route exact path = '/' component={App} />
-        <Route path = '/profile/:username' component={Profile} />
-        <Route path = '/account' component={Account} />
-        <Route path = '/login' component={Login} />
-        <Route path = '/createUser' component={CreateUser} />
-        <Route path = '/adminpage' component={AdminPage}/>
-        <Route path = '/video/:videoID' component={VideoPlayer}/>
-        <Route path = '/video_search/:searchterm' component={SearchPage}/>
-        <Route path = '/errorpage' component = {ErrorPage}/>
+        <Route exact path="/" component={App} />
+        <Route path="/profile/:username" component={Profile} />
+        <Route path="/account" component={Account} />
+        <Route path="/login" component={Login} />
+        <Route path="/createUser" component={CreateUser} />
+        <Route path="/adminpage" component={AdminPage} />
+        <Route path="/video/:videoID" component={VideoPlayer} />
+        <Route path="/video_search/:searchterm" component={SearchPage} />
+        <Route path="/errorpage" component={ErrorPage} />
       </div>
     </Router>
-  </Provider>, document.getElementById('root'));
+  </Provider>, document.getElementById('root'),
+);

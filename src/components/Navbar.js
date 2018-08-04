@@ -15,45 +15,10 @@ export default class Navbar extends Component {
       accountState: '',
       searchItem: '',
       createState: 'NEW ACCOUNT',
-      userName: ''
-    }
+      userName: '',
+    };
   }
-  myProfile = () => {
-    window.location = `/profile/${this.state.userName}`;
-  }
-  myAccount = () => {
-    window.location = '/account';
-  }
-  createUser = () => {
-    window.location = '/createUser';
-  }
-  loginPage = () => {
-    if (this.state.loginState === 'LOGIN') {
-      window.location = '/login';
-    }
-    if (this.state.loginState === 'LOGOUT') {
-    axios
-      .get(`${reqURL}/logoutUser`)
-      .then(() => {
-        document.getElementById('create-button').style.display = 'block';
-        window.location = '/login';
-      })
-    }
-  }
-  homePage = () => {
-    window.location = '/';
 
-  }
-  searchForVideos = () => {
-		if (this.state.searchItem !== '') {
-			setTimeout(() => {
-				window.location = `/video_search/${this.state.searchItem}`;
-			})
-		}
-  }
-	handleSearchTerm = (event) => {
-		this.setState({searchItem: event.target.value})
-	}
   componentWillMount() {
     axios
       .get(`${reqURL}/getUsername`)
@@ -61,35 +26,92 @@ export default class Navbar extends Component {
         if (userData.data.error) {
           document.getElementById('account-button').style.display = 'none';
           document.getElementById('profile-button').style.display = 'none';
-          this.setState({ loginState: 'LOGIN',  accountState: '', createState: 'NEW ACCOUNT', profileName: ''});
+          this.setState({
+            loginState: 'LOGIN',
+            accountState: '',
+            createState: 'NEW ACCOUNT',
+            profileName: '',
+          });
         } else {
           document.getElementById('create-button').style.display = 'none';
-          this.setState({ loginState: 'LOGOUT', accountState: 'ACCOUNT',  profileName: 'PROFILE', 
-          createState: '', userName: userData.data});
+          this.setState({
+            loginState: 'LOGOUT',
+            accountState: 'ACCOUNT',
+            profileName: 'PROFILE',
+            createState: '',
+            userName: userData.data,
+          });
         }
       })
-      .catch(err => {
-        console.log(err);
-      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  myProfile = () => {
+    const { userName } = this.state;
+    window.location = `/profile/${userName}`;
+  }
+
+  myAccount = () => {
+    window.location = '/account';
+  }
+
+  createUser = () => {
+    window.location = '/createUser';
+  }
+
+  loginPage = () => {
+    const { loginState } = this.state;
+    if (loginState === 'LOGIN') {
+      window.location = '/login';
+    }
+    if (loginState === 'LOGOUT') {
+      axios
+        .get(`${reqURL}/logoutUser`)
+        .then(() => {
+          document.getElementById('create-button').style.display = 'block';
+          window.location = '/login';
+        });
+    }
+  }
+
+  homePage = () => {
+    window.location = '/';
+  }
+
+  searchForVideos = () => {
+    const { searchItem } = this.state;
+    if (searchItem !== '') {
+      window.location = `/video_search/${searchItem}`;
+    }
+  }
+
+  handleSearchTerm = (event) => {
+    this.setState({ searchItem: event.target.value });
   }
 
   render() {
-    return(
-      <div className = 'navbar-container'>
-        <div className = 'navbar-margins'>
-          <div className = 'navbar-item-container'>        
-            <img className = 'navbar-icon-item' alt='home-page' src = 'https://png.icons8.com/ios/1600/home.png' onClick = {this.homePage} />
-            <input className='searchbar-field' type='text' onChange={this.handleSearchTerm} placeholder='Search for videos'></input> 
-				    <img className='navbar-icon-item' alt='search-video' onClick={this.searchForVideos} src='https://png.icons8.com/ios/1600/search.png' />
+    const { profileName } = this.state;
+    const { accountState } = this.state;
+    const { createState } = this.state;
+    const { loginState } = this.state;
+    return (
+      <div className="navbar-container">
+        <div className="navbar-margins">
+          <div className="navbar-item-container">
+            <img className="navbar-icon-item" alt="home-page" src="https://png.icons8.com/ios/1600/home.png" onClick={this.homePage} />
+            <input className="searchbar-field" type="text" onChange={this.handleSearchTerm} placeholder="Search for videos" />
+            <img className="navbar-icon-item" alt="search-video" onClick={this.searchForVideos} src="https://png.icons8.com/ios/1600/search.png" />
           </div>
-          <div className = 'navbar-item-container2'>
-            <button id='profile-button' onClick = {this.myProfile} className = 'navbar-button'>{this.state.profileName}</button>
-            <button id='account-button' onClick = {this.myAccount} className = 'navbar-button'>{this.state.accountState}</button>
-            <button id='create-button' onClick = {this.createUser} className = 'navbar-button'>{this.state.createState}</button>
-            <button onClick = {this.loginPage} className = 'navbar-button'>{this.state.loginState}</button>
+          <div className="navbar-item-container2">
+            <button id="profile-button" type="submit" onClick={this.myProfile} className="navbar-button">{profileName}</button>
+            <button id="account-button" type="submit" onClick={this.myAccount} className="navbar-button">{accountState}</button>
+            <button id="create-button" type="submit" onClick={this.createUser} className="navbar-button">{createState}</button>
+            <button type="submit" onClick={this.loginPage} className="navbar-button">{loginState}</button>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

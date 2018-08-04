@@ -10,6 +10,7 @@
 7. Have an admin page with access to all videoes
 8. basic custom controls for video
 9. view other user's profile and your own while distinguishing between the two.
+10. better functionality and css for mobile users 
 # Features to implement
 
 1. view counter that takes account of how much of the video user has watched, skipping through a video and what to do 
@@ -17,7 +18,8 @@
 2. Add banlist where admin can ban username and the associated email from using videorealm or creating a account with that username 
    and email. This will be different from deleting account 
 3. Delete user functionality
-4. better functionality and css for mobile users 
 5. custom video controls with custom controls working when fullscreen, and with play button in the middle, and ability
    to use space bar to play video with custom controls (long term)
-6. 
+6. expand storage capacity?
+7. Tests
+8. eslinter

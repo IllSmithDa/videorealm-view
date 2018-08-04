@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 
+/*
 export default class SecurityModal extends Component {
   constructor() {
     super();
@@ -8,9 +9,7 @@ export default class SecurityModal extends Component {
       password: ''
     }
   }
-  componentDidMount() {
 
-  }
   render() {
     <div id="myModal2" className="modal">
       <div className="modal-content">
@@ -22,4 +21,5 @@ export default class SecurityModal extends Component {
       </div>
     </div>
   }
-} 
+}
+*/

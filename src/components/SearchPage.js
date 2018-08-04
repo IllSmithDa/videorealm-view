@@ -7,58 +7,57 @@ import Navbar from './Navbar';
 
 axios.defaults.withCredentials = true;
 
-class App extends Component {
-  constructor () {
+export default class SearchPage extends Component {
+  constructor() {
     super();
     this.state = {
-      videoList: []
-    }
+      videoList: [],
+    };
   }
 
   componentDidMount() {
     // grabs the current url
     let searchItem = window.location.href;
-    // grabs username inside current url 
-    searchItem = searchItem.split("/").pop();
-    const searchVideo = ({ searchTerm: searchItem })
-  
+    // grabs username inside current url
+    searchItem = searchItem.split('/').pop();
+    const searchVideo = ({ searchTerm: searchItem });
+
     axios.post(`${ReqUrl}/searchVideos`, searchVideo)
-      .then(data => {
-        let videoList = [];
-        for (let i = 0; i < data.data.length; i++) {
-            videoList.push(data.data[i]);
+      .then((data) => {
+        const videoList = [];
+        for (let i = 0; i < data.data.length; i += 1) {
+          videoList.push(data.data[i]);
         }
-        this.setState({videoList: videoList});
-        console.log(this.state.videoList);
+        this.setState({ videoList });
       })
-      .catch(err => {
-        console.log(err);
+      .catch((err) => {
+        throw err;
       });
-  };
+  }
 
   render() {
+    const { videoList } = this.state;
     return (
       <div>
-        <Navbar/>   
-        <div className='Page-Container'>
-          <h2 className='search-title'>Search Results</h2>
-          {this.state.videoList.map((post, index) => {
+        <Navbar />
+        <div className="Page-Container">
+          <h2 className="search-title">Search Results</h2>
+          {videoList.map((post) => {
             return (
-              <div key = {post.id} className = "video-key"> 
-                <Link to={`/video/${post.videoID}`}className = "video-div"> 
-                  <Player src = {post.videoURL} >
+              <div key={post.id} className="video-key">
+                <Link to={`/video/${post.videoID}`} className="video-div">
+                  <Player src={post.videoURL}>
                     <BigPlayButton position="center" />
                   </Player>
-                  <p className  = "video-videoName" >{post.videoName} <br/>
-                  {post.userName[0].toUpperCase() + post.userName.slice(1)}</p>  
+                  <p className="video-videoName">{post.videoName} <br />
+                    {post.userName[0].toUpperCase() + post.userName.slice(1)}
+                  </p>
                 </Link>
               </div>
-            ); 
-          })}    
+            );
+          })}
         </div>
       </div>
     );
   }
 }
-
-export default App;
