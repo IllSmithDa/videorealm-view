@@ -56,7 +56,7 @@ export default class CreateUser extends Component {
       emailDoc.style.display = 'none';
     }
     // check password if it meets requirements
-    if (!/\d/.test(password) || password.length < 6 || password.length > 20) {
+    if (!/\d/.test(password) || password.length < 8 || password.length > 20) {
       const paswordDoc = document.getElementById('badPassword');
       paswordDoc.style.display = 'block';
       badPassword = true;

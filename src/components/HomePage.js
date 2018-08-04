@@ -8,9 +8,11 @@ export default function HomePage() {
     <div>
       <Navbar />
       <div className="Page-Container">
-        <h1 className="app-title-item app-header"> <b> Welcome to  Videorealm</b> </h1>
-        <h4 className="app-subheader">Your next video sharing app!</h4>
-        <h1 className="app-title-item"><br />Latest Videos </h1>
+        <div className="app-title-container">
+          <h1 className="app-title-item app-header"> <b> Welcome to  Videorealm</b> </h1>
+          <h4 className="app-subheader">Your next video sharing app!</h4>
+          <h1 className="app-title-item"><br />Latest Videos </h1>
+        </div>
         <AllVideos />
       </div>
     </div>
