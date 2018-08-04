@@ -155,7 +155,7 @@ export default class VideoPlayer extends Component {
         <div className="Page-Container">
           <h1 className="video-title"><b>{ videoName }</b> </h1>
           <div>
-            <video id="video-player" className="video-player-item" controls/* onTimeUpdate={this.updateVideoSeek} */>
+            <video id="video-player" className="video-player-item" controls controlsList="nodownload"/* onTimeUpdate={this.updateVideoSeek} */>
               <source src={videoURL} type="video/mp4" />
               <source src={videoURL} type="video/mov" />
             </video>
