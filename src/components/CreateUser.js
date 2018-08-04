@@ -105,7 +105,7 @@ export default class CreateUser extends Component {
                   axios
                     .post(`${reqURL}/usercreate`, userData)
                     .then(() => {
-                      window.location = '/profile';
+                      window.location = `/profile/${username}`;
                     })
                     .catch((err) => {
                       throw err;
@@ -171,9 +171,9 @@ export default class CreateUser extends Component {
             <p id="dupEmail" className="email-warning text-items">Error: Only one account allowed per email</p>
           </div>
           <div className="form-group">
-            <label className="text-items" htmlFor="pwd"><b>Enter the secret key:</b></label>
+            <label className="text-items" htmlFor="pwd"><b>Enter your beta key:</b></label>
             <input type="password" className="form-control form-input" id="secretkey" value={secretKey} onChange={this.handleSecretKey} />
-            <p id="badkey" className="email-warning text-items">That is not the secret key</p>
+            <p id="badkey" className="email-warning text-items">That is not a correct beta key</p>
           </div>
           <button type="submit" className="all-buttons text-items" id="submit-button" onClick={this.createUser}>Submit</button>
         </div>

@@ -24,7 +24,7 @@ export default class ReplyComments extends Component {
   componentDidMount() {
     const { commentIndex, commentUsername } = this.props;
     this.setState({ commentIndex, replyUsername: commentUsername });
-    console.log(commentIndex);
+    // console.log(commentIndex);
     // grabs video url inside current url
     const getID = (window.location.href).split('/').pop();
     const reqVideoID = { videoID: getID };
@@ -44,7 +44,7 @@ export default class ReplyComments extends Component {
 
   componentDidUpdate() {
     const { replyUsername, isReplyClicked, replyStatement, commentIndex } = this.state;
-    console.log(document.getElementsByClassName('reply-area')[commentIndex]);
+    // console.log(document.getElementsByClassName('reply-area')[commentIndex]);
 
     if (replyUsername === '' && isReplyClicked) {
       if (document.getElementsByClassName('reply-submit-button')[commentIndex] === undefined) {

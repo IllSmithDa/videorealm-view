@@ -18,7 +18,30 @@ export default class AdminPage extends Component {
       defaultProfilePic: 'https://s3.amazonaws.com/my.unique.bucket.userimages/DefaultPic.jpg',
       uploadImageUrl: `${reqURL}/addDefaultPic`,
       adminPassword: '',
+      betaEmail: '',
     };
+  }
+
+  componentDidMount() {
+    document.getElementById('email-warning').style.display = 'none';
+    document.getElementById('email-success').style.display = 'none';
+  }
+
+  componentDidUpdate() {
+    const eventEnter = document.getElementById('admin-submit');
+    eventEnter.addEventListener('keypress', (event) => {
+      // console.log(`first keydown event. key property value is '${event.key}'`);
+      if (event.key === 'Enter') {
+        this.checkPassword();
+      }
+    });
+    const eventEnter2 = document.getElementById('beta-submit');
+    eventEnter2.addEventListener('keypress', (event) => {
+      // console.log(`first keydown event. key property value is '${event.key}'`);
+      if (event.key === 'Enter') {
+        this.sendBetaKey();
+      }
+    });
   }
 
   openImageModal = () => {
@@ -42,6 +65,27 @@ export default class AdminPage extends Component {
           document.getElementById('wrongKey').style.display = 'block';
         } else {
           document.getElementById('adminModal').style.display = 'none';
+        }
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  emailHandler = (event) => {
+    this.setState({ betaEmail: event.target.value });
+  }
+
+  sendBetaKey = () => {
+    const { betaEmail } = this.state;
+    const email = { email: betaEmail };
+    axios.post(`${reqURL}/sendBetaKey`, email)
+      .then((data) => {
+        if (data.data.error) {
+          document.getElementById('email-warning').style.display = 'block';
+          document.getElementById('email-warning').style.color = 'red';
+        } else {
+          document.getElementById('email-success').style.display = 'block';
         }
       })
       .catch((err) => {
@@ -82,7 +126,7 @@ export default class AdminPage extends Component {
             <div className="modal-content">
               <h1>Enter admin key to access webpage</h1>
               <br />
-              <input type="password" onChange={this.handleAdminPassword} />
+              <input id="admin-submit" type="password" onChange={this.handleAdminPassword} />
               <br />
               <p id="wrongKey" className="email-warning">Error: Admin key is not correct!</p><br />
               <button type="submit" onClick={this.checkPassword}>Submit</button>
@@ -91,6 +135,13 @@ export default class AdminPage extends Component {
           <h1 className="app-title-item">Admin&apos;s Videos</h1>
           <DeleteAllVid />
           <AllVideos />
+          <br />
+          <h1> Send Beta Keys </h1>
+          Email: <input id="beta-submit" type="email" onChange={this.emailHandler} /><br /><br />
+          <button type="submit" onClick={this.sendBetaKey} className="all-buttons"> Send BetaKey </button><br />
+          <p id="email-warning"> Error: Failed to send beta key as email already has one </p>
+          <p id="email-success"> Beta Key has been successfully been sent out!</p>
+          <br /><br /><br />
         </div>
       </div>
     );
