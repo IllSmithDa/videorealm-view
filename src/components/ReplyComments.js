@@ -24,6 +24,7 @@ export default class ReplyComments extends Component {
   componentDidMount() {
     const { commentIndex, commentUsername } = this.props;
     this.setState({ commentIndex, replyUsername: commentUsername });
+    console.log(commentIndex);
     // grabs video url inside current url
     const getID = (window.location.href).split('/').pop();
     const reqVideoID = { videoID: getID };
@@ -43,19 +44,38 @@ export default class ReplyComments extends Component {
 
   componentDidUpdate() {
     const { replyUsername, isReplyClicked, replyStatement, commentIndex } = this.state;
+    console.log(document.getElementsByClassName('reply-area')[commentIndex]);
+
     if (replyUsername === '' && isReplyClicked) {
-      document.getElementsByClassName('reply-submit-button')[commentIndex].disabled = true;
-      document.getElementsByClassName('reply-submit-button')[commentIndex].style.backgroundColor = 'lightblue';
-      document.getElementsByClassName('reply-area')[commentIndex].disabled = true;
-      document.getElementsByClassName('reply-area')[commentIndex].placeholder = 'Please login to reply to comments!';
+      if (document.getElementsByClassName('reply-submit-button')[commentIndex] === undefined) {
+        document.getElementsByClassName('reply-submit-button')[0].disabled = true;
+        document.getElementsByClassName('reply-submit-button')[0].style.backgroundColor = 'lightblue';
+        document.getElementsByClassName('reply-area')[0].disabled = true;
+        document.getElementsByClassName('reply-area')[0].placeholder = 'Please login to reply to comments!';
+      } else {
+        document.getElementsByClassName('reply-submit-button')[commentIndex].disabled = true;
+        document.getElementsByClassName('reply-submit-button')[commentIndex].style.backgroundColor = 'lightblue';
+        document.getElementsByClassName('reply-area')[commentIndex].disabled = true;
+        document.getElementsByClassName('reply-area')[commentIndex].placeholder = 'Please login to reply to comments!';
+      }
     }
     if (isReplyClicked && replyStatement === '') {
-      document.getElementsByClassName('reply-submit-button')[commentIndex].disabled = true;
-      document.getElementsByClassName('reply-submit-button')[commentIndex].style.backgroundColor = 'lightblue';
+      if (document.getElementsByClassName('reply-submit-button')[commentIndex] === undefined) {
+        document.getElementsByClassName('reply-submit-button')[0].disabled = true;
+        document.getElementsByClassName('reply-submit-button')[0].style.backgroundColor = 'lightblue';
+      } else {
+        document.getElementsByClassName('reply-submit-button')[commentIndex].disabled = true;
+        document.getElementsByClassName('reply-submit-button')[commentIndex].style.backgroundColor = 'lightblue';
+      }
     }
     if (replyStatement !== '' && replyUsername !== '') {
-      document.getElementsByClassName('reply-submit-button')[commentIndex].disabled = false;
-      document.getElementsByClassName('reply-submit-button')[commentIndex].style.backgroundColor = 'rgb(50, 156, 255)';
+      if (document.getElementsByClassName('reply-submit-button')[commentIndex] === undefined) {
+        document.getElementsByClassName('reply-submit-button')[0].disabled = false;
+        document.getElementsByClassName('reply-submit-button')[0].style.backgroundColor = 'rgb(50, 156, 255)';
+      } else {
+        document.getElementsByClassName('reply-submit-button')[commentIndex].disabled = false;
+        document.getElementsByClassName('reply-submit-button')[commentIndex].style.backgroundColor = 'rgb(50, 156, 255)';
+      }
     }
   }
 
@@ -64,7 +84,7 @@ export default class ReplyComments extends Component {
   }
 
   onReplyCancel = () => {
-    this.setState({ isReplyClicked: false });
+    this.setState({ isReplyClicked: false, replyStatement: '' });
   }
 
   onRepliesHide = () => {
