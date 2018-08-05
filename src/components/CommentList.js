@@ -38,7 +38,7 @@ export default class CommentList extends Component {
           .then((videoData) => {
             // console.log('video data ', videoData.data);
             const { commentList } = this.state;
-            for (let i = 0; i < videoData.data.comments.length; i += 1) {
+            for (let i = 0; i < videoData.data.comments.length - 1; i += 1) {
               commentList.push(videoData.data.comments[i]);
             }
             this.setState({
@@ -79,10 +79,8 @@ export default class CommentList extends Component {
   }
 
   submitComment = () => {
-    const { videoID } = this.state;
-    const { commentUsername } = this.state;
-    const { videoUploader } = this.state;
-    const { comment } = this.state;
+    const { videoID, commentUsername, videoUploader, comment } = this.state;
+
     const commentData = ({
       commentUsername,
       videoUploader,
@@ -112,11 +110,11 @@ export default class CommentList extends Component {
         <textarea id="comment-textarea" className="comment-text text-items" onChange={this.handleTextChange} placeholder="Add comment here" />
         <button id="comment-button" type="submit" className="comment-button-item text-items all-buttons" onClick={this.submitComment}>Submit</button>
         <h4 className="comments-title text-items"> Comments</h4>
-        {commentList.map((val, index) => {
+        {commentList.map((val) => {
           return (
             <div className="comments-container" key={val._id}>
-              <p className="text-items"><b>{val.username[0].toUpperCase() + val.username.slice(1)} </b>: {val.comment}</p>
-              <ReplyComments commentIndex={index} commentUsername={commentUsername} />
+              <p className="text-items"><b>{val.username[0].toUpperCase() + val.username.slice(1)} </b>: {val.comment} {val.commentIndex}</p>
+              <ReplyComments commentIndex={val.commentIndex} commentUsername={commentUsername} />
               <br />
             </div>
           );

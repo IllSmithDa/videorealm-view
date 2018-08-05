@@ -84,6 +84,9 @@
   margin-top: 0.7em;
   margin-left: 4%;
 }
+.first-button-set{
+  width: 40em;
+}
 .comment-text {
   width: 99%;
 }
@@ -113,6 +116,22 @@
   margin-bottom: 0.5em;
   margin-left: 4%;
   width: 96.5%;
+  display: none;
+}
+.reply-container {
+  display: none;
+}
+.hide-replies {
+  display: none;
+}
+.reply-submit {
+  display: none;
+}
+.show-reply-submit2 {
+  display: none;
+}
+.cancel-button {
+  display: none;
 }
 .reply-button-cancel {
   margin-left: 4%;
