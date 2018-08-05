@@ -47,6 +47,7 @@ export default class CommentList extends Component {
               comment: '',
               commentUsername: userName,
             });
+            console.log(commentList);
           })
           .catch((err) => {
             throw err;
@@ -113,7 +114,7 @@ export default class CommentList extends Component {
         {commentList.map((val) => {
           return (
             <div className="comments-container" key={val._id}>
-              <p className="text-items"><b>{val.username[0].toUpperCase() + val.username.slice(1)} </b>: {val.comment} {val.commentIndex}</p>
+              <p className="text-items"><b>{val.username[0].toUpperCase() + val.username.slice(1)} </b>: {val.comment}</p>
               <ReplyComments commentIndex={val.commentIndex} commentUsername={commentUsername} />
               <br />
             </div>
