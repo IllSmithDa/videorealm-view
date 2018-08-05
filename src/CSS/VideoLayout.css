@@ -115,7 +115,7 @@
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   margin-left: 4%;
-  width: 96.5%;
+  width: 95.5%;
   display: none;
 }
 .reply-container {
@@ -138,7 +138,6 @@
 }
 .video-delete {
   display: flex;
-  
 }
 
 .delete-title{
@@ -351,6 +350,7 @@ input[type=range]::-ms-thumb {
     margin-top: 0em;
     font-size: 0.8em;
     margin-left: 6%;
+    width: 93.5%;
   }
  
 }

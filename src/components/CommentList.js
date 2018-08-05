@@ -71,14 +71,6 @@ export default class CommentList extends Component {
     if (!(/\S/).test(comment) || userName === '' || comment === '') {
       document.getElementById('comment-button').disabled = true;
       document.getElementById('comment-button').style.backgroundColor = 'lightblue';
-    } else {
-      const eventEnter = document.getElementById('comment-textarea');
-      eventEnter.addEventListener('keypress', (event) => {
-      // console.log(`first keydown event. key property value is '${event.key}'`);
-        if (event.key === 'Enter') {
-          this.submitComment();
-        }
-      });
     }
   }
 
