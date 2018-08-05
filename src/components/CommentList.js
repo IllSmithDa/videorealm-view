@@ -38,9 +38,15 @@ export default class CommentList extends Component {
           .then((videoData) => {
             // console.log('video data ', videoData.data);
             const { commentList } = this.state;
-            for (let i = 0; i < videoData.data.comments.length - 1; i += 1) {
+
+            for (let i = 0; i < videoData.data.comments.length; i += 1) {
               commentList.push(videoData.data.comments[i]);
             }
+            /*
+            for (let i = videoData.data.comments.length - 1; i >= 0; i -= 1) {
+              commentList.push(videoData.data.comments[i]);
+            }
+            */
             this.setState({
               videoID: getVideoID,
               videoUploader: videoData.data.userName,
@@ -62,9 +68,17 @@ export default class CommentList extends Component {
   componentDidUpdate() {
     const { comment } = this.state;
     const { userName } = this.state;
-    if (comment === '' || userName === '') {
+    if (!(/\S/).test(comment) || userName === '' || comment === '') {
       document.getElementById('comment-button').disabled = true;
       document.getElementById('comment-button').style.backgroundColor = 'lightblue';
+    } else {
+      const eventEnter = document.getElementById('comment-textarea');
+      eventEnter.addEventListener('keypress', (event) => {
+      // console.log(`first keydown event. key property value is '${event.key}'`);
+        if (event.key === 'Enter') {
+          this.submitComment();
+        }
+      });
     }
   }
 
@@ -110,7 +124,7 @@ export default class CommentList extends Component {
       <div>
         <textarea id="comment-textarea" className="comment-text text-items" onChange={this.handleTextChange} placeholder="Add comment here" />
         <button id="comment-button" type="submit" className="comment-button-item text-items all-buttons" onClick={this.submitComment}>Submit</button>
-        <h4 className="comments-title text-items"> Comments</h4>
+        <h4 className="comments-title text-items"><br /> Comments</h4>
         {commentList.map((val) => {
           return (
             <div className="comments-container" key={val._id}>
