@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import reqURL from './RequestURL';
 import DeleteAllVid from './DeleteAllVid';
 import AllVideos from './AllVideos';
@@ -143,6 +144,8 @@ export default class AdminPage extends Component {
           <p id="email-success"> Beta Key has been successfully been sent out!</p>
           <br /><br /><br />
         </div>
+        <br /><br /><br />
+        <Footer />
       </div>
     );
   }

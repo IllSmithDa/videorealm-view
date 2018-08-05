@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import CommentList from './CommentList';
 import reqURL from './RequestURL';
 import '../CSS/PageLayout.css';
@@ -161,7 +162,8 @@ export default class VideoPlayer extends Component {
             <h4 className="video-uploader text-items">{videoUploader}</h4>
           </Link>
           <CommentList />
-        </div>
+        </div><br /><br /><br />
+        <Footer />
       </div>
     );
   }

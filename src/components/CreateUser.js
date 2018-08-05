@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as EmailValidator from 'email-validator';
 import axios from 'axios';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import reqURL from './RequestURL';
 import '../CSS/PageLayout.css';
 
@@ -142,10 +143,8 @@ export default class CreateUser extends Component {
   }
 
   render() {
-    const { usermame } = this.state;
-    const { password } = this.state;
-    const { email } = this.state;
-    const { secretKey } = this.state;
+    const { usermame, password, email, secretKey } = this.state;
+
     return (
       <div id="page-event">
         <Navbar />
@@ -176,7 +175,8 @@ export default class CreateUser extends Component {
             <p id="badkey" className="email-warning text-items">That is not a correct beta key</p>
           </div>
           <button type="submit" className="all-buttons text-items" id="submit-button" onClick={this.createUser}>Submit</button>
-        </div>
+        </div><br /><br /><br />
+        <Footer />
       </div>
     );
   }

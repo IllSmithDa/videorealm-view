@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import reqURL from './RequestURL';
 import AccountVideos from './AccountVideos';
 import DeleteVideos from './DeleteVideos';
@@ -96,8 +97,7 @@ export default class Account extends Component {
 
   // <button className='all-buttons' onClick={this.openWarning}>Delete my account </button>
   render() {
-    const { videoUploadReq } = this.state;
-    const { loginState } = this.state;
+    const { videoUploadReq, loginState } = this.state;
     if (!loginState) {
       window.location = '/login';
       return (
@@ -149,13 +149,15 @@ export default class Account extends Component {
                 <h3 className="video-name"> {'Enter Video Name: '}
                   <input className="video-name-input" type="text" name="videoName" onChange={this.handleVideoName} />
                 </h3>
+                <p id="image-update"> Please Wait when your video is being uploaded. </p>
                 <input type="file" name="videoFile" onChange={this.changeUploadState} />
                 <input id="upload-submit" className="upload-button" type="submit" value="Upload" />
               </form>
             </div>
           </div>
           <AccountVideos />
-        </div>
+        </div><br /><br /><br />
+        <Footer />
       </div>
     );
   }

@@ -15,6 +15,7 @@
       "jasmine": true
     },
     "rules": {
+      "react/destructuring-assignment":"off",
       "no-underscore-dangle": "off",
       "react/forbid-prop-types": "off",
       "arrow-body-style":"off",

@@ -92,10 +92,8 @@ export default class Navbar extends Component {
   }
 
   render() {
-    const { profileName } = this.state;
-    const { accountState } = this.state;
-    const { createState } = this.state;
-    const { loginState } = this.state;
+    const { profileName, accountState, createState, loginState } = this.state;
+
     return (
       <div className="navbar-container">
         <div className="navbar-margins">

@@ -4,6 +4,7 @@ import { Player, BigPlayButton } from 'video-react';
 import axios from 'axios';
 import ReqUrl from './RequestURL';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 axios.defaults.withCredentials = true;
 
@@ -56,7 +57,8 @@ export default class SearchPage extends Component {
               </div>
             );
           })}
-        </div>
+        </div><br /><br /><br />
+        <Footer />
       </div>
     );
   }

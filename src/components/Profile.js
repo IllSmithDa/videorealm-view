@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import UserVideoList from './UserVideoList';
 import reqURL from './RequestURL';
 import '../CSS/PageLayout.css';
@@ -94,10 +95,8 @@ export default class Profile extends Component {
   };
 
   render() {
-    const { profileName } = this.state;
-    const { profilePictureSrc } = this.state;
-    const { currentUsername } = this.state;
-    const { uploadImageUrl } = this.state;
+    const { profileName, profilePictureSrc, currentUsername, uploadImageUrl } = this.state;
+
     return (
       <div>
         <Navbar />
@@ -117,14 +116,16 @@ export default class Profile extends Component {
                 method="post"
                 encType="multipart/form-data"
               >
-                <input className="upload-image-button" type="file" name="profPictureFile" onChange={this.trackFileUpload} />
+                <p id="image-update"> Please Wait when your image is being uploaded. </p>
+                <input id="image-input" className="upload-image-button" type="file" name="profPictureFile" onChange={this.trackFileUpload} />
                 <input id="uploadImagebtn" className="upload-title-button" type="submit" value="Upload" />
               </form>
             </div>
           </div>
           <h1 className="profile-title app-title-item"> {profileName}&apos;s Videos</h1>
           <UserVideoList username={currentUsername} />
-        </div>
+        </div><br /><br /><br />
+        <Footer />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import reqURL from './RequestURL';
 import '../CSS/PageLayout.css';
 import '../CSS/App.css';
@@ -51,8 +52,8 @@ export default class Account extends Component {
   }
 
   render() {
-    const { username } = this.state;
-    const { password } = this.state;
+    const { username, password } = this.state;
+
     return (
       <div id="page-event">
         <Navbar />
@@ -70,7 +71,8 @@ export default class Account extends Component {
             Error: Incorrect username and/or password!
           </p>
           <button type="submit" className="text-items all-buttons" onClick={this.loginUser}>Submit</button>
-        </div>
+        </div><br /><br /><br />
+        <Footer />
       </div>
     );
   }

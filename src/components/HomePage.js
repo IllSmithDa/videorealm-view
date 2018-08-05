@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import AllVideos from './AllVideos';
 import '../CSS/PageLayout.css';
 
@@ -14,7 +15,8 @@ export default function HomePage() {
           <h1 className="app-title-item"><br />Latest Videos </h1>
         </div>
         <AllVideos />
-      </div>
+      </div><br /><br /><br />
+      <Footer />
     </div>
   );
 }

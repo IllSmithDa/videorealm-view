@@ -53,7 +53,7 @@ export default class CommentList extends Component {
               comment: '',
               commentUsername: userName,
             });
-            console.log(commentList);
+            // console.log(commentList);
           })
           .catch((err) => {
             throw err;
