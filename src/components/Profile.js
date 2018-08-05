@@ -107,7 +107,6 @@ export default class Profile extends Component {
             <button id="userImageUpload" type="submit" className="image-button" onClick={this.openImageModal}>Update Profile Picture</button>
             <img className="Profile-Image" src={profilePictureSrc} alt="profilePicture" />
           </div>
-
           <div id="imageUploadModal" className="image-modal">
             <div className="modal-content">
               <span role="button" tabIndex="-1" className="modal-close" onClick={this.closeImageModal}>&times;</span>
