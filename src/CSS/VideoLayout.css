@@ -110,8 +110,8 @@
   display: none;
 }
 .reply-area {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  margin-top: 1%;
+  margin-bottom:2%;
   margin-left: 4%;
   width: 95.5%;
   display: none;
@@ -345,9 +345,8 @@ input[type=range]::-ms-thumb {
     padding: 5px 16px;
   }
   .reply-area {
-    margin-top: 0em;
     font-size: 0.8em;
-    margin-left: 6%;
+    margin-bottom: 6%;
     width: 93.5%;
   }
  
