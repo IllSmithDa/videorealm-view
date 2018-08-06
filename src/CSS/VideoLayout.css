@@ -24,7 +24,9 @@
   width: 99%;
   margin-left:0.5%;
 }
-
+.video-date-item {
+  margin-left: 0.5%;
+}
 .video-control-container {
   background-color: rgba(0, 0, 0, 0.5);
   width: 99%;
@@ -90,21 +92,24 @@
 }
 .video-uploader {
   margin-top: 0.5em;
-  margin-bottom: 0.5em;
+
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.video-view-counter {
+  margin-left: 0.5%;
+  position: relative;
+  top: -0.4em;
 }
 .comments-title {
   margin-top: 0.5em;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-.comment-button-item {
-  margin-top: 1em;
-}
+
 .comments-content {
   margin-bottom: 1em;
 }
 .replies-title {
-  margin-top: 4px;
+  margin-top: 1%;
 }
 .reply-list-item {
   display: none;
@@ -117,7 +122,6 @@
 }
 .reply-counter {
   margin-left: 4%;
-  margin-bottom:2%;
   display: none;
 }
 .reply-container {
@@ -363,9 +367,8 @@ input[type=range]::-ms-thumb {
     width: 93.5%;
   }
   .comment-button-item {
-    margin-top: 5%;
+    margin-top: 0%;
   }
- 
 }
 @media all and (max-width: 400px) { 
   .video-key {

@@ -20,8 +20,12 @@ export default class VideoPlayer extends Component {
       videoUploader: '',
       videoURL: `https://s3.amazonaws.com/my.unique.bucket.uservideos/${(window.location.href).split('/').pop()}`,
       views: null,
+      videoDate: '',
       videoThumbnail: '',
       uploaderProfileName: '',
+      startTime: 0,
+      updateTime: 0,
+      hasVideoViewed: false,
     };
   }
 
@@ -47,6 +51,7 @@ export default class VideoPlayer extends Component {
             videoUploader: videoData.data.userName[0].toUpperCase() + videoData.data.userName.slice(1),
             views: videoData.data.views,
             videoThumbnail: videoData.data.videoThumbURL,
+            videoDate: videoData.data.videoDate,
             videoURL: videoData.data.videoURL,
             uploaderProfileName: videoData.data.userName,
           });
@@ -56,6 +61,45 @@ export default class VideoPlayer extends Component {
         throw err;
       });
   }
+
+  componentDidUpdate() {
+    let startTime = 0;
+    let updateTime = 0;
+    let timewatching = 0;
+    let totalTimeWatched = 0;
+    let hasVideoViewed = false;
+
+    const videoDoc = document.getElementById('video-player');
+    document.getElementById('timeupdate');
+
+    videoDoc.addEventListener('timeupdate', () => {
+      updateTime = videoDoc.currentTime;
+      timewatching = (updateTime - startTime);
+    });
+    videoDoc.addEventListener('play', () => {
+      startTime = videoDoc.currentTime;
+    });
+    videoDoc.addEventListener('pause', () => {
+      totalTimeWatched += timewatching;
+      if ((totalTimeWatched >= videoDoc.duration - 1 || totalTimeWatched >= 20) && (!hasVideoViewed)) {
+        this.updateViewCounter();
+        hasVideoViewed = true;
+      }
+    });
+  }
+
+  updateViewCounter = () => {
+    const { videoID, uploaderProfileName } = this.state;
+    const videoInfo = { videoID, videoUploader: uploaderProfileName };
+    axios.post(`${reqURL}/viewUpdate`, videoInfo)
+      .then(() => {
+        this.setState({ hasVideoViewed: true });
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
   /*
   playVideo = () => {
     let videoDoc = document.getElementById('video-player');
@@ -95,7 +139,7 @@ export default class VideoPlayer extends Component {
     // show time to the user
     let currentMins = Math.floor(videoDoc.currentTime / 60);
     let currentSecs = Math.floor(videoDoc.currentTime - currentMins * 60);
-     let durmins = Math.floor(videoDoc.duration / 60);
+    let durmins = Math.floor(videoDoc.duration / 60);
     let dursecs = Math.floor(videoDoc.duration - durmins * 60);
 
     if(currentSecs < 10){ currentSecs = "0"+currentSecs; }
@@ -146,7 +190,7 @@ export default class VideoPlayer extends Component {
 */
 
   render() {
-    const { videoURL, videoName, uploaderProfileName, videoUploader, views } = this.state;
+    const { videoURL, videoName, videoDate, uploaderProfileName, videoUploader, views } = this.state;
     return (
       <div>
         <Navbar />
@@ -158,9 +202,13 @@ export default class VideoPlayer extends Component {
               <source src={videoURL} type="video/mov" />
             </video>
           </div>
-          <Link to={`/profile/${uploaderProfileName}`}>
-            <h4 className="video-uploader text-items">{videoUploader}</h4>
-          </Link>
+          <div>
+            <Link className="profile-link-container" to={`/profile/${uploaderProfileName}`}>
+              <h4 className="video-uploader text-items">{videoUploader}</h4>
+            </Link>
+            <p className="video-date-item"> Published on {videoDate} </p>
+            <p className="video-view-counter"> {views} views </p>
+          </div>
           <CommentList />
         </div><br /><br /><br />
         <Footer />
