@@ -122,7 +122,6 @@ export default class CommentList extends Component {
             <div className="comments-container" key={val._id}>
               <p className="text-items"><b>{val.username[0].toUpperCase() + val.username.slice(1)} </b>: {val.comment}</p>
               <ReplyComments commentIndex={val.commentIndex} commentUsername={commentUsername} />
-              <br />
             </div>
           );
         })}

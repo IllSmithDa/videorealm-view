@@ -334,6 +334,7 @@ input[type=range]::-ms-thumb {
   }
   .video-uploader {
     font-size: 1em;
+    margin-bottom: 2%;
   }
   .reply-buttons {
     margin-top: 0em;
@@ -348,6 +349,9 @@ input[type=range]::-ms-thumb {
     font-size: 0.8em;
     margin-bottom: 6%;
     width: 93.5%;
+  }
+  .comment-button-item {
+    margin-top: 5%;
   }
  
 }
