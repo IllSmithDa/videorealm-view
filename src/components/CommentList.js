@@ -110,11 +110,11 @@ export default class CommentList extends Component {
   }
 
   render() {
-    const { commentList } = this.state;
-    const { commentUsername } = this.state;
+    const { commentList, commentUsername, comment } = this.state;
     return (
       <div>
-        <textarea id="comment-textarea" className="comment-text text-items" onChange={this.handleTextChange} placeholder="Add comment here" />
+        <textarea id="comment-textarea" maxLength="240" className="comment-text text-items" onChange={this.handleTextChange} placeholder="Add comment here" />
+        <p className="text-items">{comment.length}/240 character length</p>
         <button id="comment-button" type="submit" className="comment-button-item text-items all-buttons" onClick={this.submitComment}>Submit</button>
         <h4 className="comments-title text-items"><br /> Comments</h4>
         {commentList.map((val) => {

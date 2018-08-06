@@ -111,9 +111,13 @@
 }
 .reply-area {
   margin-top: 1%;
-  margin-bottom:2%;
   margin-left: 4%;
   width: 95.5%;
+  display: none;
+}
+.reply-counter {
+  margin-left: 4%;
+  margin-bottom:2%;
   display: none;
 }
 .reply-container {
@@ -347,7 +351,6 @@ input[type=range]::-ms-thumb {
   }
   .reply-area {
     font-size: 0.8em;
-    margin-bottom: 6%;
     width: 93.5%;
   }
   .comment-button-item {

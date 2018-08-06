@@ -73,6 +73,7 @@ export default class ReplyComments extends Component {
     document.getElementsByClassName('cancel-button')[commentIndex].style.display = 'inline';
     document.getElementsByClassName('hide-replies')[commentIndex].style.display = 'none';
     document.getElementsByClassName('reply-submit')[commentIndex].style.display = 'inline';
+    document.getElementsByClassName('reply-counter')[commentIndex].style.display = 'block';
 
     // this.setState({ isReplyClicked: true });
   }
@@ -85,6 +86,7 @@ export default class ReplyComments extends Component {
     document.getElementsByClassName('show-reply-submit')[commentIndex].style.display = 'none';
     document.getElementsByClassName('hide-replies')[commentIndex].style.display = 'inline';
     document.getElementsByClassName('show-reply-submit2')[commentIndex].style.display = 'inline';
+    document.getElementsByClassName('reply-counter')[commentIndex].style.display = 'none';
   }
 
   onRepliesHide = () => {
@@ -142,7 +144,7 @@ export default class ReplyComments extends Component {
   }
 
   render() {
-    const { replyList } = this.state;
+    const { replyList, replyStatement } = this.state;
     return (
       <div>
         <div className="first-button-set">
@@ -159,7 +161,8 @@ export default class ReplyComments extends Component {
           })}
         </div>
         <div>
-          <textarea id="reply-text" className="reply-area" placeholder="Add reply here" onChange={this.handleReplyChange} />
+          <textarea id="reply-text" maxLength="240" className="reply-area" placeholder="Add reply here" onChange={this.handleReplyChange} />
+          <p className="reply-counter">{replyStatement.length}/240 character length</p>
           <button type="submit" className="hide-replies reply-button-cancel reply-buttons" onClick={this.onRepliesHide}>Hide Replies</button>
           <button type="submit" className="show-reply-submit2 reply-buttons" onClick={this.onReplyClick}> Reply </button>
         </div>
@@ -167,7 +170,7 @@ export default class ReplyComments extends Component {
           <button type="button" className="cancel-button reply-button-cancel reply-buttons" onClick={this.onReplyCancel}>Cancel</button>
           <button id="reply-submit" type="submit" className="reply-submit reply-buttons" onClick={this.onReplySubmit}>Submit</button>
           <p id="reply-warning" className="reply-button-cancel email-warning"> Error: must be logged in and reply must be made to accept reply</p>
-        </div>
+        </div><br />
       </div>
     );
   }

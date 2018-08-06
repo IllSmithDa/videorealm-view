@@ -146,7 +146,7 @@ export default class VideoPlayer extends Component {
 */
 
   render() {
-    const { videoURL, videoName, uploaderProfileName, videoUploader } = this.state;
+    const { videoURL, videoName, uploaderProfileName, videoUploader, views } = this.state;
     return (
       <div>
         <Navbar />
