@@ -138,6 +138,9 @@
 .reply-button-cancel {
   margin-left: 4%;
 }
+.comment-limit {
+ margin-left:0.5%;
+}
 .video-delete {
   display: flex;
 }
@@ -312,6 +315,12 @@ input[type=range]::-ms-thumb {
   }
 }
 @media all and (max-width: 450px) { 
+  .comment-limit {
+    font-size: 0.8em;
+   }
+   .reply-counter{
+    font-size: 0.8em;
+   }
   .video-key {
     height: 17.5em;
   }

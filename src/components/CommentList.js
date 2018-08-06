@@ -114,7 +114,7 @@ export default class CommentList extends Component {
     return (
       <div>
         <textarea id="comment-textarea" maxLength="240" className="comment-text text-items" onChange={this.handleTextChange} placeholder="Add comment here" />
-        <p className="text-items">{comment.length}/240 character length</p>
+        <p className="comment-limit">{comment.length}/240 character length</p>
         <button id="comment-button" type="submit" className="comment-button-item text-items all-buttons" onClick={this.submitComment}>Submit</button>
         <h4 className="comments-title text-items"><br /> Comments</h4>
         {commentList.map((val) => {
