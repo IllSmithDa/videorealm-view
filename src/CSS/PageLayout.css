@@ -159,6 +159,9 @@
   background-color: rgba(20, 120, 255);
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
+.add-margins {
+  margin-left: 0.5%;
+}
 .reply-buttons {
   background-color: rgb(50, 156, 255);
   border-radius: 5px;

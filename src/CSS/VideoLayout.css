@@ -24,58 +24,74 @@
   width: 99%;
   margin-left:0.5%;
 }
+
+.video-player-item:hover {
+  cursor: pointer;
+}
 .video-date-item {
   margin-left: 0.5%;
 }
 .video-control-container {
-  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  top: -0.4em;
   width: 99%;
   margin-left: 0.5%;
-  height: 2.5em;
+  background-color: black;
 }
 .video-seek-bar {
-  margin-top: 0.6em;
-  width: 66.6%;
+  width: 99%;
 }
-.video-current-time {
-  position:relative;
-  margin-left: 1em;
-  top:-13%;
-}
-.video-total-time {
-  position:relative;
-  top:-13%;
-  margin-right: 0.5em;
-}
-.play-icon {
-  position:relative;
-  top:-18.5%;
-  width: 3em;
-  height: 3em;
-}
-.mute-icon {
-  position:relative;
-  top:-15%;
-  width: 3em;
-  height: 3em;
-}
-.fullscreen-icon {
-  position:relative;
-  top:-18.5%;
-  width: 3em;
-  height: 3em;
+.video-seek-bar:hover {
+  cursor: pointer;
 }
 .volumne-slider-item {
-  position:relative;
-  top:-3%;
   width: 10%;
+
+}
+.volumne-slider-item:hover {
+  cursor: pointer;
+
+}
+.control-block {
+  display: inline-block;
+  width: 62%;
+}
+.video-current-time {
+  margin-left: 0.5%;
+  font-size: 1vw;
+  color: white;
+}
+.video-total-time {
+  margin-right: 0.5%;
+  font-size: 1vw;
+  color: white;
+}
+.time-divide {
+  font-size: 1vw;
+  color: white;
+}
+.play-icon {
+  width: 5%;
+  margin-left: 0.5%;
+}
+.play-icon:hover {
+  cursor: pointer;
+}
+
+.mute-icon {
+  width: 5%;
+}
+.mute-icon:hover {
+  cursor: pointer;
+}
+.fullscreen-icon {
+  width: 5%;
+}
+.fullscreen-icon:hover {
+  cursor: pointer;
 }
 .video-delete {
   display: none;
-}
-.time-divde {
-  position:relative;
-  top:-13%;
 }
 .video-title {  
   margin-top: 1em;
@@ -91,12 +107,11 @@
   width: 99%;
 }
 .video-uploader {
-  margin-top: 0.5em;
-
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin-top: 0.5em;
 }
 .video-view-counter {
-  margin-left: 0.5%;
+  margin-left: 0.5vw;
   position: relative;
   top: -0.4em;
 }
@@ -219,6 +234,13 @@ input[type=range]::-ms-thumb {
     height: 11em;
     margin-right: 0.5%;
     padding-left: 0.5%;
+  }
+  .volumne-slider-item {
+    width: 10%;
+  }
+  .control-block {
+    display: inline-block;
+    width: 65%;
   }
   .navbar-button {
     background-color: #add8e6;

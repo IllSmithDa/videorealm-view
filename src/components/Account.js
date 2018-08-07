@@ -111,6 +111,7 @@ export default class Account extends Component {
         <Navbar />
         <div className="Page-Container">
           <h1 className="accountTitle app-title-item">Your Account</h1>
+          <button type="submit" className="add-margins all-buttons" onClick={this.openWarning}>Delete my account </button>
           <p id="deleteFailure" className="email-Warning"> <br /><b>Warning: failed to Delete Account</b></p>
           <div id="warningModal" className="modal">
             <div className="modal-content">
@@ -128,7 +129,7 @@ export default class Account extends Component {
           </div>
           <h1 className="accountTitle app-title-item">Your Videos</h1>
           <div className="group-button">
-            <button id="myBtn2" type="submit" className="button-item all-buttons" onClick={this.openModal}> Upload Video </button>
+            <button id="myBtn2" type="submit" className="add-margins button-item all-buttons" onClick={this.openModal}> Upload Video </button>
             <DeleteVideos deleteVideoList={this.getVideoList} />
           </div>
           <p id="videoWarning" className="email-Warning">
