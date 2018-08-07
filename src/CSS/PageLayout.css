@@ -107,6 +107,10 @@
 .button-item {
   margin-right: 2em;
 }
+.admin-space {
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
 .upload-title {
   margin-bottom: 1em;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif

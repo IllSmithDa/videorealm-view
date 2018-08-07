@@ -36,13 +36,6 @@ export default class AdminPage extends Component {
         this.checkPassword();
       }
     });
-    const eventEnter2 = document.getElementById('beta-submit');
-    eventEnter2.addEventListener('keypress', (event) => {
-      // console.log(`first keydown event. key property value is '${event.key}'`);
-      if (event.key === 'Enter') {
-        this.sendBetaKey();
-      }
-    });
   }
 
   openImageModal = () => {
@@ -126,9 +119,9 @@ export default class AdminPage extends Component {
           <div id="adminModal" className="image-modal-admin">
             <div className="modal-content">
               <h1>Enter admin key to access webpage</h1>
-              <br />
-              <input id="admin-submit" type="password" onChange={this.handleAdminPassword} />
-              <br />
+              <br /><br />
+              <input className="admin-space" id="admin-submit" type="password" onChange={this.handleAdminPassword} />
+              <br /><br />
               <p id="wrongKey" className="email-warning">Error: Admin key is not correct!</p><br />
               <button type="submit" onClick={this.checkPassword}>Submit</button>
             </div>

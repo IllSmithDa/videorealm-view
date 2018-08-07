@@ -14,6 +14,7 @@ export default class CreateUser extends Component {
     this.state = {
       username: '',
       password: '',
+      repPassword: '',
       email: '',
       secretKey: '',
     };
@@ -33,31 +34,34 @@ export default class CreateUser extends Component {
     let badEmail = false;
     let badUsername = false;
     let badSecretKey = false;
-    const { username } = this.state;
-    const { email } = this.state;
-    const { password } = this.state;
+    const { username, email, password, repPassword } = this.state;
 
     // check username length
-    if (username.length < 3) {
+    if (username.length < 3 || /\W/.test(username) || /\s/.test(username)) {
       badUsername = true;
-      const userDoc = document.getElementById('shortUsername');
-      userDoc.style.display = 'block';
+      document.getElementById('shortUsername').style.display = 'block';
     } else {
-      const userDoc = document.getElementById('shortUsername');
-      userDoc.style.display = 'none';
+      document.getElementById('shortUsername').style.display = 'none';
+      badUsername = false;
     }
-
     // check if email exists
     if (!EmailValidator.validate(email)) {
-      const emailDoc = document.getElementById('badEmail');
-      emailDoc.style.display = 'block';
+      document.getElementById('badEmail').style.display = 'block';
       badEmail = true;
     } else {
-      const emailDoc = document.getElementById('badEmail');
-      emailDoc.style.display = 'none';
+      document.getElementById('badEmail').style.display = 'none';
+      badEmail = false;
+    }
+    if (password !== repPassword) {
+      document.getElementById('repPassword').style.display = 'block';
+      badPassword = true;
+    } else {
+      document.getElementById('repPassword').style.display = 'none';
+      badPassword = false;
     }
     // check password if it meets requirements
-    if (!/\d/.test(password) || password.length < 8 || password.length > 20) {
+    if (/\s/.test(password) || !/\d/.test(password) || !/\d/.test(password) || !/\W/.test(password)
+        || !/\d/.test(password) || password.length < 8 || password.length > 20 ) {
       const paswordDoc = document.getElementById('badPassword');
       paswordDoc.style.display = 'block';
       badPassword = true;
@@ -142,8 +146,12 @@ export default class CreateUser extends Component {
     this.setState({ secretKey: event.target.value });
   }
 
+  handleRepPassword = (event) => {
+    this.setState({ repPassword: event.target.value });
+  }
+
   render() {
-    const { usermame, password, email, secretKey } = this.state;
+    const { usermame, password, repPassword, email, secretKey } = this.state;
 
     return (
       <div id="page-event">
@@ -152,16 +160,24 @@ export default class CreateUser extends Component {
           <div className="form-group app-userform">
             <h1 className="app-title-item"> Create Your Videorealm Account </h1>
             <label className="text-items" htmlFor="name" id="username-message"> <b>Choose your username:</b></label>
+            <p className="form-input"> Username must be at least 3 character with at least one letter. Cannot user special characters for username.</p>
             <input type="name" className="form-control form-input" id="name" value={usermame} onChange={this.handleSetUsername} />
-            <p id="shortUsername" className="email-warning text-items">Error: Username must be at least 3 letters</p>
+            <p id="shortUsername" className="email-warning text-items">Error: Username must be at least 3 character with at least one letter
+              and no special characters
+            </p>
             <p id="badUsername" className="email-warning text-items">Error: Username already exists</p>
           </div>
           <div className="form-group">
             <label className="text-items" htmlFor="pwd"><b>Create your password:</b></label>
+            <p className="form-input"> Password must be 8 to 20 characters long and must include at least one number, one letter and one special character</p>
             <input type="password" className="form-control form-input" id="pwd" value={password} onChange={this.handleSetPassword} />
-            <p id="badPassword" className="email-warning text-items">Error: invalid password. Password must be at least 8 characters long and must
-              include at least one number and one special character
+            <p id="badPassword" className="email-warning text-items">Error: Password does not meet criterias
             </p>
+          </div>
+          <div className="form-group">
+            <label className="text-items" htmlFor="pwd"><b>Confirm your password:</b></label>
+            <input type="password" className="form-control form-input" id="pwd" value={repPassword} onChange={this.handleRepPassword} />
+            <p id="repPassword" className="email-warning text-items">Error: Passwords do not match</p>
           </div>
           <div className="form-group">
             <label className="text-items" htmlFor="pwd"><b>Enter a valid Email:</b></label>
@@ -173,7 +189,7 @@ export default class CreateUser extends Component {
             <label className="text-items" htmlFor="pwd"><b>Enter your beta key:</b></label>
             <input type="password" className="form-control form-input" id="secretkey" value={secretKey} onChange={this.handleSecretKey} />
             <p id="badkey" className="email-warning text-items">That is not a correct beta key</p>
-          </div>
+          </div><br />
           <button type="submit" className="all-buttons text-items" id="submit-button" onClick={this.createUser}>Submit</button>
         </div><br /><br /><br />
         <Footer />
