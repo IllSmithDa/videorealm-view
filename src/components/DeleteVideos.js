@@ -97,7 +97,7 @@ export default class DeleteVideos extends Component {
     }
     return (
       <div>
-        <button id="DeleteButton" type="submit" className="all-buttons" onClick={this.deleteModal}> Delete Video(s) </button>
+        <button id="DeleteButton" type="submit" className="reply-buttons" onClick={this.deleteModal}> Delete Video(s) </button>
         <div id="DeleteVideos" className="modal">
           <div className="modal-content">
             <span role="button" tabIndex="-1" className="close" onClick={this.closeModal}>&times;</span>
@@ -117,7 +117,7 @@ export default class DeleteVideos extends Component {
                 );
               })}
             </div>
-            <button className="delete-button" type="submit" onClick={this.deleteSubmission}>Delete Video(s)</button>
+            <button className="reply-buttons button-size" type="submit" onClick={this.deleteSubmission}>Delete Video(s)</button>
           </div>
         </div>
       </div>

@@ -79,6 +79,8 @@ export default class Account extends Component {
       document.getElementById('video-add').style.display = 'block';
       document.getElementById('animation-load').style.display = 'flex';
       document.getElementById('videoName').style.display = 'none';
+      document.getElementById('video-upload-close').style.display = 'none';
+      document.getElementById('form-header').style.display = 'none';
     });
   }
 
@@ -89,6 +91,8 @@ export default class Account extends Component {
 
   openModal = () => {
     document.getElementById('myModal').style.display = 'block';
+    document.getElementById('video-upload-close').style.display = 'block';
+    document.getElementById('form-header').style.display = 'block';
   }
 
   closeModal = () => {
@@ -274,9 +278,9 @@ export default class Account extends Component {
         <Navbar />
         <div className="Page-Container">
           <h1 className="accountTitle app-title-item">{displayName}&apos;s Account</h1>
-          <button type="submit" className="add-margins all-buttons" onClick={this.openUsernameModal}>Change Username </button>
-          <button type="submit" className="add-margins all-buttons" onClick={this.openPasswordModal}>Change Password </button>
-          <button id="deletebutton" type="submit" className="add-margins all-buttons" onClick={this.openWarning}>Delete my account </button>
+          <button type="submit" className="add-margins reply-buttons" onClick={this.openUsernameModal}>Change Username </button>
+          <button type="submit" className="add-margins reply-buttons" onClick={this.openPasswordModal}>Change Password </button>
+          <button id="deletebutton" type="submit" className="add-margins reply-buttons hide-element" onClick={this.openWarning}>Delete my account </button>
           <p id="paswordSuccess" className="add-margins email-warning"> <b>Password Sucessfully Changed!</b></p>
           <p id="deleteFailure" className="email-warning add-margin"> <br /><b>Warning: failed to Delete Account</b></p>
           <div id="warningModal" className="modal">
@@ -288,8 +292,8 @@ export default class Account extends Component {
               </h2>
               <br />
               <div>
-                <button type="submit" className="all-buttons button-size" onClick={this.finalDeleteUser}>Yes</button>
-                <button type="submit" className="all-buttons button-size" onClick={this.closeDeleteModal}>No</button>
+                <button type="submit" className="reply-buttons" onClick={this.finalDeleteUser}>Yes</button>
+                <button type="submit" className="reply-buttons" onClick={this.closeDeleteModal}>No</button>
               </div>
             </div>
           </div>
@@ -305,8 +309,8 @@ export default class Account extends Component {
               <p id="badUsername" className="email-warning"> <b>Invalid username</b></p>
               <div>
                 <br />
-                <button type="submit" className="all-buttons button-size" onClick={this.cancelUsername}>Cancel</button>
-                <button type="submit" className="all-buttons button-size" onClick={this.submitNewUsername}>Submit</button>
+                <button type="submit" className="reply-buttons" onClick={this.cancelUsername}>Cancel</button>
+                <button type="submit" className="reply-buttons" onClick={this.submitNewUsername}>Submit</button>
               </div>
             </div>
           </div>
@@ -328,14 +332,14 @@ export default class Account extends Component {
               <p id="noMatchPW" className="email-warning"> <b>Error: The passwords do not match</b></p><br />
               <div>
                 <br />
-                <button type="submit" className="all-buttons button-size" onClick={this.closePasswordModal}>Cancel</button>
-                <button type="submit" className="all-buttons button-size" onClick={this.submitNewPassword}>Submit</button>
+                <button type="submit" className="reply-buttons" onClick={this.closePasswordModal}>Cancel</button>
+                <button type="submit" className="reply-buttons" onClick={this.submitNewPassword}>Submit</button>
               </div>
             </div>
           </div>
           <h1 className="accountTitle app-title-item">{displayName}&apos;s Videos</h1>
           <div className="group-button">
-            <button id="myBtn2" type="submit" className="add-margins button-item all-buttons" onClick={this.openModal}> Upload Video </button>
+            <button id="myBtn2" type="submit" className="add-margins reply-buttons" onClick={this.openModal}> Upload Video </button>
             <DeleteVideos deleteVideoList={this.getVideoList} />
           </div>
           <p id="videoWarning" className="add-margins email-Warning">
@@ -345,7 +349,7 @@ export default class Account extends Component {
           </p>
           <div id="myModal" className="modal">
             <div className="modal-content">
-              <span role="button" tabIndex="-1" className="close" onClick={this.closeModal}>&times;</span>
+              <span id="video-upload-close" role="button" tabIndex="-1" className="close" onClick={this.closeModal}>&times;</span>
               <h1 className="upload-title">Upload Video Here</h1>
               <p><b>Supported formats: mp4, mov, wmv, avi, flv </b> </p><br />
               <form
@@ -354,7 +358,7 @@ export default class Account extends Component {
                 method="post"
                 encType="multipart/form-data"
               >
-                <h3 className="video-name"> {'Enter Video Name: '}
+                <h3 id="form-header" className="video-name"> {'Enter Video Name: '}
                   <input id="videoName" className="video-name-input" type="text" name="videoName" onChange={this.handleVideoName} />
                 </h3>
                 <p id="video-error" className="email-warning"> The file type is not supported! </p><br />

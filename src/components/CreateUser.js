@@ -60,6 +60,7 @@ export default class CreateUser extends Component {
       document.getElementById('repPassword').style.display = 'none';
       badPassword = false;
     }
+
     // check password if it meets requirements
     if (/\s/.test(password) || !/\d/.test(password) || !/\d/.test(password) || !/\W/.test(password)
         || !/\d/.test(password) || password.length < 8 || password.length > 20 || !/[A-Z]/.test(password)) {
@@ -171,13 +172,13 @@ export default class CreateUser extends Component {
           <div className="form-group">
             <label className="text-items" htmlFor="pwd"><b>Create your password:</b></label>
             <p className="form-input"> Password must be 8 to 20 characters long and must include at least one number, one letter and one special character</p>
-            <input type="password" className="form-control form-input" id="pwd" value={password} onChange={this.handleSetPassword} />
+            <input type="password" className="form-control form-input" value={password} onChange={this.handleSetPassword} />
             <p id="badPassword" className="email-warning text-items">Error: Password does not meet criterias
             </p>
           </div>
           <div className="form-group">
             <label className="text-items" htmlFor="pwd"><b>Confirm your password:</b></label>
-            <input type="password" className="form-control form-input" id="pwd" value={repPassword} onChange={this.handleRepPassword} />
+            <input type="password" className="form-control form-input" value={repPassword} onChange={this.handleRepPassword} />
             <p id="repPassword" className="email-warning text-items">Error: Passwords do not match</p>
           </div>
           <div className="form-group">

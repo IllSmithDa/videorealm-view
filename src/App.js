@@ -10,6 +10,8 @@ import AdminPage from './components/AdminPage';
 import VideoPlayer from './components/VideoPlayer';
 import SearchPage from './components/SearchPage';
 import ErrorPage from './components/Errorpage';
+import LostPassword from './components/LostPassword';
+import LostUsername from './components/LostUsername';
 import './CSS/App.css';
 
 axios.defaults.withCredentials = true;
@@ -26,6 +28,8 @@ export default function App() {
         <Route exact path="/adminpage" component={AdminPage} />
         <Route exact path="/video/:videoID" component={VideoPlayer} />
         <Route exact path="/video_search/:searchterm" component={SearchPage} />
+        <Route exact path="/lostpassword" component={LostPassword} />
+        <Route exact path="/lostusername" component={LostUsername} />
         <Route component={ErrorPage} />
       </Switch>
     </Router>

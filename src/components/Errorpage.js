@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import LoadingAnimation from './LoadingAnimation'
+import LoadingAnimation from './LoadingAnimation';
 import '../CSS/PageLayout.css';
 
 export default function HomePage() {

@@ -87,6 +87,7 @@ export default class Profile extends Component {
     document.getElementById('uploadImageForm').addEventListener('submit', () => {
       document.getElementById('uploadImagebtn').style.display = 'none';
       document.getElementById('image-input').style.display = 'none';
+      document.getElementById('close-image-modal').style.display = 'none';
       document.getElementById('image-update').style.display = 'block';
       document.getElementById('animation-load').style.display = 'flex';
     });
@@ -94,6 +95,7 @@ export default class Profile extends Component {
 
   openImageModal = () => {
     document.getElementById('imageUploadModal').style.display = 'block';
+    document.getElementById('close-image-modal').style.display = 'block';
   }
 
   closeImageModal = () => {
@@ -117,7 +119,7 @@ export default class Profile extends Component {
           </div>
           <div id="imageUploadModal" className="image-modal">
             <div className="modal-content">
-              <span role="button" tabIndex="-1" className="modal-close" onClick={this.closeImageModal}>&times;</span>
+              <span id="close-image-modal" role="button" tabIndex="-1" className="modal-close" onClick={this.closeImageModal}>&times;</span>
               <h1 className="upload-title">Upload new Profile picture</h1>
               <form
                 id="uploadImageForm"
