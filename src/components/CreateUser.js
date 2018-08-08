@@ -37,7 +37,8 @@ export default class CreateUser extends Component {
     const { username, email, password, repPassword } = this.state;
 
     // check username length
-    if (username.length < 3 || /\W/.test(username) || /\s/.test(username)) {
+    if (username.length < 3 || /\W/.test(username) || /\s/.test(username)
+    || !/[a-zA-Z]/.test(username)) {
       badUsername = true;
       document.getElementById('shortUsername').style.display = 'block';
     } else {
@@ -61,7 +62,7 @@ export default class CreateUser extends Component {
     }
     // check password if it meets requirements
     if (/\s/.test(password) || !/\d/.test(password) || !/\d/.test(password) || !/\W/.test(password)
-        || !/\d/.test(password) || password.length < 8 || password.length > 20 ) {
+        || !/\d/.test(password) || password.length < 8 || password.length > 20 || !/[A-Z]/.test(password)) {
       const paswordDoc = document.getElementById('badPassword');
       paswordDoc.style.display = 'block';
       badPassword = true;
@@ -162,7 +163,7 @@ export default class CreateUser extends Component {
             <label className="text-items" htmlFor="name" id="username-message"> <b>Choose your username:</b></label>
             <p className="form-input"> Username must be at least 3 character with at least one letter. Cannot user special characters for username.</p>
             <input type="name" className="form-control form-input" id="name" value={usermame} onChange={this.handleSetUsername} />
-            <p id="shortUsername" className="email-warning text-items">Error: Username must be at least 3 character with at least one letter
+            <p id="shortUsername" className="email-warning text-items">Error: Username must be at least 3 character with at least one capital letter
               and no special characters
             </p>
             <p id="badUsername" className="email-warning text-items">Error: Username already exists</p>

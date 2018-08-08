@@ -115,6 +115,7 @@ export default class ReplyComments extends Component {
     document.getElementsByClassName('reply-submit')[commentIndex].style.display = 'none';
     document.getElementsByClassName('hide-replies')[commentIndex].style.display = 'inline';
     document.getElementsByClassName('show-reply-submit2')[commentIndex].style.display = 'inline';
+    document.getElementsByClassName('reply-counter')[commentIndex].style.display = 'none';
     const { videoUploader, replyStatement } = this.state;
     // grabs video url inside current url
     const getID = (window.location.href).split('/').pop();

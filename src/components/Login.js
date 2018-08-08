@@ -71,6 +71,8 @@ export default class Account extends Component {
             Error: Incorrect username and/or password!
           </p>
           <button type="submit" className="text-items all-buttons" onClick={this.loginUser}>Submit</button>
+          <p>Forgot Username? </p>
+          <p>Forgot Password? </p>
         </div><br /><br /><br />
         <Footer />
       </div>

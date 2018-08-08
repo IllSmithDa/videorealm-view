@@ -77,6 +77,9 @@
 .video-title {
   margin-top: 1em;
 }
+.hide-element {
+  display: none;
+}
 .video-name-input {
   width: 70%;
   font-size: 17px;
@@ -112,7 +115,6 @@
   margin-bottom: 2em;
 }
 .upload-title {
-  margin-bottom: 1em;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 .upload-title-button{

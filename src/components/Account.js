@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import LoadingAnimation from './LoadingAnimation';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import reqURL from './RequestURL';
 import AccountVideos from './AccountVideos';
 import DeleteVideos from './DeleteVideos';
+import '../CSS/LoadingAnimation.css';
 import '../CSS/PageLayout.css';
 import '../CSS/VideoLayout.css';
 // add credentials or else the session will not be saved
@@ -28,7 +30,6 @@ export default class Account extends Component {
   }
 
   componentDidMount() {
-    document.getElementById('deleteFailure').style.display = 'none';
     document.getElementById('upload-submit').disabled = true;
     axios.get(`${reqURL}/getUsername`)
       .then((userData) => {
@@ -61,11 +62,24 @@ export default class Account extends Component {
 
   componentDidUpdate() {
     const { fileName, userVideoName } = this.state;
+    if (!(/.mp4/).test(fileName) && !(/.mov/).test(fileName)
+    && !(/.wmv/).test(fileName) && !(/.avi/).test(fileName)
+    && !(/.flv/).test(fileName) && fileName !== '') {
+      document.getElementById('video-error').style.display = 'block';
+      document.getElementById('upload-submit').disabled = true;
+    }
     if (fileName !== '' && userVideoName !== '') {
       document.getElementById('upload-submit').disabled = false;
     } else {
       document.getElementById('upload-submit').disabled = true;
     }
+    document.getElementById('videoForm').addEventListener('submit', () => {
+      document.getElementById('upload-submit').style.display = 'none';
+      document.getElementById('upload-file').style.display = 'none';
+      document.getElementById('video-add').style.display = 'block';
+      document.getElementById('animation-load').style.display = 'flex';
+      document.getElementById('videoName').style.display = 'none';
+    });
   }
 
   getVideoList = () => {
@@ -139,7 +153,8 @@ export default class Account extends Component {
     const usernameChange = { username, newUsername };
     const user = { username: newUsername };
 
-    if (newUsername.length < 3 || /\W/.test(newUsername) || /\s/.test(newUsername)) {
+    if (newUsername.length < 3 || /\W/.test(newUsername) || /\s/.test(newUsername)
+    || !/[a-zA-Z]/.test(newUsername)) {
       document.getElementById('badUsername').style.display = 'block';
       badUsername = true;
     } else {
@@ -219,7 +234,7 @@ export default class Account extends Component {
         }
         if (/\s/.test(newPassword) || !/\d/.test(newPassword) || !/\d/.test(newPassword) || !/\W/.test(newPassword)
         || !/\d/.test(newPassword) || newPassword.length < 8 || newPassword.length > 20 || newPassword === oldPassword
-        || !/[a-zA-Z]/.test(newPassword)) {
+        || !/[A-Z]/.test(newPassword)) {
           document.getElementById('badPW').style.display = 'block';
           correctNew = false;
         } else {
@@ -261,9 +276,9 @@ export default class Account extends Component {
           <h1 className="accountTitle app-title-item">{displayName}&apos;s Account</h1>
           <button type="submit" className="add-margins all-buttons" onClick={this.openUsernameModal}>Change Username </button>
           <button type="submit" className="add-margins all-buttons" onClick={this.openPasswordModal}>Change Password </button>
-          <button type="submit" className="add-margins all-buttons" onClick={this.openWarning}>Delete my account </button>
+          <button id="deletebutton" type="submit" className="add-margins all-buttons" onClick={this.openWarning}>Delete my account </button>
           <p id="paswordSuccess" className="add-margins email-warning"> <b>Password Sucessfully Changed!</b></p>
-          <p id="deleteFailure" className="email-Warning"> <br /><b>Warning: failed to Delete Account</b></p>
+          <p id="deleteFailure" className="email-warning add-margin"> <br /><b>Warning: failed to Delete Account</b></p>
           <div id="warningModal" className="modal">
             <div className="modal-content">
               <span role="button" tabIndex="-1" className="close" onClick={this.closeDeleteModal}>&times;</span>
@@ -301,7 +316,7 @@ export default class Account extends Component {
               <h2>
                 Enter a new password
               </h2>
-              <p> Must be 8 to 20 characters long with at least 1 letter, 1 number, 1 special character and must different from your current
+              <p> Must be 8 to 20 characters long with at least 1 capital letter, 1 number, 1 special character and must different from your current
                 password
               </p>
               <b>Current Password:</b><input className="video-name-input" type="password" name="videoName" onChange={this.handleOldPassword} />
@@ -323,7 +338,7 @@ export default class Account extends Component {
             <button id="myBtn2" type="submit" className="add-margins button-item all-buttons" onClick={this.openModal}> Upload Video </button>
             <DeleteVideos deleteVideoList={this.getVideoList} />
           </div>
-          <p id="videoWarning" className="email-Warning">
+          <p id="videoWarning" className="add-margins email-Warning">
             <b>Notice: You have reached the maximum number of videos allowed on this account! Delete
               existing video(s) to add new ones.
             </b>
@@ -332,16 +347,21 @@ export default class Account extends Component {
             <div className="modal-content">
               <span role="button" tabIndex="-1" className="close" onClick={this.closeModal}>&times;</span>
               <h1 className="upload-title">Upload Video Here</h1>
+              <p><b>Supported formats: mp4, mov, wmv, avi, flv </b> </p><br />
               <form
-                id="uploadForm"
+                id="videoForm"
                 action={videoUploadReq}
                 method="post"
                 encType="multipart/form-data"
               >
                 <h3 className="video-name"> {'Enter Video Name: '}
-                  <input className="video-name-input" type="text" name="videoName" onChange={this.handleVideoName} />
+                  <input id="videoName" className="video-name-input" type="text" name="videoName" onChange={this.handleVideoName} />
                 </h3>
-                <p id="image-update"> Please Wait when your video is being uploaded. </p><br />
+                <p id="video-error" className="email-warning"> The file type is not supported! </p><br />
+                <p id="video-add" className="hide-element"> Please Wait while your video is being uploaded. This will
+                  take a few minutes
+                </p>
+                <LoadingAnimation />
                 <input id="upload-file" type="file" name="videoFile" onChange={this.changeUploadState} />
                 <input id="upload-submit" className="upload-button" type="submit" value="Upload" />
               </form>
