@@ -90,6 +90,13 @@
   width: 7em;
   font-size: 14px;
 }
+.add-bottom-margins {
+  position: relative;
+  top: -100%;
+}
+.add-button-margins {
+  margin-top: 4em;
+}
 .email-warning {
   color: red;
   font-weight: bold;

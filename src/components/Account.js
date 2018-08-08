@@ -18,6 +18,8 @@ export default class Account extends Component {
     this.state = {
       videoUploadReq: `${reqURL}/uploadVideo`,
       userVideoName: '',
+      maxVideoSize: '100mb',
+      maxSizeNum: 100000000,
       loginState: true,
       fileName: '',
       username: '',
@@ -30,7 +32,6 @@ export default class Account extends Component {
   }
 
   componentDidMount() {
-    document.getElementById('upload-submit').disabled = true;
     axios.get(`${reqURL}/getUsername`)
       .then((userData) => {
         console.log(userData.data);
@@ -61,18 +62,52 @@ export default class Account extends Component {
   }
 
   componentDidUpdate() {
-    const { fileName, userVideoName } = this.state;
-    if (!(/.mp4/).test(fileName) && !(/.mov/).test(fileName)
-    && !(/.wmv/).test(fileName) && !(/.avi/).test(fileName)
-    && !(/.flv/).test(fileName) && fileName !== '') {
-      document.getElementById('video-error').style.display = 'block';
-      document.getElementById('upload-submit').disabled = true;
+    let videoNameReady = true;
+    let fileReady = true;
+
+    const { fileName, userVideoName, maxSizeNum } = this.state;
+
+    // if video is selected
+    if (fileName !== '') {
+      // check if correct and supported format
+      if (!(/.mp4/).test(fileName) && !(/.mov/).test(fileName)
+      && !(/.wmv/).test(fileName) && !(/.avi/).test(fileName)
+      && !(/.flv/).test(fileName)) {
+        document.getElementById('video-error').style.display = 'block';
+        fileReady = false;
+      } else {
+        document.getElementById('video-error').style.display = 'none';
+        fileReady = true;
+      }
+
+      const currentFileSize = document.getElementById('upload-file').files[0].size;
+      if (fileName !== '' && currentFileSize > maxSizeNum) {
+        document.getElementById('video-size').style.display = 'block';
+        fileReady = false;
+      } else {
+        document.getElementById('video-size').style.display = 'none';
+        fileReady = true;
+      }
+    } else {
+      document.getElementById('video-error').style.display = 'none';
+      document.getElementById('video-size').style.display = 'none';
+      fileReady = false;
     }
-    if (fileName !== '' && userVideoName !== '') {
+
+    // check if videoname empty
+    if (userVideoName !== '') {
+      videoNameReady = true;
+    } else {
+      videoNameReady = false;
+    }
+
+    // if both conditions are met
+    if (fileReady && videoNameReady) {
       document.getElementById('upload-submit').disabled = false;
     } else {
       document.getElementById('upload-submit').disabled = true;
     }
+
     document.getElementById('videoForm').addEventListener('submit', () => {
       document.getElementById('upload-submit').style.display = 'none';
       document.getElementById('upload-file').style.display = 'none';
@@ -93,6 +128,7 @@ export default class Account extends Component {
     document.getElementById('myModal').style.display = 'block';
     document.getElementById('video-upload-close').style.display = 'block';
     document.getElementById('form-header').style.display = 'block';
+    document.getElementById('upload-submit').disabled = true;
   }
 
   closeModal = () => {
@@ -131,6 +167,7 @@ export default class Account extends Component {
 
   changeUploadState = (event) => {
     this.setState({ fileName: event.target.value });
+    const { fileName } = this.state;
   }
 
   disableSubmit = () => {
@@ -264,7 +301,7 @@ export default class Account extends Component {
 
   //   <button type="submit" className="add-margins all-buttons" onClick={this.openWarning}>Delete my account </button>
   render() {
-    const { videoUploadReq, loginState, displayName } = this.state;
+    const { videoUploadReq, loginState, displayName, maxVideoSize } = this.state;
     if (!loginState) {
       window.location = '/login';
       return (
@@ -282,7 +319,7 @@ export default class Account extends Component {
           <button type="submit" className="add-margins reply-buttons" onClick={this.openPasswordModal}>Change Password </button>
           <button id="deletebutton" type="submit" className="add-margins reply-buttons hide-element" onClick={this.openWarning}>Delete my account </button>
           <p id="paswordSuccess" className="add-margins email-warning"> <b>Password Sucessfully Changed!</b></p>
-          <p id="deleteFailure" className="email-warning add-margin"> <br /><b>Warning: failed to Delete Account</b></p>
+          <p id="deleteFailure" className="add-margin email-warning "> <br /><b>Warning: failed to Delete Account</b></p>
           <div id="warningModal" className="modal">
             <div className="modal-content">
               <span role="button" tabIndex="-1" className="close" onClick={this.closeDeleteModal}>&times;</span>
@@ -351,6 +388,7 @@ export default class Account extends Component {
             <div className="modal-content">
               <span id="video-upload-close" role="button" tabIndex="-1" className="close" onClick={this.closeModal}>&times;</span>
               <h1 className="upload-title">Upload Video Here</h1>
+              <p><b>Maximum video size:{maxVideoSize}</b> </p><br />
               <p><b>Supported formats: mp4, mov, wmv, avi, flv </b> </p><br />
               <form
                 id="videoForm"
@@ -362,6 +400,7 @@ export default class Account extends Component {
                   <input id="videoName" className="video-name-input" type="text" name="videoName" onChange={this.handleVideoName} />
                 </h3>
                 <p id="video-error" className="email-warning"> The file type is not supported! </p><br />
+                <p id="video-size" className="email-warning">Videofile exceeds {maxVideoSize}</p>
                 <p id="video-add" className="hide-element"> Please Wait while your video is being uploaded. This will
                   take a few minutes
                 </p>
