@@ -21,6 +21,8 @@ export default class Profile extends Component {
       uploadImageUrl: `${reqURL}/uploadProfilePic`,
       profilePictureSrc: '',
       loginState: true,
+      maxImageSize: 25000000,
+      maxImagebits: '25mb',
       currentUsername: '',
       imageFileTrack: '',
     };
@@ -77,12 +79,33 @@ export default class Profile extends Component {
   }
 
   componentDidUpdate() {
-    const { imageFileTrack } = this.state;
+    const { imageFileTrack, maxImageSize } = this.state;
+    let rightSize = true;
+    let rightContent = true;
     if (imageFileTrack !== '') {
-      document.getElementById('uploadImagebtn').disabled = false;
+      if (!(/.png/).test(imageFileTrack) && !(/.jpg/).test(imageFileTrack)
+      && !(/.bmp/).test(imageFileTrack)) {
+        document.getElementById('img-format-err').style.display = 'block';
+        rightContent = false;
+      } else {
+        document.getElementById('img-format-err').style.display = 'none';
+        rightContent = true;
+      }
+      const currentFileSize = document.getElementById('image-input').files[0].size;
+      if (currentFileSize > maxImageSize) {
+        document.getElementById('img-size-err').style.display = 'block';
+        rightSize = false;
+      } else {
+        document.getElementById('img-size-err').style.display = 'none';
+        rightSize = true;
+      }
+      if (rightSize && rightContent) {
+        document.getElementById('uploadImagebtn').disabled = false;
+      }
     } else {
       document.getElementById('uploadImagebtn').disabled = true;
     }
+
 
     document.getElementById('uploadImageForm').addEventListener('submit', () => {
       document.getElementById('uploadImagebtn').style.display = 'none';
@@ -107,7 +130,7 @@ export default class Profile extends Component {
   };
 
   render() {
-    const { profileName, profilePictureSrc, currentUsername, uploadImageUrl } = this.state;
+    const { profileName, profilePictureSrc, currentUsername, uploadImageUrl, maxImagebits } = this.state;
     return (
       <div>
         <Navbar />
@@ -121,13 +144,17 @@ export default class Profile extends Component {
             <div className="modal-content">
               <span id="close-image-modal" role="button" tabIndex="-1" className="modal-close" onClick={this.closeImageModal}>&times;</span>
               <h1 className="upload-title">Upload new Profile picture</h1>
+              <p> <b>Supported file formats include png, jpg, and bmp. </b></p>
+              <p> <b>Max image size is {maxImagebits}. </b></p>
               <form
                 id="uploadImageForm"
                 action={uploadImageUrl}
                 method="post"
                 encType="multipart/form-data"
               >
-                <p id="image-update" className="hide-element"> Please Wait while your image is being uploaded. </p>
+                <p id="img-format-err" className="hide-element email-warning"> Error: file format is not supported. </p>
+                <p id="img-size-err" className="hide-element email-warning"> Error: Image size exceeds {maxImagebits}. </p>
+                <p id="image-update" className="hide-element"><b>Please Wait while your image is being uploaded.</b></p>
                 <LoadingAnimation />
                 <input id="image-input" className="upload-image-button" type="file" name="profPictureFile" onChange={this.trackFileUpload} />
                 <input id="uploadImagebtn" className="upload-title-button" type="submit" value="Upload" />

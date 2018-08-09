@@ -340,7 +340,7 @@ export default class Account extends Component {
               <h2>
                 Enter a new uername
               </h2>
-              <p> Must be at least 3 characters long and must contain at least one letter and no special characters</p>
+              <p><b>Must be at least 3 characters long and must contain at least one letter and no special characters</b></p>
               <input className="video-name-input" type="text" name="videoName" onChange={this.handleNewUsername} />
               <p id="repUsername" className="email-warning"> <b>Username already exists </b></p>
               <p id="badUsername" className="email-warning"> <b>Invalid username</b></p>
@@ -357,8 +357,10 @@ export default class Account extends Component {
               <h2>
                 Enter a new password
               </h2>
-              <p> Must be 8 to 20 characters long with at least 1 capital letter, 1 number, 1 special character and must different from your current
-                password
+              <p>
+                <b>Must be 8 to 20 characters long with at least 1 capital letter, 1 number, 1 special character and must different from your current
+                password.
+                </b>
               </p>
               <b>Current Password:</b><input className="video-name-input" type="password" name="videoName" onChange={this.handleOldPassword} />
               <p id="incorrectPW" className="email-warning"><b> Error: Password is not correct</b></p><br />
@@ -388,8 +390,8 @@ export default class Account extends Component {
             <div className="modal-content">
               <span id="video-upload-close" role="button" tabIndex="-1" className="close" onClick={this.closeModal}>&times;</span>
               <h1 className="upload-title">Upload Video Here</h1>
-              <p><b>Maximum video size:{maxVideoSize}</b> </p><br />
-              <p><b>Supported formats: mp4, mov, wmv, avi, flv </b> </p><br />
+              <p><b>Maximum video size:{maxVideoSize}</b> </p>
+              <p><b>Supported formats: mp4, mov, wmv, avi, flv </b> </p>
               <form
                 id="videoForm"
                 action={videoUploadReq}
@@ -399,14 +401,14 @@ export default class Account extends Component {
                 <h3 id="form-header" className="video-name"> {'Enter Video Name: '}
                   <input id="videoName" className="video-name-input" type="text" name="videoName" onChange={this.handleVideoName} />
                 </h3>
-                <p id="video-error" className="email-warning"> The file type is not supported! </p><br />
-                <p id="video-size" className="email-warning">Videofile exceeds {maxVideoSize}</p>
                 <p id="video-add" className="hide-element"> Please Wait while your video is being uploaded. This will
                   take a few minutes
                 </p>
                 <LoadingAnimation />
                 <input id="upload-file" type="file" name="videoFile" onChange={this.changeUploadState} />
-                <input id="upload-submit" className="upload-button" type="submit" value="Upload" />
+                <input id="upload-submit" type="submit" value="Upload" />
+                <p id="video-error" className="email-warning"> The file type is not supported! </p>
+                <p id="video-size" className="email-warning">Videofile exceeds {maxVideoSize}</p>
               </form>
             </div>
           </div>

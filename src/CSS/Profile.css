@@ -46,3 +46,18 @@
   text-decoration: none;
   cursor: pointer;
 }
+@media all and (max-width: 550px) { 
+  .profile-image {
+    width: 100%;
+    height: 40vh;
+    opacity: 1;
+  }
+}
+
+@media all and (max-width: 425px) { 
+  .profile-image {
+    width: 100%;
+    height: 30vh;
+    opacity: 1;
+  }
+}
