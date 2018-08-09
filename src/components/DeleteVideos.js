@@ -117,7 +117,7 @@ export default class DeleteVideos extends Component {
                 );
               })}
             </div>
-            <button className="reply-buttons button-size add-button-margins" type="submit" onClick={this.deleteSubmission}>Delete Video(s)</button>
+            <button className="add-button-margins reply-buttons delete-button" type="submit" onClick={this.deleteSubmission}>Delete Video(s)</button>
           </div>
         </div>
       </div>

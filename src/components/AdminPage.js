@@ -97,7 +97,7 @@ export default class AdminPage extends Component {
           <h1 className="app-title-item">Admin&apos;s Profile</h1><br />
           <div className="profile-image-container">
             <button type="submit" className="image-button" onClick={this.openImageModal}>Update Profile Picture</button>
-            <img className="Profile-Image" src={defaultProfilePic} alt="admin-profile" />
+            <img className="profile-image" src={defaultProfilePic} alt="admin-profile" />
           </div>
           <div id="imageUploadModal" className="image-modal">
             <div className="modal-content">
@@ -129,7 +129,7 @@ export default class AdminPage extends Component {
           <h1 className="app-title-item">Admin&apos;s Videos</h1>
           <DeleteAllVid />
           <AllVideos />
-          <br />
+          <br />  <br />
           <h1> Send Beta Keys </h1>
           Email: <input id="beta-submit" type="email" onChange={this.emailHandler} /><br /><br />
           <button type="submit" onClick={this.sendBetaKey} className="all-buttons"> Send BetaKey </button><br />

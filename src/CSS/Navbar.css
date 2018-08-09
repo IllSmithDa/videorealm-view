@@ -13,7 +13,7 @@
 }
 .navbar-button {
   background-color: #add8e6;
-  margin-top: 10px;
+  margin-top: 8px;
   border: none;
   font-size: 1.2em;
   font-family: Georgia;
@@ -33,7 +33,7 @@
 }
 
 .searchbar-field {
-  margin-top: 0.5em;
+  margin-top: 0.6em;
   width:56%;
   margin-right: 1%;
 }

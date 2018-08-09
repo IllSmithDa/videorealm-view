@@ -52,6 +52,7 @@
   text-decoration: none;
   cursor: pointer;
 }
+
 .modal-upload-button {
   border-radius: 5px;
   border: none;
@@ -87,12 +88,15 @@
 .delete-button {
   margin-top: 4em;
   margin-bottom: 1em;
-  width: 7em;
+  width: 35%;
   font-size: 14px;
 }
 .add-bottom-margins {
   position: relative;
   top: -100%;
+}
+.red-font{
+  color: red;
 }
 .add-button-margins {
   margin-top: 4em;
