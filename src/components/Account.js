@@ -18,8 +18,8 @@ export default class Account extends Component {
     this.state = {
       videoUploadReq: `${reqURL}/uploadVideo`,
       userVideoName: '',
-      maxVideoSize: '100mb',
-      maxSizeNum: 100000000,
+      maxVideoSize: '35mb',
+      maxSizeNum: 35000000,
       loginState: true,
       fileName: '',
       username: '',
