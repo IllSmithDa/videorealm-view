@@ -152,9 +152,12 @@ export default class CreateUser extends Component {
     this.setState({ repPassword: event.target.value });
   }
 
+  requestKey = () => {
+    window.location = '/requestkey';
+  }
+
   render() {
     const { usermame, password, repPassword, email, secretKey } = this.state;
-
     return (
       <div id="page-event">
         <Navbar />
@@ -162,16 +165,25 @@ export default class CreateUser extends Component {
           <div className="form-group app-userform">
             <h1 className="app-title-item"> Create Your Videorealm Account </h1>
             <label className="text-items" htmlFor="name" id="username-message"> <b>Choose your username:</b></label>
-            <p className="form-input"> Username must be at least 3 character with at least one letter. Cannot user special characters for username.</p>
+            <p className="form-input">
+              <b>
+              Username must be at least 3 character with at least one letter. Cannot user special characters for username.
+              </b>
+            </p>
             <input type="name" className="form-control form-input" id="name" value={usermame} onChange={this.handleSetUsername} />
-            <p id="shortUsername" className="email-warning text-items">Error: Username must be at least 3 character with at least one capital letter
+            <p id="shortUsername" className="email-warning text-items">
+              Error: Username must be at least 3 character with at least one capital letter
               and no special characters
             </p>
             <p id="badUsername" className="email-warning text-items">Error: Username already exists</p>
           </div>
           <div className="form-group">
             <label className="text-items" htmlFor="pwd"><b>Create your password:</b></label>
-            <p className="form-input"> Password must be 8 to 20 characters long and must include at least one number, one letter and one special character</p>
+            <p className="form-input">
+              <b>Password must be 8 to 20 characters long and must include at least one number,
+                one letter and one special character
+              </b>
+            </p>
             <input type="password" className="form-control form-input" value={password} onChange={this.handleSetPassword} />
             <p id="badPassword" className="email-warning text-items">Error: Password does not meet criterias
             </p>
@@ -192,6 +204,7 @@ export default class CreateUser extends Component {
             <input type="password" className="form-control form-input" id="secretkey" value={secretKey} onChange={this.handleSecretKey} />
             <p id="badkey" className="email-warning text-items">That is not a correct beta key</p>
           </div><br />
+          <button type="submit" className="all-buttons text-items" id="submit-button" onClick={this.requestKey}>Request Beta Key</button>
           <button type="submit" className="all-buttons text-items" id="submit-button" onClick={this.createUser}>Submit</button>
         </div><br /><br /><br />
         <Footer />

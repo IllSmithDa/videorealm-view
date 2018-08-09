@@ -134,6 +134,9 @@
 .video-name{
   margin-bottom: 1.7em;
 }
+.bottom-margins {
+  margin-bottom: 1em;
+}
 .upload-button {
   margin-top: 1em;
   width: 6.4em;

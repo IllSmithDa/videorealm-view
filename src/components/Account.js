@@ -49,7 +49,7 @@ export default class Account extends Component {
                 videoIDArr.push(data.data[i].videoID);
               }
               this.setState({ loginState: true, videoIDList: videoIDArr });
-              console.log(this.state.videoIDList);
+              // console.log(this.state.videoIDList);
               if (data.data.length >= 5) {
                 document.getElementById('videoWarning').style.display = 'block';
               } else {

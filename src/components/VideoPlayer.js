@@ -195,7 +195,13 @@ export default class VideoPlayer extends Component {
         <div className="Page-Container">
           <h1 className="video-title"><b>{ videoName }</b> </h1>
           <div>
-            <video onClick={this.playVideo} id="video-player" className="video-player-item" controlsList="nodownload" onTimeUpdate={this.updateVideoSeek /*  controls */}>
+            <video
+              id="video-player"
+              onClick={this.playVideo}
+              className="video-player-item"
+              controlsList="nodownload"
+              onTimeUpdate={this.updateVideoSeek /*  controls */}
+            >
               <source src={videoURL} type="video/mp4" />
               <source src={videoURL} type="video/mov" />
             </video>
@@ -258,41 +264,3 @@ export default class VideoPlayer extends Component {
     );
   }
 }
-
-/*  Custom controls test
-<div id="video-controls" className='video-control-container'>
-  <img
-    src={ require('./assets/playbutton2.png') }
-    alt='play-button' className='play-icon'
-    onClick={this.playVideo}
-    id="play-pause"
-  />
-  <input  className='video-seek-bar' onInput={this.seekVideo} type="range" id="seek-bar" />
-  <span
-    id="curtimetext"
-    className='video-current-time'
-  >
-    <b>00:00</b></span><span className='time-divde'><b> / </b>
-  </span>
-    <span id="durtimetext" className='video-total-time'><b>00:00</b></span>
-  <img
-    src={ require('./assets/mutebutton.png') }
-    className='mute-icon' id="mute-button"
-    onClick={this.muteVideo}/>
-  <input
-    className='volumne-slider-item'
-    onInput={this.volumeChange}
-    type="range"
-    id="volume-slider"
-    min="0"
-    max="100"
-    step="1"
-  />
-  <img
-    src={ require('./assets/fullscreenbtn.png') }
-    className='fullscreen-icon'
-    id="full-screen"
-    onClick={this.fullScreenMode}
-  />
-</div>
-*/

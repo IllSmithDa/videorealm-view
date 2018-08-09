@@ -48,6 +48,16 @@ export default class Navbar extends Component {
       });
   }
 
+  componentDidUpdate() {
+    const eventEnter = document.getElementById('search-field');
+    eventEnter.addEventListener('keypress', (event) => {
+      // console.log(`first keydown event. key property value is '${event.key}'`);
+      if (event.key === 'Enter') {
+        this.searchForVideos();
+      }
+    });
+  }
+
   myProfile = () => {
     const { userName } = this.state;
     window.location = `/profile/${userName}`;
@@ -99,7 +109,7 @@ export default class Navbar extends Component {
         <div className="navbar-margins">
           <div className="navbar-item-container">
             <img className="navbar-icon-item" alt="home-page" src="https://png.icons8.com/ios/1600/home.png" onClick={this.homePage} />
-            <input className="searchbar-field" type="text" onChange={this.handleSearchTerm} placeholder="Search for videos" />
+            <input id="search-field" className="searchbar-field" type="text" onChange={this.handleSearchTerm} placeholder="Search for videos" />
             <img className="navbar-icon-item" alt="search-video" onClick={this.searchForVideos} src="https://png.icons8.com/ios/1600/search.png" />
           </div>
           <div className="navbar-item-container2">
