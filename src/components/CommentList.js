@@ -97,7 +97,7 @@ export default class CommentList extends Component {
     axios
       .post(`${reqURL}/addComment`, commentData)
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         const videoComments = [];
         for (let i = 0; i < data.data.length; i += 1) {
           videoComments.push(data.data[i]);

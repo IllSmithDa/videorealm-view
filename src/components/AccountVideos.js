@@ -45,7 +45,7 @@ export default class AccountVideos extends Component {
           return (
             <div key={post.id} className="video-key">
               <Link to={`/video/${post.videoID}`} className="video-div">
-                <Player src={post.videoURL}>
+                <Player src={post.videoURL} preload="none">
                   <BigPlayButton position="center" />
                 </Player>
                 <p className="video-videoName">{post.videoName} </p>

@@ -106,7 +106,7 @@ export default class DeleteVideos extends Component {
               {videoList.map((post) => {
                 return (
                   <div key={post.id} className="video-key video-item">
-                    <Link to={`/video/${post.videoID}`} className="video-div">
+                    <Link to={`/video/${post.videoID}`} className="video-div" preload="none">
                       <Player src={post.videoURL}>
                         <BigPlayButton position="center" />
                       </Player>

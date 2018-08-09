@@ -400,7 +400,7 @@ export default class Account extends Component {
             <div className="modal-content">
               <span id="video-upload-close" role="button" tabIndex="-1" className="close" onClick={this.closeModal}>&times;</span>
               <h1 className="upload-title">Upload Video Here</h1>
-              <p><b>Maximum video size:{maxVideoSize}</b> </p>
+              <p><b>Maximum video size: {maxVideoSize}</b> </p>
               <p><b>Supported formats: mp4, mov, wmv, avi, flv </b> </p>
               <form
                 id="videoForm"
@@ -411,8 +411,10 @@ export default class Account extends Component {
                 <h3 id="form-header" className="video-name"> {'Enter Video Name: '}
                   <input id="videoName" className="video-name-input" type="text" name="videoName" onChange={this.handleVideoName} />
                 </h3>
-                <p id="video-add" className="hide-element"> Please Wait while your video is being uploaded. This will
-                  take a few minutes
+                <p id="video-add" className="hide-element">
+                  <b>Please Wait while your video is being uploaded. This can
+                  take a few minutes.
+                  </b>
                 </p>
                 <LoadingAnimation />
                 <input id="upload-file" type="file" name="videoFile" onChange={this.changeUploadState} />

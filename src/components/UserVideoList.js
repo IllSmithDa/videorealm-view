@@ -58,7 +58,7 @@ export default class UserVideoList extends Component {
       <div className="video-container">
         {videoList.map((post) => {
           return (
-            <div key={post.id} className="video-key">
+            <div key={post.id} className="video-key" preload="none">
               <Link to={`/video/${post.videoID}`} className="video-div">
                 <Player src={post.videoURL}>
                   <BigPlayButton position="center" />

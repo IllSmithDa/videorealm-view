@@ -94,7 +94,7 @@ export default class DeleteAllVid extends Component {
                 return (
                   <div key={post.id} className="video-key-delete video-item">
                     <Link to={`/video/${post.videoID}`} className="video-div">
-                      <Player src={post.videoURL}>
+                      <Player src={post.videoURL} preload="none">
                         <BigPlayButton position="center" />
                       </Player>
                     </Link>
