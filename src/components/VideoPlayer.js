@@ -200,6 +200,7 @@ export default class VideoPlayer extends Component {
               onClick={this.playVideo}
               className="video-player-item"
               controlsList="nodownload"
+              preload="metadata"
               onTimeUpdate={this.updateVideoSeek /*  controls */}
             >
               <source src={videoURL} type="video/mp4" />
