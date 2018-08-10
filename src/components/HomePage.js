@@ -15,11 +15,11 @@ export default function HomePage() {
           <h4 className="app-subheader">Your next video sharing app!</h4>
         </div>
         <div>
-          <h3 className="upload-title"><br />Popular Videos </h3>
+          <h3 className="video-label"><br />Popular Videos </h3>
           <PopularVideos />
         </div>
         <div>
-          <h3 className="upload-title"><br />Latest Videos </h3>
+          <h3 className="video-label"><br />Latest Videos </h3>
           <AllVideos />
         </div>
       </div><br /><br /><br />

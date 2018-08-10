@@ -64,6 +64,10 @@
   transition-duration: 0.4s;
   cursor: pointer;
 }
+.video-label {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin-left: 0.5%;
+}
 .app-header {
   padding-top: 1%;
 }
