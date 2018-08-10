@@ -311,16 +311,16 @@ input[type=range]::-moz-range-thumb {
     width: 10%;
   }
   .video-current-time {
-    font-size: 1.5vw;
+    font-size: 1.7vw;
     color: white;
   }
   .time-divide {
-    font-size: 1.5vw;
+    font-size: 1.7vw;
     color: white;
   }
   .video-total-time {
 
-    font-size: 1.5vw;
+    font-size: 1.7vw;
     color: white;
   }
   .control-block {
@@ -444,15 +444,7 @@ input[type=range]::-moz-range-thumb {
     display: inline-block;
     width:58%;
   }
-  .time-divide {
-    font-size: 2vw;
-    color: white;
-  }
-  .video-total-time {
 
-    font-size: 2vw;
-    color: white;
-  }
   .navbar-button {
     background-color: #add8e6;
     margin-top: 16px;
