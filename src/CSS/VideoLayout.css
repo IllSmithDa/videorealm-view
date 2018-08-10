@@ -197,6 +197,9 @@
 .delete-title{
   margin-bottom: 0.7em;
 }
+input[type=range]:focus {
+  outline: none; /* Removes the blue border */
+}
 
 input[type=range] {
   -webkit-appearance: none !important;
@@ -294,6 +297,12 @@ input[type=range]::-moz-range-thumb {
 
 
 @media all and (max-width: 1300px) { 
+  input[type=range] {
+    -webkit-appearance: none !important;
+    height: 8px;
+    border:#666 1px solid;
+    background: grey;
+  }
   .video-key {
     margin-top:15px;
     width: 24.5%;
@@ -343,6 +352,12 @@ input[type=range]::-moz-range-thumb {
   }
 }
 @media all and (max-width: 1000px) { 
+  input[type=range] {
+    -webkit-appearance: none !important;
+    height: 8px;
+    border:#666 1px solid;
+    background: grey;
+  }
   .video-key {
     margin-top:15px;
     width: 24.5%;
@@ -356,7 +371,13 @@ input[type=range]::-moz-range-thumb {
   }
 
 }
-@media all and (max-width: 900px) { 
+@media all and (max-width: 900px) {
+  input[type=range] {
+    -webkit-appearance: none !important;
+    height: 8px;
+    border:#666 1px solid;
+    background: grey;
+  }
   .video-key {
     margin-top:15px;
     width: 32.5%;
@@ -475,6 +496,23 @@ input[type=range]::-moz-range-thumb {
   .video-key {
     height: 22em;
   }
+  input[type=range]::-webkit-slider-thumb {
+    height: 10px;
+    width: 10px;
+  }
+  
+  /* All the same stuff for Firefox */
+  input[type=range]::-moz-range-thumb {
+    height: 10px;
+    width: 10px;
+  }
+  
+  input[type=range] {
+    -webkit-appearance: none !important;
+    height: 6px;
+    border:#666 1px solid;
+    background: grey;
+  }
 }
 @media all and (max-width: 500px) { 
   .video-key {
@@ -550,6 +588,12 @@ input[type=range]::-moz-range-thumb {
   }
 }
 @media all and (max-width: 350px) {
+  input[type=range] {
+    -webkit-appearance: none !important;
+    height: 5px;
+    border:#666 1px solid;
+    background: grey;
+  }
   .video-key {
     height: 14em;
   }
