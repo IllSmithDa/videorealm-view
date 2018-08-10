@@ -34,9 +34,9 @@ export default class PopularVideos extends Component {
         //  console.log(videoData.data.reachedEnd);
         // console.log(videoData.data.videoArr.length % 5);
         if (videoData.data.videoArr.length % 5 === 0 && !videoData.data.reachedEnd) {
-          document.getElementById('more-videos').style.display = 'block';
+          document.getElementById('more-pop-videos').style.display = 'block';
         } else {
-          document.getElementById('more-videos').style.display = 'none';
+          document.getElementById('more-pop-videos').style.display = 'none';
         }
       })
       .catch((err) => {
@@ -45,8 +45,8 @@ export default class PopularVideos extends Component {
   }
 
   seeMoreVideos = () => {
-    const { videoIndex, totalArr } = this.state;
-    const index = { index: videoIndex };
+    const { videoIndex, totalArr, reachedEnd } = this.state;
+    const index = { index: videoIndex, reachedEnd };
     // calls action to get all videos
     axios.post(`${reqURL}/getPopularVideos`, index)
       .then((videoData) => {
@@ -56,9 +56,9 @@ export default class PopularVideos extends Component {
           reachedEnd: videoData.data.reachedEnd,
         });
         if (totalArr.length % 5 === 0 && !videoData.data.reachedEnd) {
-          document.getElementById('more-videos').style.display = 'block';
+          document.getElementById('more-pop-videos').style.display = 'block';
         } else {
-          document.getElementById('more-videos').style.display = 'none';
+          document.getElementById('more-pop-videos').style.display = 'none';
         }
       })
       .catch((err) => {
@@ -87,7 +87,7 @@ export default class PopularVideos extends Component {
               </div>
             );
           })}
-          <p id="more-videos" className="more-videos-item" onClick={this.seeMoreVideos}> See More videos </p>
+          <p id="more-pop-videos" className="more-videos-item" onClick={this.seeMoreVideos}> See More videos </p>
         </div>
       </div>
     );

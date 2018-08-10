@@ -23,8 +23,7 @@ export default class CommentList extends Component {
 
   componentDidMount() {
     let userName = '';
-    const { commentIndex } = this.state;
-    const { isCommentEnded } = this.state;
+    const { commentIndex, isCommentEnded, commentList } = this.state;
     axios.get(`${reqURL}/getUsername`)
       .then((data) => {
         if (data.data.error) {
@@ -49,7 +48,8 @@ export default class CommentList extends Component {
               commentUsername: userName,
               commentList: videoData.data.commentArr,
             });
-            if (videoData.data.commentArr.length % 5 === 0 && !videoData.data.commentArr.reachedEnd) {
+            if (videoData.data.commentArr.length % 5 === 0 && !videoData.data.commentArr.reachedEnd
+              && !commentList.length === 0) {
               document.getElementById('more-comments').style.display = 'block';
             } else {
               document.getElementById('more-comments').style.display = 'none';
@@ -66,8 +66,7 @@ export default class CommentList extends Component {
 
   // check state after component updates
   componentDidUpdate() {
-    const { comment } = this.state;
-    const { userName } = this.state;
+    const { comment, userName } = this.state;
     if (!(/\S/).test(comment) || userName === '' || comment === '') {
       document.getElementById('comment-button').disabled = true;
       document.getElementById('comment-button').style.backgroundColor = 'lightblue';
@@ -144,7 +143,7 @@ export default class CommentList extends Component {
         <textarea id="comment-textarea" maxLength="240" className="comment-text text-items" onChange={this.handleTextChange} placeholder="Add comment here" />
         <p className="comment-limit">{comment.length}/240 character length</p>
         <button id="comment-button" type="submit" className="comment-button-item text-items all-buttons" onClick={this.submitComment}>Submit</button>
-        <h4 className="comments-title text-items"><br /> Comments</h4>
+        <h4 id="comment-header" className="comments-title text-items"><br /> Comments</h4>
         {commentList.map((val) => {
           return (
             <div className="comments-container" key={val._id}>
