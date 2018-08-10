@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import ReplyComments from './ReplyComments';
 import reqURL from './RequestURL';
@@ -15,11 +16,15 @@ export default class CommentList extends Component {
       videoID: '',
       videoUploader: '',
       commentList: [],
+      commentIndex: 0,
+      isCommentEnded: false,
     };
   }
 
   componentDidMount() {
     let userName = '';
+    const { commentIndex } = this.state;
+    const { isCommentEnded } = this.state;
     axios.get(`${reqURL}/getUsername`)
       .then((data) => {
         if (data.data.error) {
@@ -31,29 +36,24 @@ export default class CommentList extends Component {
         const getVideoID = (window.location.href).split('/').pop();
         // grabs video url inside current url
         // console.log('videoID', getVideoID);
-        const videoReqID = { videoID: getVideoID };
-
+        const videoReqID = { videoID: getVideoID, index: commentIndex, reachedEnd: isCommentEnded };
         axios
-          .post(`${reqURL}/getVideo`, videoReqID)
+          .post(`${reqURL}/getCommentList`, videoReqID)
           .then((videoData) => {
-            // console.log('video data ', videoData.data);
-            const { commentList } = this.state;
-
-            for (let i = 0; i < videoData.data.comments.length; i += 1) {
-              commentList.push(videoData.data.comments[i]);
-            }
-            /*
-            for (let i = videoData.data.comments.length - 1; i >= 0; i -= 1) {
-              commentList.push(videoData.data.comments[i]);
-            }
-            */
+            console.log('video data ', videoData.data);
             this.setState({
               videoID: getVideoID,
               videoUploader: videoData.data.userName,
               comment: '',
+              commentIndex: commentIndex + 5,
               commentUsername: userName,
+              commentList: videoData.data.commentArr,
             });
-            // console.log(commentList);
+            if (videoData.data.commentArr.length % 5 === 0 && !videoData.data.commentArr.reachedEnd) {
+              document.getElementById('more-comments').style.display = 'block';
+            } else {
+              document.getElementById('more-comments').style.display = 'none';
+            }
           })
           .catch((err) => {
             throw err;
@@ -86,8 +86,8 @@ export default class CommentList extends Component {
   }
 
   submitComment = () => {
-    const { videoID, commentUsername, videoUploader, comment } = this.state;
-
+    const { videoID, commentUsername, comment } = this.state;
+    const { videoUploader } = this.props;
     const commentData = ({
       commentUsername,
       videoUploader,
@@ -97,12 +97,40 @@ export default class CommentList extends Component {
     axios
       .post(`${reqURL}/addComment`, commentData)
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         const videoComments = [];
         for (let i = 0; i < data.data.length; i += 1) {
           videoComments.push(data.data[i]);
         }
         this.setState({ commentList: videoComments });
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  seeMoreComments = () => {
+    const { commentIndex } = this.state;
+    const { isCommentEnded } = this.state;
+    const getVideoID = (window.location.href).split('/').pop();
+    // grabs video url inside current url
+    // console.log('videoID', getVideoID);
+    const videoReqID = { videoID: getVideoID, index: commentIndex, reachedEnd: isCommentEnded };
+    axios
+      .post(`${reqURL}/getCommentList`, videoReqID)
+      .then((videoData) => {
+        console.log('video data ', videoData.data);
+        this.setState({
+          videoID: getVideoID,
+          videoUploader: videoData.data.userName,
+          commentIndex: commentIndex + 5,
+          commentList: videoData.data.commentArr,
+        });
+        if (videoData.data.commentArr.length % 5 === 0 && !videoData.data.commentArr.reachedEnd) {
+          document.getElementById('more-comments').style.display = 'block';
+        } else {
+          document.getElementById('more-comments').style.display = 'none';
+        }
       })
       .catch((err) => {
         throw err;
@@ -125,7 +153,16 @@ export default class CommentList extends Component {
             </div>
           );
         })}
+        <p id="more-comments" className="more-videos-item" onClick={this.seeMoreComments}> See More Comments</p>
       </div>
     );
   }
 }
+
+CommentList.defaultProps = {
+  videoUploader: '',
+};
+
+CommentList.propTypes = {
+  videoUploader: PropTypes.string,
+};

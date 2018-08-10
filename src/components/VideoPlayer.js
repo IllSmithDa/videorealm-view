@@ -258,7 +258,7 @@ export default class VideoPlayer extends Component {
             <p className="video-date-item"> Published on {videoDate} </p>
             <p className="video-view-counter"> {views} views </p>
           </div>
-          <CommentList />
+          <CommentList videoUploader={uploaderProfileName}/>
         </div><br /><br /><br />
         <Footer />
       </div>

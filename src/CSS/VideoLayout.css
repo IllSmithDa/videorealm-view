@@ -148,6 +148,12 @@
   width: 95.5%;
   display: none;
 }
+.more-reply-item {
+  margin-top: 1%;
+  margin-left: 4%;
+  color: blue;
+  cursor: pointer;
+}
 .reply-counter {
   margin-left: 4%;
   display: none;
