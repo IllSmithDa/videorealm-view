@@ -40,7 +40,7 @@ export default class CommentList extends Component {
         axios
           .post(`${reqURL}/getCommentList`, videoReqID)
           .then((videoData) => {
-            console.log('video data ', videoData.data);
+            // console.log('video data ', videoData.data);
             this.setState({
               videoID: getVideoID,
               videoUploader: videoData.data.userName,
@@ -119,7 +119,7 @@ export default class CommentList extends Component {
     axios
       .post(`${reqURL}/getCommentList`, videoReqID)
       .then((videoData) => {
-        console.log('video data ', videoData.data);
+        // console.log('video data ', videoData.data);
         this.setState({
           videoID: getVideoID,
           videoUploader: videoData.data.userName,
