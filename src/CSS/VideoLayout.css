@@ -441,7 +441,7 @@ input[type=range]::-moz-range-thumb {
   }
   .control-block {
     display: inline-block;
-    width:58%;
+    width:57.5%;
   }
   .video-current-time {
     font-size: 2vw;
