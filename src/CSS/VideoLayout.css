@@ -31,6 +31,13 @@
   width: 99%;
   margin-left:0.5%;
 }
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  /*your rules for chrome*/
+  .video-player-item {
+    width: 99.01%;
+    margin-left:0.5%;
+  }
+}
 
 .video-player-item:hover {
   cursor: pointer;
