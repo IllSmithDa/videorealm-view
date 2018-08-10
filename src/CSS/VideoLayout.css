@@ -68,7 +68,7 @@
 }
 .control-block {
   display: inline-block;
-  width: 61%;
+  width: 61.5%;
 }
 .video-current-time {
 
@@ -197,9 +197,6 @@
 .delete-title{
   margin-bottom: 0.7em;
 }
-input[type=range]:focus {
-  outline: none; /* Removes the blue border */
-}
 
 input[type=range] {
   -webkit-appearance: none !important;
@@ -314,16 +311,16 @@ input[type=range]::-moz-range-thumb {
     width: 10%;
   }
   .video-current-time {
-    font-size: 1.2vw;
+    font-size: 1.5vw;
     color: white;
   }
   .time-divide {
-    font-size: 1.2vw;
+    font-size: 1.5vw;
     color: white;
   }
   .video-total-time {
 
-    font-size: 1.2vw;
+    font-size: 1.5vw;
     color: white;
   }
   .control-block {
@@ -496,20 +493,9 @@ input[type=range]::-moz-range-thumb {
   .video-key {
     height: 22em;
   }
-  input[type=range]::-webkit-slider-thumb {
-    height: 10px;
-    width: 10px;
-  }
-  
-  /* All the same stuff for Firefox */
-  input[type=range]::-moz-range-thumb {
-    height: 10px;
-    width: 10px;
-  }
-  
   input[type=range] {
     -webkit-appearance: none !important;
-    height: 6px;
+    height: 8=px;
     border:#666 1px solid;
     background: grey;
   }
@@ -588,12 +574,6 @@ input[type=range]::-moz-range-thumb {
   }
 }
 @media all and (max-width: 350px) {
-  input[type=range] {
-    -webkit-appearance: none !important;
-    height: 5px;
-    border:#666 1px solid;
-    background: grey;
-  }
   .video-key {
     height: 14em;
   }
