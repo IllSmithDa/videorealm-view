@@ -26,6 +26,7 @@ export default class SearchPage extends Component {
     // grabs username inside current url
     searchItem = searchItem.split('/').pop();
     const { reachedEnd, index } = this.state;
+    searchItem = searchItem.replace(/%20/g, ' ');
     this.setState({ searchItem });
     const searchVideo = ({ searchTerm: searchItem, reachedEnd, index });
 
