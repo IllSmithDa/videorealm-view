@@ -32,6 +32,9 @@ export default class SearchPage extends Component {
 
     axios.post(`${ReqUrl}/searchVideos`, searchVideo)
       .then((data) => {
+        if (data.data.searchResults.length === 0) {
+          document.getElementById('results').innerText = 'No Results Found!';
+        }
         this.setState({ videoList: data.data.searchResults, index: data.data.index + 1 });
         if (data.data.searchResults.length % 5 === 0 && !data.data.reachedEnd) {
           document.getElementById('more-results').style.display = 'block';
@@ -73,7 +76,7 @@ export default class SearchPage extends Component {
       <div>
         <Navbar />
         <div className="Page-Container">
-          <h2 className="search-title">Search Results for &#39;{searchItem}&#39; </h2>
+          <h2 id="results" className="search-title">Search Results for &#39;{searchItem}&#39; </h2>
           <div className="video-container">
             {videoList.map((post) => {
               return (

@@ -77,6 +77,9 @@ export default class Navbar extends Component {
       window.location = '/login';
     }
     if (loginState === 'LOGOUT') {
+      document.getElementById('profile-button').style.display = 'none';
+      document.getElementById('account-button').style.display = 'none';
+      document.getElementById('loginstate').style.display = 'none';
       axios
         .get(`${reqURL}/logoutUser`)
         .then(() => {
@@ -116,7 +119,7 @@ export default class Navbar extends Component {
             <button id="profile-button" type="submit" onClick={this.myProfile} className="navbar-button">{profileName}</button>
             <button id="account-button" type="submit" onClick={this.myAccount} className="navbar-button">{accountState}</button>
             <button id="create-button" type="submit" onClick={this.createUser} className="navbar-button">{createState}</button>
-            <button type="submit" onClick={this.loginPage} className="navbar-button">{loginState}</button>
+            <button id="loginstate" type="submit" onClick={this.loginPage} className="navbar-button">{loginState}</button>
           </div>
         </div>
       </div>

@@ -204,7 +204,7 @@ export default class Account extends Component {
     const usernameChange = { username, newUsername };
     const user = { username: newUsername };
 
-    if (newUsername.length < 3 || /\W/.test(newUsername) || /\s/.test(newUsername)
+    if (newUsername.length < 3 || newUsername.length > 20 || /\W/.test(newUsername) || /\s/.test(newUsername)
     || !/[a-zA-Z]/.test(newUsername)) {
       document.getElementById('badUsername').style.display = 'block';
       badUsername = true;
@@ -350,7 +350,7 @@ export default class Account extends Component {
               <h2>
                 Enter a new uername
               </h2>
-              <p><b>Must be at least 3 characters long and must contain at least one letter and no special characters</b></p>
+              <p><b>Must be 3 to 20 characters long and must contain at least one letter and no special characters</b></p>
               <input className="video-name-input" type="text" name="videoName" onChange={this.handleNewUsername} />
               <p id="repUsername" className="email-warning"> <b>Username already exists </b></p>
               <p id="badUsername" className="email-warning"> <b>Invalid username</b></p>
