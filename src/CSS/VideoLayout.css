@@ -444,14 +444,6 @@ input[type=range]::-moz-range-thumb {
     display: inline-block;
     width:58%;
   }
-  .play-icon {
-    width: 5%;
-    margin-left: 1.2%;
-  }
-  .video-current-time {
-    font-size: 2vw;
-    color: white;
-  }
   .time-divide {
     font-size: 2vw;
     color: white;
