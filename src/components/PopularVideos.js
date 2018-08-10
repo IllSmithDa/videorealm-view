@@ -10,7 +10,7 @@ import reqURL from './RequestURL';
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
 
-export default class AllVideos extends Component {
+export default class PopularVideos extends Component {
   constructor() {
     super();
     this.state = {
@@ -24,7 +24,7 @@ export default class AllVideos extends Component {
     const { videoIndex, reachedEnd } = this.state;
     const index = { index: videoIndex, reachedEnd };
     // calls action to get all videos
-    axios.post(`${reqURL}/getAllVideos`, index)
+    axios.post(`${reqURL}/getPopularVideos`, index)
       .then((videoData) => {
         this.setState({
           videoIndex: videoIndex + 5,
@@ -48,7 +48,7 @@ export default class AllVideos extends Component {
     const { videoIndex, totalArr } = this.state;
     const index = { index: videoIndex };
     // calls action to get all videos
-    axios.post(`${reqURL}/getAllVideos`, index)
+    axios.post(`${reqURL}/getPopularVideos`, index)
       .then((videoData) => {
         this.setState({
           videoIndex: videoIndex + 5,
@@ -93,24 +93,3 @@ export default class AllVideos extends Component {
     );
   }
 }
-
-/*
-AllVideos.defaultProps = {
-  videoList: [],
-  getAllVideos: () => {},
-};
-
-AllVideos.propTypes = {
-  videoList: PropTypes.array,
-  getAllVideos: PropTypes.func,
-};
-
-const mapStateToProps = (state) => {
-  return {
-    videoList: state.videoList,
-  };
-};
-
-// connect this component to Redux store to get props
-export default connect(mapStateToProps, { getAllVideos })(AllVideos);
-*/
