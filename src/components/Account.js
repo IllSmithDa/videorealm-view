@@ -351,7 +351,7 @@ export default class Account extends Component {
                 Enter a new uername
               </h2>
               <p><b>Must be 3 to 20 characters long and must contain at least one letter and no special characters</b></p>
-              <input className="video-name-input" type="text" name="videoName" onChange={this.handleNewUsername} />
+              <input className="video-name-input" type="text" maxLength="30" name="videoName" onChange={this.handleNewUsername} />
               <p id="repUsername" className="email-warning"> <b>Username already exists </b></p>
               <p id="badUsername" className="email-warning"> <b>Invalid username</b></p>
               <div>
@@ -372,11 +372,11 @@ export default class Account extends Component {
                 password.
                 </b>
               </p>
-              <b>Current Password:</b><input className="video-name-input" type="password" name="videoName" onChange={this.handleOldPassword} />
+              <b>Current Password:</b><input className="video-name-input" maxLength="50" type="password" name="videoName" onChange={this.handleOldPassword} />
               <p id="incorrectPW" className="email-warning"><b> Error: Password is not correct</b></p><br />
 
-              <b>New Password:</b><input className="video-name-input" type="password" name="videoName" onChange={this.handleNewPassword} /><br />
-              <b>Confirm New Password:</b> <input className="video-name-input" type="password" name="videoName" onChange={this.handleRepeatPassword} />
+              <b>New Password:</b><input className="video-name-input" maxLength="50" type="password" name="videoName" onChange={this.handleNewPassword} /><br />
+              <b>Confirm New Password:</b> <input className="video-name-input" maxLength="50" type="password" name="videoName" onChange={this.handleRepeatPassword} />
               <p id="badPW" className="email-warning"> <b>Error: The password does not meet criteria</b></p>
               <p id="noMatchPW" className="email-warning"> <b>Error: The passwords do not match</b></p><br />
               <div>
@@ -409,7 +409,7 @@ export default class Account extends Component {
                 encType="multipart/form-data"
               >
                 <h3 id="form-header" className="video-name"> {'Enter Video Name: '}
-                  <input id="videoName" className="video-name-input" type="text" name="videoName" onChange={this.handleVideoName} />
+                  <input id="videoName" maxLength="50" className="video-name-input" type="text" name="videoName" onChange={this.handleVideoName} />
                 </h3>
                 <p id="video-add" className="hide-element">
                   <b>Please Wait while your video is being uploaded. This can

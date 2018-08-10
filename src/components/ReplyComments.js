@@ -162,8 +162,8 @@ export default class ReplyComments extends Component {
           })}
         </div>
         <div>
-          <textarea id="reply-text" maxLength="240" className="reply-area" placeholder="Add reply here" onChange={this.handleReplyChange} />
-          <p className="reply-counter">{replyStatement.length}/240 character length</p>
+          <textarea id="reply-text" maxLength="350" className="reply-area" placeholder="Add reply here" onChange={this.handleReplyChange} />
+          <p className="reply-counter">{replyStatement.length}/350 character length</p>
           <button type="submit" className="hide-replies reply-button-cancel reply-buttons" onClick={this.onRepliesHide}>Hide Replies</button>
           <button type="submit" className="show-reply-submit2 reply-buttons" onClick={this.onReplyClick}> Reply </button>
         </div>

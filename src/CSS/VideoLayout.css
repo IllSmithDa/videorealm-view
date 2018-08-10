@@ -247,7 +247,7 @@ input[type=range]::-moz-range-thumb {
     padding-left: 3px;
   }
 }
-@media all and (max-width: 1920px) { 
+@media all and (max-width: 1930px) { 
   .video-key {
     margin-top:15px;
     width: 19.6%;

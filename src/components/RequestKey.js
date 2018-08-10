@@ -57,7 +57,7 @@ export default class RequestKey extends Component {
             </p>
             <div className="form-group">
               <label className="text-items" htmlFor="pwd"><b>Email:</b></label>
-              <input type="email" className="form-control form-input add-margins" onChange={this.emailHandler} />
+              <input type="email" maxLength="350" className="form-control form-input add-margins" onChange={this.emailHandler} />
             </div>
             <p id="email-wrong" className="email-warning add-margins">Error: Email is either not valid or has already recieved a key</p>
             <button type="submit" className="reply-buttons add-margins" onClick={this.sendEmail}>Submit</button>

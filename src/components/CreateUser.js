@@ -167,12 +167,12 @@ export default class CreateUser extends Component {
             <label className="text-items" htmlFor="name" id="username-message"> <b>Choose your username:</b></label>
             <p className="form-input">
               <b>
-              Username must be 3 to 20 character with at least one letter. Cannot user special characters for username.
+              Username must be minumum 3 character with at least one letter. Cannot user special characters for username.
               </b>
             </p>
-            <input type="name" className="form-control form-input" id="name" value={usermame} onChange={this.handleSetUsername} />
+            <input type="name" maxLength="30" className="form-control form-input" id="name" value={usermame} onChange={this.handleSetUsername} />
             <p id="shortUsername" className="email-warning text-items">
-              Error: Username must be 3 to 20 character with at least one capital letter
+              Error: Username must be minumum 3 characters with at least one capital letter
               and no special characters
             </p>
             <p id="badUsername" className="email-warning text-items">Error: Username already exists</p>
@@ -180,28 +180,28 @@ export default class CreateUser extends Component {
           <div className="form-group">
             <label className="text-items" htmlFor="pwd"><b>Create your password:</b></label>
             <p className="form-input">
-              <b>Password must be 8 to 20 characters long and must include at least one number,
+              <b>Password must be minimum 8 characters long and must include at least one number,
                 one letter and one special character
               </b>
             </p>
-            <input type="password" className="form-control form-input" value={password} onChange={this.handleSetPassword} />
+            <input type="password" maxLength="50" className="form-control form-input" value={password} onChange={this.handleSetPassword} />
             <p id="badPassword" className="email-warning text-items">Error: Password does not meet criterias
             </p>
           </div>
           <div className="form-group">
             <label className="text-items" htmlFor="pwd"><b>Confirm your password:</b></label>
-            <input type="password" className="form-control form-input" value={repPassword} onChange={this.handleRepPassword} />
+            <input type="password" maxLength="50" className="form-control form-input" value={repPassword} onChange={this.handleRepPassword} />
             <p id="repPassword" className="email-warning text-items">Error: Passwords do not match</p>
           </div>
           <div className="form-group">
             <label className="text-items" htmlFor="pwd"><b>Enter a valid Email:</b></label>
-            <input type="email" className="form-control form-input" id="email" value={email} onChange={this.handleSetEmail} />
+            <input type="email" maxLength="350" className="form-control form-input" id="email" value={email} onChange={this.handleSetEmail} />
             <p id="badEmail" className="email-warning text-items">Please enter an existing email</p>
             <p id="dupEmail" className="email-warning text-items">Error: Only one account allowed per email</p>
           </div>
           <div className="form-group">
             <label className="text-items" htmlFor="pwd"><b>Enter your beta key:</b></label>
-            <input type="password" className="form-control form-input" id="secretkey" value={secretKey} onChange={this.handleSecretKey} />
+            <input type="password" maxLength="50" className="form-control form-input" id="secretkey" value={secretKey} onChange={this.handleSecretKey} />
             <p id="badkey" className="email-warning text-items">That is not a correct beta key</p>
           </div><br />
           <button type="submit" className="all-buttons text-items" id="submit-button" onClick={this.requestKey}>Request Beta Key</button>

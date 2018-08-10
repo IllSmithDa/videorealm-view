@@ -87,7 +87,7 @@ export default class LostPassword extends Component {
               username will be sent to your email.<br />
               </b>
             </p>
-            <b>Email:</b> <input className="video-name-input" onChange={this.emailHandler} /><br /><br />
+            <b>Email:</b> <input className="video-name-input" maxLength="350" onChange={this.emailHandler} /><br /><br />
             <button type="submit" className="reply-buttons" onClick={this.enterAKey}>Enter existing Key</button>
             <button className="reply-buttons" type="submit" onClick={this.submitEmail}>Submit Email<br /></button>
             <p id="email-error" className="email-warning"> Error: Account with that email does not exist </p>
@@ -101,7 +101,7 @@ export default class LostPassword extends Component {
             </b><br />
           </p>
           <div id="stage-2" className="hide-element add-margins">
-            <b>Key:</b> <input className="video-name-input" onChange={this.lostKeyHandler} /><br /><br />
+            <b>Key:</b> <input className="video-name-input" maxLength="50" onChange={this.lostKeyHandler} /><br /><br />
             <button type="submit" className="reply-buttons" onClick={this.sendNewKey}>Send Another Key</button>
             <button type="submit" className="reply-buttons" onClick={this.submitLostKey}>Submit Key</button>
           </div>

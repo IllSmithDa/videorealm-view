@@ -62,11 +62,11 @@ export default class Account extends Component {
           <h1 className="app-title-item">Login to Videorealm</h1>
           <div className="form-group">
             <label className="text-items" htmlFor="name"><b>Enter your userame:</b></label>
-            <input type="name" className="form-control form-input" id="name" value={username} onChange={this.handleSetUsername} />
+            <input maxLength="30" type="name" className="form-control form-input" id="name" value={username} onChange={this.handleSetUsername} />
           </div>
           <div className="form-group">
             <label className="text-items" htmlFor="pwd"><b>Enter your Password:</b></label>
-            <input type="password" className="form-control form-input" id="pwd" value={password} onChange={this.handleSetPassword} />
+            <input maxLength="50" type="password" className="form-control form-input" id="pwd" value={password} onChange={this.handleSetPassword} />
           </div>
           <p id="badLogin" className="email-warning text-items">
             Error: Incorrect username and/or password!
