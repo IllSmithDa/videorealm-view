@@ -311,16 +311,16 @@ input[type=range]::-moz-range-thumb {
     width: 10%;
   }
   .video-current-time {
-    font-size: 1.7vw;
+    font-size: 1.6vw;
     color: white;
   }
   .time-divide {
-    font-size: 1.7vw;
+    font-size: 1.6vw;
     color: white;
   }
   .video-total-time {
 
-    font-size: 1.7vw;
+    font-size: 1.6vw;
     color: white;
   }
   .control-block {
@@ -415,6 +415,9 @@ input[type=range]::-moz-range-thumb {
   .navbar-item-container {
     width: 50%;
   }
+  .play-icon {
+    margin-left: 2.2%;
+  }
   .navbar-icon-item {
     width: 15px;
     height: 15px;
@@ -490,18 +493,25 @@ input[type=range]::-moz-range-thumb {
   }
   input[type=range] {
     -webkit-appearance: none !important;
-    height: 8=px;
+    height: 7px;
     border:#666 1px solid;
     background: grey;
   }
+  input[type=range]::-webkit-slider-thumb {
+    height: 10px;
+    width: 10px;
+  }
+  
+  /* All the same stuff for Firefox */
+  input[type=range]::-moz-range-thumb {
+    height: 10px;
+    width: 10px;
+  }
+  
 }
 @media all and (max-width: 500px) { 
   .video-key {
     height: 19em;
-  }
-  .control-block {
-    display: inline-block;
-    width:58%;
   }
 }
 @media all and (max-width: 450px) { 
