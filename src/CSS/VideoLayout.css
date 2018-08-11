@@ -503,7 +503,7 @@ input[type=range]::-moz-range-thumb {
     width: 10px;
   }
   .play-icon {
-    margin-left: 2.6%;
+    margin-left: 2.7%;
   }
 }
 @media all and (max-width: 500px) { 
