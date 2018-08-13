@@ -75,11 +75,10 @@ export default class AllVideos extends Component {
             return (
               <div key={post.id} className="video-key">
                 <Link to={`/video/${post.videoID}`} className="video-div">
-                  <Player src={post.videoURL} preload="metadata">
-                    <BigPlayButton position="center" />
-                  </Player>
-                  <span className="video-videoName">{ post.videoName } </span>
-                  <br />
+                  <video preload="metadata" width="225" height="225">
+                    <source src={post.videoURL} type="video/mp4" />
+                  </video>
+                  <p className="video-videoName">{ post.videoName } </p>
                 </Link>
                 <Link to={`/profile/${post.userName}`}>
                   <span>{post.userName[0].toUpperCase() + post.userName.slice(1)}</span>
