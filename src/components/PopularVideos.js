@@ -75,9 +75,7 @@ export default class PopularVideos extends Component {
             return (
               <div key={post.id} className="video-key">
                 <Link to={`/video/${post.videoID}`} className="video-div">
-                  <Player src={post.videoURL} preload="metadata">
-                    <BigPlayButton position="center" />
-                  </Player>
+                  <img src={post.videoThumbURL} alt="video-thumb" className="video-preview-item" />
                   <span className="video-videoName">{ post.videoName } </span>
                   <br />
                 </Link>
