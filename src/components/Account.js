@@ -16,7 +16,7 @@ export default class Account extends Component {
   constructor() {
     super();
     this.state = {
-      videoUploadReq: `${reqURL}/createScreenshot`,
+      videoUploadReq: `${reqURL}/uploadNewVideo`,
       videoIDList: [],
       userVideoName: '',
       maxVideoSize: '35mb',
@@ -74,7 +74,7 @@ export default class Account extends Component {
 
     // if video is selected
     if (fileName !== '') {
-      console.log(document.getElementById('upload-file').files[0])
+      console.log(document.getElementById('upload-file').files[0]);
 
 
       // check if correct and supported format
@@ -412,7 +412,7 @@ export default class Account extends Component {
                 method="post"
                 encType="multipart/form-data"
               >
-                <h3 id="form-header" className="video-name"> {'Enter Video Name: '}
+                <h3 id="form-header" className="video-name"> Enter Video Name:
                   <input id="videoName" maxLength="50" className="video-name-input" type="text" name="videoName" onChange={this.handleVideoName} />
                 </h3>
                 <p id="video-add" className="hide-element">
