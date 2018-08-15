@@ -63,7 +63,10 @@ export default class DeleteVideos extends Component {
     const { idVideoDeleteList } = this.state;
     if (event.target.checked) {
       if (idVideoDeleteList.length === 0) {
+        // console.log(event.target.value);
+        // console.log(`${event.target.value}.jpg`);
         idVideoDeleteList.push(event.target.value);
+        idVideoDeleteList.push(`${event.target.value}.jpg`);
       } else {
         for (let i = 0; i < idVideoDeleteList.length; i += 1) {
           if (idVideoDeleteList[i] === event.target.value) {
@@ -71,13 +74,14 @@ export default class DeleteVideos extends Component {
           }
           if (i === idVideoDeleteList.length - 1) {
             idVideoDeleteList.push(event.target.value);
+            idVideoDeleteList.push(`${event.target.value}.jpg`);
           }
         }
       }
     } else {
       for (let i = 0; i < idVideoDeleteList.length; i += 1) {
         if (idVideoDeleteList[i] === event.target.value) {
-          idVideoDeleteList.splice(i, 1);
+          idVideoDeleteList.splice(i, 2);
           break;
         }
       }
