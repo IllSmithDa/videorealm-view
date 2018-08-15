@@ -107,9 +107,7 @@ export default class DeleteVideos extends Component {
                 return (
                   <div key={post.id} className="video-key video-item">
                     <Link to={`/video/${post.videoID}`} className="video-div" preload="none">
-                      <Player src={post.videoURL}>
-                        <BigPlayButton position="center" />
-                      </Player>
+                      <img src={post.videoThumbURL} alt="video-thumb" className="video-preview-item" />
                     </Link>
                     <p className="HomePage-videoName"> {post.videoName} </p>
                     <input type="checkbox" value={post.videoID} onChange={this.handleDeleteCheck} />

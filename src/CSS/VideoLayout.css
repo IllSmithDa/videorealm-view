@@ -5,6 +5,10 @@
   justify-content: flex-start;
   
 }
+.video-preview-item {
+ width: 99%;
+ height: 68%;
+}
 .video-key {
   margin-top:15px;
   width: 19.6%;
@@ -441,7 +445,10 @@ input[type=range]::-moz-range-thumb {
     display: inline-block;
     width:58%;
   }
-
+  .video-preview-item {
+    width: 99%;
+    height: 77%;
+   }
   .navbar-button {
     background-color: #add8e6;
     margin-top: 16px;

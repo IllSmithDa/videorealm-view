@@ -74,7 +74,7 @@ export default class Account extends Component {
 
     // if video is selected
     if (fileName !== '') {
-      console.log(document.getElementById('upload-file').files[0]);
+      // console.log(document.getElementById('upload-file').files[0]);
 
 
       // check if correct and supported format
