@@ -221,11 +221,11 @@ export default class VideoPlayer extends Component {
                 id="curtimetext"
                 className="video-current-time"
               >
-                <b>00:00</b>
+                00:00
               </span>
-              <span className="time-divide"><b> / </b>
+              <span className="time-divide">/
               </span>
-              <span id="durtimetext" className="video-total-time"><b>00:00</b></span>
+              <span id="durtimetext" className="video-total-time">00:00</span>
               <img
                 src={require('./assets/mutebutton.png')}
                 className="mute-icon"

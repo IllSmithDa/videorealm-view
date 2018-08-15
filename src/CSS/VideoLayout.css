@@ -94,7 +94,7 @@
 }
 .play-icon {
   width: 5%;
-  margin-left: 1%;
+  margin-left: 1.7%;
 }
 .play-icon:hover {
   cursor: pointer;
@@ -292,6 +292,10 @@ input[type=range]::-moz-range-thumb {
     display: inline-block;
     width: 61%;
   }
+  .play-icon {
+    width: 5%;
+    margin-left: 1.9%;
+  }
 }
 
 
@@ -331,7 +335,7 @@ input[type=range]::-moz-range-thumb {
   }
   .play-icon {
     width: 5%;
-    margin-left: 2%;
+    margin-left: 3%;
   }
   .navbar-button {
     background-color: #add8e6;
@@ -414,7 +418,7 @@ input[type=range]::-moz-range-thumb {
     width: 50%;
   }
   .play-icon {
-    margin-left: 2.2%;
+    margin-left: 3.1%;
   }
   .navbar-icon-item {
     width: 15px;
@@ -487,6 +491,9 @@ input[type=range]::-moz-range-thumb {
     margin-top: 1.5%;
     margin-left: 0.3%;
   }
+  .play-icon {
+    margin-left: 3.3%;
+  }
 }
 @media all and (max-width: 600px) { 
   .video-key {
@@ -507,9 +514,6 @@ input[type=range]::-moz-range-thumb {
   input[type=range]::-moz-range-thumb {
     height: 10px;
     width: 10px;
-  }
-  .play-icon {
-    margin-left: 2.7%;
   }
 }
 @media all and (max-width: 500px) { 
