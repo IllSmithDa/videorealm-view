@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Player, BigPlayButton } from 'video-react';
-import { connect } from 'react-redux';
-import { getAllVideos } from '../actions';
 import reqURL from './RequestURL';
 
 // add credentials or else the session will not be saved
