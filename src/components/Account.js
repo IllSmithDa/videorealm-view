@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Proptypes from 'prop-types';
+import { connect } from 'react-redux';
 import LoadingAnimation from './LoadingAnimation';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import reqURL from './RequestURL';
+import { addUsername, addDisplayname, checkLoginState } from '../actions';
 import AccountVideos from './AccountVideos';
 import DeleteVideos from './DeleteVideos';
 import '../CSS/LoadingAnimation.css';
@@ -12,7 +15,7 @@ import '../CSS/VideoLayout.css';
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
 
-export default class Account extends Component {
+class Account extends Component {
   constructor() {
     super();
     this.state = {
@@ -21,7 +24,6 @@ export default class Account extends Component {
       userVideoName: '',
       maxVideoSize: '35mb',
       maxSizeNum: 35000000,
-      loginState: true,
       fileName: '',
       username: '',
       displayName: '',
@@ -35,20 +37,20 @@ export default class Account extends Component {
   componentDidMount() {
     axios.get(`${reqURL}/getUsername`)
       .then((userData) => {
-        this.setState({
-          username: userData.data,
-          displayName: userData.data[0].toUpperCase() + userData.data.slice(1),
-        });
+        this.props.addUsername({ username: userData.data, displayName: userData.data[0].toUpperCase()
+          + userData.data.slice(1) });
         axios.get(`${reqURL}/getVideoList`)
           .then((data) => {
             if (data.data.error) {
-              this.setState({ loginState: false });
+              this.props.checkLoginState(false);
             } else {
+              console.log(this.props);
               const videoIDArr = [];
               for (let i = 0; i < data.data.length; i += 1) {
                 videoIDArr.push(data.data[i].videoID);
               }
-              this.setState({ loginState: true, videoIDList: videoIDArr });
+              this.props.checkLoginState(true);
+              this.setState({ videoIDList: videoIDArr });
               // console.log(this.state.videoIDList);
               if (data.data.length >= 5) {
                 document.getElementById('videoWarning').style.display = 'block';
@@ -74,9 +76,7 @@ export default class Account extends Component {
 
     // if video is selected
     if (fileName !== '') {
-      // console.log(document.getElementById('upload-file').files[0]);
-
-
+      // console.log(document.getElementById('upload-file').files[0])
       // check if correct and supported format
       if (!(/.mp4/).test(fileName) && !(/.mov/).test(fileName)
       && !(/.wmv/).test(fileName) && !(/.avi/).test(fileName)
@@ -181,7 +181,6 @@ export default class Account extends Component {
   changeUploadState = (event) => {
     this.setState({ fileName: event.target.value });
     const { fileName } = this.state;
-    console.log(fileName);
   }
 
   disableSubmit = () => {
@@ -315,8 +314,9 @@ export default class Account extends Component {
 
   //   <button type="submit" className="add-margins all-buttons" onClick={this.openWarning}>Delete my account </button>
   render() {
-    const { videoUploadReq, loginState, displayName, maxVideoSize } = this.state;
-    if (!loginState) {
+    const { videoUploadReq, maxVideoSize } = this.state;
+    // console.log(this.props.loginState);
+    if (!this.props.loginState) {
       window.location = '/login';
       return (
         <div>
@@ -328,7 +328,7 @@ export default class Account extends Component {
       <div>
         <Navbar />
         <div className="Page-Container">
-          <h1 className="accountTitle app-title-item">{displayName}&apos;s Account</h1>
+          <h1 className="accountTitle app-title-item">{this.props.userObject.displayName}&apos;s Account</h1>
           <button type="submit" className="add-margins reply-buttons" onClick={this.openUsernameModal}>Change Username </button>
           <button type="submit" className="add-margins reply-buttons" onClick={this.openPasswordModal}>Change Password </button>
           <br />
@@ -390,7 +390,7 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
-          <h1 className="accountTitle app-title-item">{displayName}&apos;s Videos</h1>
+          <h1 className="accountTitle app-title-item">{this.props.userObject.displayName}&apos;s Videos</h1>
           <div className="group-button">
             <button id="myBtn2" type="submit" className="add-margins reply-buttons" onClick={this.openModal}> Upload Video </button>
             <DeleteVideos deleteVideoList={this.getVideoList} />
@@ -435,3 +435,27 @@ export default class Account extends Component {
     );
   }
 }
+
+Account.defaultProps = {
+  addUsername: () => {},
+  userObject: { username: '', displayName: '' },
+  checkLoginState: () => {},
+  loginState: false,
+};
+
+Account.propTypes = {
+  addUsername: Proptypes.func,
+  checkLoginState: Proptypes.func,
+  userObject: Proptypes.object,
+  loginState: Proptypes.bool,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    userObject: state.userObject,
+    currentState: state,
+    loginState: state.loginState,
+  };
+};
+
+export default connect(mapStateToProps, { addUsername, addDisplayname, checkLoginState })(Account);

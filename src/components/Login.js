@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Proptypes from 'prop-types';
+import { connect } from 'react-redux';
+import { loginUser } from '../actions';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import reqURL from './RequestURL';
@@ -8,7 +11,7 @@ import '../CSS/PageLayout.css';
 import '../CSS/App.css';
 
 axios.defaults.withCredentials = true;
-export default class Account extends Component {
+class Login extends Component {
   constructor() {
     super();
     this.state = {
@@ -31,6 +34,8 @@ export default class Account extends Component {
     const { username } = this.state;
     const { password } = this.state;
     const user = { username, password };
+    this.props.loginUser(user);
+
     axios.post(`${reqURL}/mongoLogin`, user)
       .then((data) => {
         if (data.data.error) {
@@ -80,3 +85,13 @@ export default class Account extends Component {
     );
   }
 }
+
+Login.defaultProps = {
+  loginUser: () => {},
+};
+
+Login.propTypes = {
+  loginUser: Proptypes.func,
+};
+
+export default connect(null, loginUser)(Login);

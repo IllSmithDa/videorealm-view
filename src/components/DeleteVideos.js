@@ -15,18 +15,13 @@ export default class DeleteVideos extends Component {
     this.state = {
       idVideoDeleteList: [],
       videoList: [],
-      loginState: true,
     };
   }
 
   componentDidMount() {
     axios.get(`${reqURL}/getVideoList`)
       .then((videoData) => {
-        if (videoData.data.error) {
-          this.setState({ loginState: false });
-        } else {
-          this.setState({ videoList: videoData.data, loginState: true });
-        }
+        this.setState({ videoList: videoData.data });
       })
       .catch((err) => {
         throw err;
@@ -89,16 +84,7 @@ export default class DeleteVideos extends Component {
   }
 
   render() {
-    const { loginState } = this.state;
     const { videoList } = this.state;
-    if (!loginState) {
-      window.location = '/login';
-      return (
-        <div>
-          <h1>Please Login</h1>
-        </div>
-      );
-    }
     return (
       <div>
         <button id="DeleteButton" type="submit" className="reply-buttons" onClick={this.deleteModal}> Delete Video(s) </button>

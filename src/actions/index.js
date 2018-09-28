@@ -1,23 +1,35 @@
-import axios from 'axios';
-import reqURL from '../components/RequestURL';
+export const LOGINUSER = 'LOGINUSER';
+export const ADDUSERNAME = 'ADDUSERNAME';
+export const ADDDISPLAYNAME = 'ADDDISPLAYNAME';
+export const CHECKLOGINSTATE = 'CHECKLOGINSTATE';
 
-export const GET_ALL_VIDEOS = 'GET_ALL_VIDEOS';
-export const ADD_VIDEO = 'ADD_VIDEO';
+export const loginUser = (user) => {
+  // console.log(user);
+  return {
+    type: LOGINUSER,
+    payload: user,
+  };
+};
 
-export const recieveVideoData = videoData => ({
-  type: GET_ALL_VIDEOS,
-  videoData,
-});
+export const addUsername = (username) => {
+  // console.log(username);
+  return {
+    type: ADDUSERNAME,
+    payload: username,
+  };
+};
 
-export const getAllVideos = (index) => {
-  const allVideosEndPoint = `${reqURL}/getAllVideos`;
-  return (dispatch) => {
-    return axios.post(allVideosEndPoint, index)
-      .then((videoData) => {
-        dispatch(recieveVideoData(videoData.data));
-      })
-      .catch((err) => {
-        throw err;
-      });
+export const addDisplayname = (displayname) => {
+  // console.log(displayname);
+  return {
+    type: ADDUSERNAME,
+    payload: displayname,
+  };
+};
+
+export const checkLoginState = (loginState) => {
+  return {
+    type: CHECKLOGINSTATE,
+    payload: loginState,
   };
 };

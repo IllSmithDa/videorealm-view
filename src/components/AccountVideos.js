@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Player, BigPlayButton } from 'video-react';
 import reqURL from './RequestURL';
 import '../CSS/PageLayout.css';
 import '../CSS/VideoLayout.css';
@@ -18,19 +17,14 @@ export default class AccountVideos extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios.get(`${reqURL}/getVideoList`)
       .then((data) => {
-        // console.log(data.data);
-        if (data.data.error) {
-          this.setState({ loginState: false });
-        } else {
-          const videoList = [];
-          for (let i = 0; i < data.data.length; i += 1) {
-            videoList.push(data.data[i]);
-          }
-          this.setState({ videoList, loginState: true });
+        const videoList = [];
+        for (let i = 0; i < data.data.length; i += 1) {
+          videoList.push(data.data[i]);
         }
+        this.setState({ videoList });
       })
       .catch((err) => {
         throw err;
