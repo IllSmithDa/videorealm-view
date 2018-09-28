@@ -44,6 +44,7 @@ class Account extends Component {
             if (data.data.error) {
               this.props.checkLoginState(false);
             } else {
+              console.log(this.props);
               const videoIDArr = [];
               for (let i = 0; i < data.data.length; i += 1) {
                 videoIDArr.push(data.data[i].videoID);
@@ -437,7 +438,7 @@ class Account extends Component {
 
 Account.defaultProps = {
   addUsername: () => {},
-  userObject: {},
+  userObject: { username: '', displayName: '' },
   checkLoginState: () => {},
   loginState: false,
 };

@@ -20,11 +20,6 @@ class Login extends Component {
     };
   }
 
-  componentDidMount() {
-    const user = { username: 'sam', password: 'kim' };
-    // console.log(this.props.loginUser(user).payload);
-  }
-
   componentDidUpdate() {
     const eventEnter = document.getElementById('page-event');
     eventEnter.addEventListener('keypress', (event) => {
@@ -99,11 +94,4 @@ Login.propTypes = {
   loginUser: Proptypes.func,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-
-
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(null, loginUser)(Login);
