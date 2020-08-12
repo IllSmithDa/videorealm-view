@@ -111,9 +111,9 @@ export default class Navbar extends Component {
       <div className="navbar-container">
         <div className="navbar-margins">
           <div className="navbar-item-container">
-            <img className="navbar-icon-item" alt="home-page" src="https://img.icons8.com/android/24/000000/home.png" onClick={this.homePage} />
+            <img className="navbar-icon-item" alt="home-page" src="https://img.icons8.com/dusk/64/000000/home-page.png" onClick={this.homePage} />
             <input id="search-field" maxLength="350" className="searchbar-field" type="text" onChange={this.handleSearchTerm} placeholder="Search for videos" />
-            <img className="navbar-icon-item" alt="search-video" onClick={this.searchForVideos} src="https://png.icons8.com/ios/1600/search.png" />
+            <img className="navbar-icon-item" alt="search-video" onClick={this.searchForVideos} src="https://img.icons8.com/doodle/48/000000/search--v1.png" />
           </div>
           <div className="navbar-item-container2">
             <button id="profile-button" type="submit" onClick={this.myProfile} className="navbar-button">{profileName}</button>
