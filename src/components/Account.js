@@ -207,6 +207,7 @@ class Account extends Component {
     const usernameChange = { username, newUsername };
     const user = { username: newUsername };
 
+    // tet usrname to make sure length is between 3 and 20, username does not have special characters
     if (newUsername.length < 3 || newUsername.length > 20 || /\W/.test(newUsername) || /\s/.test(newUsername)
     || !/[a-zA-Z]/.test(newUsername)) {
       document.getElementById('badUsername').style.display = 'block';
@@ -279,6 +280,7 @@ class Account extends Component {
           document.getElementById('incorrectPW').style.display = 'none';
           correctOld = true;
         }
+        // if new password and its repeat do not match, display the password not matchin error
         if (newPassword !== passwordRepeat) {
           document.getElementById('noMatchPW').style.display = 'block';
           correctNew = false;
@@ -286,9 +288,10 @@ class Account extends Component {
           document.getElementById('noMatchPW').style.display = 'none';
           correctNew = true;
         }
-        if (/\s/.test(newPassword) || !/\d/.test(newPassword) || !/\d/.test(newPassword) || !/\W/.test(newPassword)
-        || !/\d/.test(newPassword) || newPassword.length < 8 || newPassword.length > 20 || newPassword === oldPassword
-        || !/[A-Z]/.test(newPassword)) {
+        // tests the password to see if it has one letter, one number, one special character, between 8 and 20 chars long, doesn't match
+        // old password
+        if (/\s/.test(newPassword) || !/\d/.test(newPassword) || !/\W/.test(newPassword) || !/\d/.test(newPassword)
+        || newPassword.length <= 8 || newPassword.length >= 20 || newPassword === oldPassword || !/[A-Z]/.test(newPassword)) {
           document.getElementById('badPW').style.display = 'block';
           correctNew = false;
         } else {
