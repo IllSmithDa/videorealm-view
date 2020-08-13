@@ -109,13 +109,21 @@ export default class Navbar extends Component {
 
     return (
       <div className="navbar-container">
-        <div className="navbar-margins">
-          <div className="navbar-item-container">
-            <img className="navbar-icon-item" alt="home-page" src="https://img.icons8.com/dusk/64/000000/home-page.png" onClick={this.homePage} />
-            <input id="search-field" maxLength="350" className="searchbar-field" type="text" onChange={this.handleSearchTerm} placeholder="Search for videos" />
-            <img className="navbar-icon-item" alt="search-video" onClick={this.searchForVideos} src="https://img.icons8.com/doodle/48/000000/search--v1.png" />
+        <div className="navbar-grid">
+          <div>
+            <div className="navbar-home-container">
+              <img className="navbar-icon-home" alt="home-page" src="https://img.icons8.com/dusk/64/000000/home-page.png" onClick={this.homePage} />
+            </div>
           </div>
-          <div className="navbar-item-container2">
+          <div>
+            <div className="searchbar-grid">
+              <div className="searchbar-container">
+                <input id="search-field" maxLength="350" className="searchbar-field" type="text" onChange={this.handleSearchTerm} placeholder="Search for videos" />
+                <img className="navbar-icon-item" alt="search-video" onClick={this.searchForVideos} src="https://img.icons8.com/doodle/48/000000/search--v1.png" />
+              </div>
+            </div>
+          </div>
+          <div className="account-container">
             <button id="profile-button" type="submit" onClick={this.myProfile} className="navbar-button">{profileName}</button>
             <button id="account-button" type="submit" onClick={this.myAccount} className="navbar-button">{accountState}</button>
             <button id="create-button" type="submit" onClick={this.createUser} className="navbar-button">{createState}</button>

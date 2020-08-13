@@ -428,7 +428,6 @@ input[type=range]::-moz-range-thumb {
   }
   .searchbar-field {
     font-size: 13px;
-    margin-top: 0.9em;
     width:56%;
     margin-right: 1%;
     margin-left: 1%;
