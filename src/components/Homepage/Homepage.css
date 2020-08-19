@@ -1,0 +1,15 @@
+.app-title-container {
+  background-image: url('https://images.pexels.com/photos/957061/milky-way-starry-sky-night-sky-star-957061.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  height: 150px;
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+}
+.app-title-container h1 {
+  font-size: 2.5em;
+  font-weight: 800;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #FFF;
+}

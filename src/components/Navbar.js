@@ -24,16 +24,13 @@ export default class Navbar extends Component {
       .get(`${reqURL}/getUsername`)
       .then((userData) => {
         if (userData.data.error) {
-          document.getElementById('account-button').style.display = 'none';
-          document.getElementById('profile-button').style.display = 'none';
           this.setState({
             loginState: 'LOGIN',
             accountState: '',
-            createState: 'NEW ACCOUNT',
+            createState: 'SIGN UP FOR FREE',
             profileName: '',
           });
         } else {
-          document.getElementById('create-button').style.display = 'none';
           this.setState({
             loginState: 'LOGOUT',
             accountState: 'ACCOUNT',
@@ -106,7 +103,22 @@ export default class Navbar extends Component {
 
   render() {
     const { profileName, accountState, createState, loginState } = this.state;
-
+    const renderLoginButton = () => {
+      if (loginState === 'LOGIN') {
+        return (
+          <div className="account-container">
+            <button id="create-button" type="submit" onClick={this.createUser} className="navbar-button">{createState}</button>
+            <button id="loginstate" type="submit" onClick={this.loginPage} className="navbar-button">{loginState}</button>
+          </div>
+        );
+      }
+      return (
+        <div className="account-container">
+          <button id="profile-button" type="submit" onClick={this.myProfile} className="navbar-button">{profileName}</button>
+          <button id="loginstate" type="submit" onClick={this.loginPage} className="navbar-button">{loginState}</button>
+        </div>
+      );
+    };
     return (
       <div className="navbar-container">
         <div className="navbar-grid">
@@ -114,23 +126,26 @@ export default class Navbar extends Component {
             <div className="navbar-home-container">
               <img className="navbar-icon-home" alt="home-page" src="https://img.icons8.com/dusk/64/000000/home-page.png" onClick={this.homePage} />
             </div>
+            <div className="navbar-mobile" />
           </div>
           <div>
             <div className="searchbar-grid">
               <div className="searchbar-container">
-                <input id="search-field" maxLength="350" className="searchbar-field" type="text" onChange={this.handleSearchTerm} placeholder="Search for videos" />
+                <input id="search-field" maxLength="350" type="text" onChange={this.handleSearchTerm} placeholder="Search for videos" />
                 <img className="navbar-icon-item" alt="search-video" onClick={this.searchForVideos} src="https://img.icons8.com/doodle/48/000000/search--v1.png" />
               </div>
             </div>
           </div>
-          <div className="account-container">
-            <button id="profile-button" type="submit" onClick={this.myProfile} className="navbar-button">{profileName}</button>
-            <button id="account-button" type="submit" onClick={this.myAccount} className="navbar-button">{accountState}</button>
-            <button id="create-button" type="submit" onClick={this.createUser} className="navbar-button">{createState}</button>
-            <button id="loginstate" type="submit" onClick={this.loginPage} className="navbar-button">{loginState}</button>
-          </div>
+          {renderLoginButton()}
         </div>
       </div>
     );
   }
 }
+
+/*
+            <div className="navbar-home-container">
+              <img className="navbar-icon-home" alt="home-page" src="https://img.icons8.com/dusk/64/000000/home-page.png" onClick={this.homePage} />
+            </div>
+
+            */

@@ -4,7 +4,7 @@
 }
 .navbar-grid {
   display: grid;
-  grid-template-columns: 50px 1fr 1fr;
+  grid-template-columns: 50px 1fr 250px;
   width: 60%;
   margin:auto;
   height: 100%;
@@ -13,16 +13,24 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: left;
+  height: 100%;
+}
+.navbar-header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   height: 100%;
 }
 .searchbar-grid {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: right;
+  width: 100%;
   height: 100%;
 }
 .searchbar-container { 
+  align-self: center;
   width: 425px;
   height: 40px;
   background-color: #FFF;
@@ -55,7 +63,6 @@
   background-color: #add8e6;
   margin-top: 10px;
   border: none;
-  font-size: 1.2em;
   font-family: Georgia;
   cursor: pointer;
 }
@@ -73,16 +80,19 @@
   .navbar-grid {
     width: 90%;
   }
-  .searchbar-container input {
-    width: 85%;
-  }
+
 }
 
 @media(max-width: 850px) {
   .navbar-grid {
     width: 96%;
+    grid-template-columns: 50px 1fr;
   }
   .searchbar-container { 
-    width: 300px;
+    width: 100%;
+  }
+
+  .navbar-header, .account-container{
+    display: none;
   }
 }
