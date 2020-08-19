@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Navbar from './Navbar';
+import Navbar from './Navbar/Navbar';
 import Footer from './Footer';
 import LoadingAnimation from './LoadingAnimation';
 import UserVideoList from './UserVideoList';

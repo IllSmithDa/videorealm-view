@@ -4,7 +4,7 @@ import axios from 'axios';
 import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions';
-import Navbar from './Navbar';
+import Navbar from './Navbar/Navbar';
 import Footer from './Footer';
 import reqURL from './RequestURL';
 import '../CSS/PageLayout.css';
@@ -79,7 +79,8 @@ class Login extends Component {
           <button type="submit" className="text-items all-buttons" onClick={this.loginUser}>Submit</button>
           <Link to="/lostusername"><p className="add-margins add-top-margins">Forgot Username? </p></Link>
           <Link to="/lostpassword"><p className="add-margins">Forgot Password? </p></Link>
-        </div><br /><br /><br />
+          <button id="create-button" type="submit" onClick={this.createUser}>Sign Up For Free</button>
+        </div>
         <Footer />
       </div>
     );

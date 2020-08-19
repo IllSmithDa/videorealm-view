@@ -3,7 +3,7 @@ import axios from 'axios';
 import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
 import LoadingAnimation from './LoadingAnimation';
-import Navbar from './Navbar';
+import Navbar from './Navbar/Navbar';
 import Footer from './Footer';
 import reqURL from './RequestURL';
 import { addUsername, addDisplayname, checkLoginState } from '../actions';
@@ -44,7 +44,7 @@ class Account extends Component {
             if (data.data.error) {
               this.props.checkLoginState(false);
             } else {
-              console.log(this.props);
+              // console.log(this.props);
               const videoIDArr = [];
               for (let i = 0; i < data.data.length; i += 1) {
                 videoIDArr.push(data.data[i].videoID);
@@ -375,8 +375,9 @@ class Account extends Component {
                 Enter a new password
               </h2>
               <p>
-                <b>Must be 8 to 20 characters long with at least 1 capital letter, 1 number, 1 special character and must different from your current
-                password.
+                <b>
+                  Must be 8 to 20 characters long with at least 1 capital letter, 1 number, 1 special character and must different from your current
+                  password.
                 </b>
               </p>
               <b>Current Password:</b><input className="video-name-input" maxLength="50" type="password" name="videoName" onChange={this.handleOldPassword} />
@@ -419,8 +420,9 @@ class Account extends Component {
                   <input id="videoName" maxLength="50" className="video-name-input" type="text" name="videoName" onChange={this.handleVideoName} />
                 </h3>
                 <p id="video-add" className="hide-element">
-                  <b>Please Wait while your video is being uploaded. This can
-                  take a few minutes.
+                  <b>
+                    Please Wait while your video is being uploaded. This can
+                    take a few minutes.
                   </b>
                 </p>
                 <LoadingAnimation />

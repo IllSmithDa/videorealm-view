@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import reqURL from './RequestURL';
-import '../CSS/Navbar.css';
+import reqURL from '../RequestURL';
+import './Navbar.css';
 
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
@@ -107,15 +107,17 @@ export default class Navbar extends Component {
       if (loginState === 'LOGIN') {
         return (
           <div className="account-container">
-            <button id="create-button" type="submit" onClick={this.createUser} className="navbar-button">{createState}</button>
-            <button id="loginstate" type="submit" onClick={this.loginPage} className="navbar-button">{loginState}</button>
+            <div>
+              <span id="login" role="button" tabIndex={0} onClick={this.loginPage}>{loginState}</span>
+              <span id="create-account" role="button" tabIndex={-1} onClick={this.createUser}>SIGN UP FOR FREE</span>
+            </div>
           </div>
         );
       }
       return (
         <div className="account-container">
-          <button id="profile-button" type="submit" onClick={this.myProfile} className="navbar-button">{profileName}</button>
-          <button id="loginstate" type="submit" onClick={this.loginPage} className="navbar-button">{loginState}</button>
+          <button id="profile-button" type="submit" onClick={this.myProfile}>{profileName}</button>
+          <button id="loginstate" type="submit" onClick={this.loginPage}>{loginState}</button>
         </div>
       );
     };
@@ -148,4 +150,4 @@ export default class Navbar extends Component {
               <img className="navbar-icon-home" alt="home-page" src="https://img.icons8.com/dusk/64/000000/home-page.png" onClick={this.homePage} />
             </div>
 
-            */
+*/

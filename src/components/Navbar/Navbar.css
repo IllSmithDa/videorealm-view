@@ -1,20 +1,25 @@
 .navbar-container {
   height: 50px;
-  background-color: #add8e6;
+  background-color: #151B54;
 }
 .navbar-grid {
   display: grid;
-  grid-template-columns: 50px 1fr 250px;
+  grid-template-columns: 40px 1fr 250px;
   width: 60%;
   margin:auto;
   height: 100%;
 }
-.navbar-home-container{
+.navbar-home-container, .account-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
   height: 100%;
+}
+.navbar-home-container {
+  align-items:left;
+}
+.account-container{
+  text-align: right;
 }
 .navbar-header {
   display: flex;
@@ -39,6 +44,7 @@
 .navbar-home-container img{
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 .searchbar-container input {
   height: 100%;
@@ -56,15 +62,23 @@
   cursor: pointer;
   text-decoration: none;
 }
-.account-container {
-  text-align: end;
-}
-.navbar-button {
+
+#create-account {
+  margin-left: 1em;
+  padding: 8px 7px;
   background-color: #add8e6;
-  margin-top: 10px;
   border: none;
-  font-family: Georgia;
+  border-radius: 2px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
   cursor: pointer;
+}
+#login {
+  padding: 8px 7px;
+  color: #FFF;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  font-weight: bold;  
 }
 
 .navbar-button:hover {

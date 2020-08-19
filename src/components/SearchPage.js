@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Player, BigPlayButton } from 'video-react';
 import axios from 'axios';
 import ReqUrl from './RequestURL';
-import Navbar from './Navbar';
+import Navbar from './Navbar/Navbar';
 import Footer from './Footer';
 import '../CSS/PageLayout.css';
 
