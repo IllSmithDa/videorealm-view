@@ -4,7 +4,7 @@ import { Player, BigPlayButton } from 'video-react';
 import axios from 'axios';
 import ReqUrl from './RequestURL';
 import Navbar from './Navbar/Navbar';
-import Footer from './Footer';
+import Footer from './Footer/Footer';
 import '../CSS/PageLayout.css';
 
 axios.defaults.withCredentials = true;

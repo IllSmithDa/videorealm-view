@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar/Navbar';
-import Footer from './Footer';
+import Footer from './Footer/Footer';
 import LoadingAnimation from './LoadingAnimation';
 import '../CSS/PageLayout.css';
 

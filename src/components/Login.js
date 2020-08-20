@@ -5,7 +5,7 @@ import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions';
 import Navbar from './Navbar/Navbar';
-import Footer from './Footer';
+import Footer from './Footer/Footer';
 import reqURL from './RequestURL';
 import '../CSS/PageLayout.css';
 import '../CSS/App.css';

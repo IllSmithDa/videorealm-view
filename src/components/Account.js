@@ -4,7 +4,7 @@ import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
 import LoadingAnimation from './LoadingAnimation';
 import Navbar from './Navbar/Navbar';
-import Footer from './Footer';
+import Footer from './Footer/Footer';
 import reqURL from './RequestURL';
 import { addUsername, addDisplayname, checkLoginState } from '../actions';
 import AccountVideos from './AccountVideos';

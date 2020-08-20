@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as EmailValidator from 'email-validator';
 import axios from 'axios';
 import Navbar from './Navbar/Navbar';
-import Footer from './Footer';
+import Footer from './Footer/Footer';
 import reqURL from './RequestURL';
 import '../CSS/PageLayout.css';
 
