@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from './Navbar/Navbar';
-import Footer from './Footer/Footer';
-import CommentList from './CommentList';
-import reqURL from './RequestURL';
-import '../CSS/PageLayout.css';
-import '../CSS/VideoLayout.css';
-import '../../node_modules/video-react/dist/video-react.css';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
+import CommentList from '../CommentList';
+import reqURL from '../RequestURL';
+import './VideoPage.css';
 
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
@@ -106,10 +104,10 @@ export default class VideoPlayer extends Component {
     if (videoDoc.paused) {
       // play video and change text to Pause
       videoDoc.play();
-      playButton.src = require('./assets/pausebutton.png');
+      playButton.src = require('../assets/pausebutton.png');
     } else {
       videoDoc.pause();
-      playButton.src = require('./assets/playbutton2.png');
+      playButton.src = require('../assets/playbutton2.png');
     }
   }
 
@@ -150,7 +148,7 @@ export default class VideoPlayer extends Component {
     const playButton = document.getElementById('play-pause');
     if (curtimetext.innerHTML === durtimetext.innerHTML) {
       // sets seeker back to beginning of video and turns pause into play
-      playButton.src = require('./assets/playbutton2.png');
+      playButton.src = require('../assets/playbutton2.png');
       seekSlider.value = 0;
     }
   }
@@ -166,10 +164,10 @@ export default class VideoPlayer extends Component {
     const muteButton = document.getElementById('mute-button');
     if (videoDoc.muted) {
       videoDoc.muted = false;
-      muteButton.src = require('./assets/mutebutton.png');
+      muteButton.src = require('../assets/mutebutton.png');
     } else {
       videoDoc.muted = true;
-      muteButton.src = require('./assets/unmutebutton.png');
+      muteButton.src = require('../assets/unmutebutton.png');
     }
   }
 
@@ -192,7 +190,7 @@ export default class VideoPlayer extends Component {
     return (
       <div>
         <Navbar />
-        <div className="Page-Container">
+        <div className="video-page-container">
           <h1 className="video-title"><b>{ videoName }</b> </h1>
           <div>
             <video
@@ -208,42 +206,45 @@ export default class VideoPlayer extends Component {
             </video>
             <div id="video-controls" className="video-control-container">
               <img
-                src={require('./assets/playbutton2.png')}
+                src={require('../assets/playbutton2.png')}
                 alt="play-button"
                 className="play-icon"
                 onClick={this.playVideo}
                 id="play-pause"
               />
-              <div className="control-block">
-                <input className="video-seek-bar" onInput={this.seekVideo} type="range" id="seek-bar" />
+              <div>
+                <div className="control-block">
+                  <input onInput={this.seekVideo} type="range" id="seek-bar" />
+                </div>
               </div>
-              <span
-                id="curtimetext"
-                className="video-current-time"
-              >
-                00:00
-              </span>
-              <span className="time-divide">/
-              </span>
-              <span id="durtimetext" className="video-total-time">00:00</span>
+              <div>
+                <div className="time-block">
+                  <span id="curtimetext">00:00</span>
+                  <span>/</span>
+                  <span id="durtimetext">00:00</span>
+                </div>
+              </div>
               <img
-                src={require('./assets/mutebutton.png')}
+                src={require('../assets/mutebutton.png')}
                 className="mute-icon"
                 alt="mute-button"
                 id="mute-button"
                 onClick={this.muteVideo}
               />
-              <input
-                className="volumne-slider-item"
-                onInput={this.volumeChange}
-                type="range"
-                id="volume-slider"
-                min="0"
-                max="100"
-                step="1"
-              />
+              <div>
+                <div className="volume-container">
+                  <input
+                    onInput={this.volumeChange}
+                    type="range"
+                    id="volume-slider"
+                    min="0"
+                    max="100"
+                    step="1"
+                  />
+                </div>
+              </div>
               <img
-                src={require('./assets/fullscreenbtn.png')}
+                src={require('../assets/fullscreenbtn.png')}
                 alt="fullscreen-button"
                 className="fullscreen-icon"
                 id="full-screen"
@@ -253,14 +254,18 @@ export default class VideoPlayer extends Component {
           </div>
           <div>
             <Link className="profile-link-container" to={`/profile/${uploaderProfileName}`}>
-              <h4 className="video-uploader text-items">{videoUploader}</h4>
+              <span>{videoUploader}</span>
             </Link>
             <p className="video-date-item"> Published on {videoDate} </p>
             <p className="video-view-counter"> {views} views </p>
           </div>
-          <CommentList videoUploader={uploaderProfileName} />
-        </div><br /><br /><br />
-        <Footer />
+          <div className="comment-comp-container">
+            <CommentList videoUploader={uploaderProfileName} />
+          </div>
+        </div>
+        <div className="footer-comp-container">
+          <Footer />
+        </div>
       </div>
     );
   }

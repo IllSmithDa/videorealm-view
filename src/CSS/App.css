@@ -1,4 +1,7 @@
 body {
- background-color: #212F3C;
+ background-color: hsl(209, 29%, 18%);
+}
+p {
+  margin: 0;
 }
 /* #273746  17202A*/

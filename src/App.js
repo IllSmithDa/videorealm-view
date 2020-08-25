@@ -7,7 +7,7 @@ import Account from './components/Account';
 import Login from './components/Login';
 import CreateUser from './components/CreateUser';
 import AdminPage from './components/AdminPage';
-import VideoPlayer from './components/VideoPlayer';
+import VideoPlayer from './components/VideoPage/VideoPlayer';
 import SearchPage from './components/SearchPage';
 import ErrorPage from './components/Errorpage';
 import LostPassword from './components/LostPassword';
