@@ -22,24 +22,25 @@
 .footer-section ul {
   list-style-type: none;
   padding: 0;
+  
 }
 .footer-section ul li{
   margin-top: 1.5rem;
 }
-.trademark-set {
+.footer-section ul li a {
+  color: #FFF;
+}
+.trademark-set {  
   width: 80%;
   margin: auto;
   text-align: center;
+  padding: 2rem;
 }
 .trademark-set p{
   color: #FFF;
 }
-@media all and (max-width: 800px) {
-  .Footer {
-    margin-top: 5em;
-  }
-  .Footer-text-item {
-    font-size: 11px;
-    margin-top: 2%;
+@media all and (max-width: 850px) {
+  .footer-grid {
+    display:block;
   }
 }
