@@ -1,11 +1,11 @@
 .navbar-container {
-  height: 50px;
-  background-color: #151B54;
+  height: 60px;
+  background-color: #17202A;
 }
 .navbar-grid {
   display: grid;
   grid-template-columns: 40px 1fr 250px;
-  width: 60%;
+  width: 80%;
   margin:auto;
   height: 100%;
 }

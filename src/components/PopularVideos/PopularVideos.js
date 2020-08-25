@@ -4,8 +4,9 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Player, BigPlayButton } from 'video-react';
 import { connect } from 'react-redux';
-import { getAllVideos } from '../actions';
-import reqURL from './RequestURL';
+// import { getAllVideos } from '../../actions';
+import reqURL from '../RequestURL';
+import  './PopularVideos.css';
 
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
@@ -27,17 +28,12 @@ export default class PopularVideos extends Component {
     axios.post(`${reqURL}/getPopularVideos`, index)
       .then((videoData) => {
         this.setState({
-          videoIndex: videoIndex + 5,
+          videoIndex: videoIndex + 4,
           totalArr: videoData.data.videoArr,
           reachedEnd: videoData.data.reachedEnd,
         });
         //  console.log(videoData.data.reachedEnd);
         // console.log(videoData.data.videoArr.length % 5);
-        if (videoData.data.videoArr.length % 5 === 0 && !videoData.data.reachedEnd) {
-          document.getElementById('more-pop-videos').style.display = 'block';
-        } else {
-          document.getElementById('more-pop-videos').style.display = 'none';
-        }
       })
       .catch((err) => {
         throw err;
@@ -51,15 +47,10 @@ export default class PopularVideos extends Component {
     axios.post(`${reqURL}/getPopularVideos`, index)
       .then((videoData) => {
         this.setState({
-          videoIndex: videoIndex + 5,
+          videoIndex: videoIndex + 4,
           totalArr: totalArr.concat(videoData.data.videoArr),
           reachedEnd: videoData.data.reachedEnd,
         });
-        if (totalArr.length % 5 === 0 && !videoData.data.reachedEnd) {
-          document.getElementById('more-pop-videos').style.display = 'block';
-        } else {
-          document.getElementById('more-pop-videos').style.display = 'none';
-        }
       })
       .catch((err) => {
         throw err;
@@ -70,14 +61,15 @@ export default class PopularVideos extends Component {
     const { totalArr } = this.state;
     return (
       <div>
-        <div className="video-container">
+        <div className="pop-video-container">
           {totalArr.map((post) => {
             return (
-              <div key={post.id} className="video-key">
-                <Link to={`/video/${post.videoID}`} className="video-div">
-                  <img src={post.videoThumbURL} alt="video-thumb" className="video-preview-item" />
-                  <span className="video-videoName">{ post.videoName } </span>
-                  <br />
+              <div key={post.id} className="video-item">
+                <Link to={`/video/${post.videoID}`}>
+                  <img src={post.videoThumbURL} alt="video-thumb" />
+                  <div className="video-header">
+                    <span>{ post.videoName } </span>
+                  </div>
                 </Link>
                 <Link to={`/profile/${post.userName}`}>
                   <span>{post.userName[0].toUpperCase() + post.userName.slice(1)}</span>
@@ -85,7 +77,9 @@ export default class PopularVideos extends Component {
               </div>
             );
           })}
-          <p id="more-pop-videos" className="more-videos-item" onClick={this.seeMoreVideos}> See More videos </p>
+        </div>
+        <div className="more-pop-videos">
+          <span role="button" tabIndex="0" onClick={this.seeMoreVideos}> See More videos </span>
         </div>
       </div>
     );

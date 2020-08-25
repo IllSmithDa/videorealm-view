@@ -1,0 +1,39 @@
+.all-videos-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
+  column-gap: 1rem;
+}
+.all-videos-item {
+  margin-top: 0.5rem;
+}
+.all-videos-item img {
+  width: 100%;
+}
+.video-header {
+  color: #FFF;
+  font-weight: bold;
+}
+.more-all-videos {
+  padding-top: 1rem;
+}
+.more-all-videos span{
+  color:  #aed6f1;
+  cursor: pointer;
+}
+.all-videos-header {
+  margin-top: 0.5rem;
+}
+.all-videos-header span {
+  color: #FFF;
+  font-size: 1.1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+.all-videos-username span {
+  color: #FFF;
+}
+@media(max-width: 1023px) {
+  .all-videos-container {
+    display: block;
+  }
+}

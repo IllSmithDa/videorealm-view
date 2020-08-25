@@ -1,0 +1,35 @@
+
+.pop-video-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
+  column-gap: 1rem;
+}
+.video-item {
+  margin-top: 1rem;
+}
+.video-item img {
+  width: 100%;
+ }
+ .video-item span {
+   color: #FFF;
+ }
+.more-pop-videos {
+  padding-top: 1rem;
+}
+.more-pop-videos span{
+  color:  #aed6f1;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.video-header {
+  padding-top: 0.5rem;
+}
+.video-header span {
+  font-size: 1.1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+@media(max-width: 1023px) {
+  .pop-video-container {
+    display: block;
+  }
+}

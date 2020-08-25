@@ -1,3 +1,7 @@
+.homepage-container {
+  width: 80%;
+  margin: auto;
+}
 .app-title-container {
   height: 150px;
   margin-top: 2em;
@@ -8,14 +12,25 @@
   flex-direction: column;
   align-items: center;
   height: 150px;
+  border-radius: 1rem;
 }
 .title-container h1 {
   font-size: 2.5em;
   font-weight: 800;
-  font-family: Arial, Helvetica, sans-serif;
   color: #FFF;
 }
+.videos-container {
+  padding: 1rem;
+  margin-top: 2rem;
+  background-color:  #17202A;
+  border-radius: 1rem;
+}
+.videos-container h1 {
+  color: #FFF;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
 
+}
 #title-slide {
   background-image: url('https://images.pexels.com/photos/733475/pexels-photo-733475.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
   background-position: center;
@@ -31,6 +46,7 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
 
 @media(max-width: 850px) {
   .title-container h1 {

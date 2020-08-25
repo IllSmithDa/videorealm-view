@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import reqURL from './RequestURL';
-
+import reqURL from '../RequestURL';
+import './AllVideos.css';
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
 
@@ -23,17 +23,12 @@ export default class AllVideos extends Component {
     axios.post(`${reqURL}/getAllVideos`, index)
       .then((videoData) => {
         this.setState({
-          videoIndex: videoIndex + 5,
+          videoIndex: videoIndex + 4,
           totalArr: videoData.data.videoArr,
           reachedEnd: videoData.data.reachedEnd,
         });
         //  console.log(videoData.data.reachedEnd);
-        // console.log(videoData.data.videoArr.length % 5);
-        if (videoData.data.videoArr.length % 5 === 0 && !videoData.data.reachedEnd) {
-          document.getElementById('more-videos').style.display = 'block';
-        } else {
-          document.getElementById('more-videos').style.display = 'none';
-        }
+        // console.log(videoData.data.videoArr.length % 4);
       })
       .catch((err) => {
         throw err;
@@ -47,15 +42,10 @@ export default class AllVideos extends Component {
     axios.post(`${reqURL}/getAllVideos`, index)
       .then((videoData) => {
         this.setState({
-          videoIndex: videoIndex + 5,
+          videoIndex: videoIndex + 4,
           totalArr: totalArr.concat(videoData.data.videoArr),
           reachedEnd: videoData.data.reachedEnd,
         });
-        if (totalArr.length % 5 === 0 && !videoData.data.reachedEnd) {
-          document.getElementById('more-videos').style.display = 'block';
-        } else {
-          document.getElementById('more-videos').style.display = 'none';
-        }
       })
       .catch((err) => {
         throw err;
@@ -66,22 +56,25 @@ export default class AllVideos extends Component {
     const { totalArr } = this.state;
     return (
       <div>
-        <div className="video-container">
+        <div className="all-videos-container">
           {totalArr.map((post) => {
             return (
-              <div key={post.id} className="video-key">
+              <div key={post.id} className="all-videos-item">
                 <Link to={`/video/${post.videoID}`} className="video-div">
                   <img src={post.videoThumbURL} alt="video-thumb" className="video-preview-item" />
-                  <span className="video-videoName">{ post.videoName } </span>
-                  <br />
+                  <div className="all-videos-header">
+                    <span>{ post.videoName } </span>
+                  </div>
                 </Link>
-                <Link to={`/profile/${post.userName}`}>
+                <Link to={`/profile/${post.userName}`} class="all-videos-username">
                   <span>{post.userName[0].toUpperCase() + post.userName.slice(1)}</span>
                 </Link>
               </div>
             );
           })}
-          <p id="more-videos" className="more-videos-item" onClick={this.seeMoreVideos}> See More videos </p>
+        </div>
+        <div className="more-all-videos">
+          <span role="button" tabIndex="0" onClick={this.seeMoreVideos}> See More videos </span>
         </div>
       </div>
     );

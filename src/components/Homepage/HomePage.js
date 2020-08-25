@@ -1,15 +1,15 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import AllVideos from '../AllVideos';
-import PopularVideos from '../PopularVideos';
-import './Homepage.css';
+import AllVideos from '../AllVIdeos/AllVideos';
+import PopularVideos from '../PopularVideos/PopularVideos';
+import './HomePage.css';
 
 export default function HomePage() {
   return (
     <div>
       <Navbar />
-      <div className="Page-Container">
+      <div className="homepage-container">
         <div id="demo" className="app-title-container carousel slide" data-ride="carousel">
           <ul className="carousel-indicators">
             <li data-target="#demo" data-slide-to="0" className="active" />
@@ -40,12 +40,12 @@ export default function HomePage() {
             <span className="carousel-control-next-icon" />
           </a>
         </div>
-        <div>
-          <h3 className="video-label"><br />Popular Videos </h3>
+        <div className="videos-container">
+          <h1>Popular Videos </h1>
           <PopularVideos />
         </div>
-        <div>
-          <h3 className="video-label"><br />Latest Videos </h3>
+        <div className="videos-container">
+          <h1>Latest Videos </h1>
           <AllVideos />
         </div>
       </div><br /><br /><br />
