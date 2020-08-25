@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from '../Navbar/Navbar';
-import Footer from '../Footer/Footer';
-import AllVideos from '../AllVIdeos/AllVideos';
-import PopularVideos from '../PopularVideos/PopularVideos';
-import './HomePage.css';
+import Navbar from './Navbar/Navbar';
+import Footer from './Footer/Footer';
+import AllVideos from './AllVIdeos/AllVideos';
+import PopularVideos from './PopularVideos/PopularVideos';
+import './HomePage/HomePage.css';
 
 export default function HomePage() {
   return (
