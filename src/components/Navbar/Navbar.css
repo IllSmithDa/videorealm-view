@@ -105,7 +105,9 @@
   .searchbar-container { 
     width: 100%;
   }
-
+  .searchbar-container input {
+    width: 88%;
+  }
   .navbar-header, .account-container{
     display: none;
   }
