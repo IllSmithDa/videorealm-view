@@ -6,7 +6,7 @@ import { Player, BigPlayButton } from 'video-react';
 import { connect } from 'react-redux';
 // import { getAllVideos } from '../../actions';
 import reqURL from '../RequestURL';
-import  './PopularVideos.css';
+import './PopularVideos.css';
 
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
