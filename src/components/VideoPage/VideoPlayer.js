@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import CommentList from '../CommentList';
+import CommentList from '../CommentSection/CommentList';
 import reqURL from '../RequestURL';
 import './VideoPage.css';
 

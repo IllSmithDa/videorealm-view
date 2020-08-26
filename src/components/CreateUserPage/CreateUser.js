@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import * as EmailValidator from 'email-validator';
 import axios from 'axios';
-import Navbar from './Navbar/Navbar';
-import Footer from './Footer/Footer';
-import reqURL from './RequestURL';
-import '../CSS/PageLayout.css';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
+import reqURL from '../RequestURL';
+import './CreateUser.css';
 
 axios.defaults.withCredentials = true;
 
@@ -161,14 +161,12 @@ export default class CreateUser extends Component {
     return (
       <div id="page-event">
         <Navbar />
-        <div className="Page-Container">
-          <div className="form-group app-userform">
-            <h1 className="app-title-item"> Create Your Videorealm Account </h1>
-            <label className="text-items" htmlFor="name" id="username-message"> <b>Choose your username:</b></label>
+        <div className="newuser-container">
+          <div className="newuser-form-group  app-userform">
+            <h1> Create Your Videorealm Account </h1>
+            <p className="text-items" htmlFor="name" id="username-message"> <b>Choose your username:</b></p>
             <p className="form-input">
-              <b>
-              Username must be minumum 3 character with at least one letter. Cannot user special characters for username.
-              </b>
+              <b>Username must be minumum 3 character with at least one letter. Cannot user special characters for username.</b>
             </p>
             <input type="name" maxLength="30" className="form-control form-input" id="name" value={usermame} onChange={this.handleSetUsername} />
             <p id="shortUsername" className="email-warning text-items">
@@ -177,8 +175,8 @@ export default class CreateUser extends Component {
             </p>
             <p id="badUsername" className="email-warning text-items">Error: Username already exists</p>
           </div>
-          <div className="form-group">
-            <label className="text-items" htmlFor="pwd"><b>Create your password:</b></label>
+          <div className="newuser-form-group">
+            <p className="text-items" htmlFor="pwd"><b>Create your password:</b></p>
             <p className="form-input">
               <b>Password must be minimum 8 characters long and must include at least one number,
                 one letter and one special character
@@ -188,24 +186,24 @@ export default class CreateUser extends Component {
             <p id="badPassword" className="email-warning text-items">Error: Password does not meet criterias
             </p>
           </div>
-          <div className="form-group">
-            <label className="text-items" htmlFor="pwd"><b>Confirm your password:</b></label>
+          <div className="newuser-form-group ">
+            <p className="text-items" htmlFor="pwd"><b>Confirm your password:</b></p>
             <input type="password" maxLength="50" className="form-control form-input" value={repPassword} onChange={this.handleRepPassword} />
             <p id="repPassword" className="email-warning text-items">Error: Passwords do not match</p>
           </div>
-          <div className="form-group">
-            <label className="text-items" htmlFor="pwd"><b>Enter a valid Email:</b></label>
+          <div className="newuser-form-group ">
+            <p className="text-items" htmlFor="pwd"><b>Enter a valid Email:</b></p>
             <input type="email" maxLength="350" className="form-control form-input" id="email" value={email} onChange={this.handleSetEmail} />
             <p id="badEmail" className="email-warning text-items">Please enter an existing email</p>
             <p id="dupEmail" className="email-warning text-items">Error: Only one account allowed per email</p>
           </div>
-          <div className="form-group">
-            <label className="text-items" htmlFor="pwd"><b>Enter your beta key:</b></label>
+          <div className="newuser-form-group ">
+            <p className="text-items" htmlFor="pwd"><b>Enter your beta key:</b></p>
             <input type="password" maxLength="50" className="form-control form-input" id="secretkey" value={secretKey} onChange={this.handleSecretKey} />
             <p id="badkey" className="email-warning text-items">That is not a correct beta key</p>
           </div><br />
-          <button type="submit" className="all-buttons text-items" id="submit-button" onClick={this.requestKey}>Request Beta Key</button>
-          <button type="submit" className="all-buttons text-items" id="submit-button" onClick={this.createUser}>Submit</button>
+          <button type="submit" className="create-user-button" id="submit-button" onClick={this.requestKey}>Request Beta Key</button>
+          <button type="submit" className="create-user-button" id="submit-button" onClick={this.createUser}>Submit</button>
         </div><br /><br /><br />
         <Footer />
       </div>

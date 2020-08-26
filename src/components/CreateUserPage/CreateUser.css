@@ -1,0 +1,42 @@
+.newuser-container {
+  width: 60%;
+  margin: 2rem auto 2rem auto;
+}
+.newuser-form-group {
+  margin-top: 2rem;
+}
+.newuser-form-group p {
+  color: #FFF;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.newuser-form-group h1 {
+  color: #FFF;
+  margin-bottom: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+.create-user-button {
+  background-color: #FFF;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+  border: none;
+  color: #17202A;
+  padding: 10px 32px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+@media(max-width: 1023px) {
+  .newuser-container {
+    width: 95%;
+  }
+  .newuser-form-group h1 {
+    font-size: 1.5rem;
+  }
+  .newuser-form-group p {
+    font-size: 0.9rem;
+  }
+}

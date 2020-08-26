@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import reqURL from './RequestURL';
-import '../CSS/VideoLayout.css';
-
+import reqURL from '../RequestURL';
+import './ReplySection.css';
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
 
@@ -148,28 +147,29 @@ export default class ReplyComments extends Component {
     const { replyList, replyStatement } = this.state;
     return (
       <div>
-        <div className="first-button-set">
-          <button type="submit" className="show-replies text-items reply-buttons" onClick={this.onRepliesShow}>Show Replies </button>
-          <button type="submit" className="show-reply-submit reply-buttons" onClick={this.onReplyClick}> Reply </button>
+        <div className="first-button-set reply-buttons">
+          <button type="submit" className="show-replies" onClick={this.onRepliesShow}>Show Replies </button>
+          <button type="submit" className="show-reply-submit" onClick={this.onReplyClick}> Reply </button>
         </div>
         <div className="reply-container">
           {replyList.map((props) => {
             return (
-              <div key={props.id}>
-                <p className="text-reply"> <b>{props.username[0].toUpperCase() + props.username.slice(1)}</b>: {props.comment} </p>
+              <div key={props.id} className="text-reply">
+                <p> <b>{props.username[0].toUpperCase() + props.username.slice(1)}</b>:</p>
+                <p> {props.comment} </p>
               </div>
             );
           })}
         </div>
-        <div>
+        <div className="reply-buttons">
           <textarea id="reply-text" maxLength="350" className="reply-area" placeholder="Add reply here" onChange={this.handleReplyChange} />
           <p className="reply-counter">{replyStatement.length}/350 character length</p>
-          <button type="submit" className="hide-replies reply-button-cancel reply-buttons" onClick={this.onRepliesHide}>Hide Replies</button>
-          <button type="submit" className="show-reply-submit2 reply-buttons" onClick={this.onReplyClick}> Reply </button>
+          <button type="submit" className="hide-replies reply-button-cancel" onClick={this.onRepliesHide}>Hide Replies</button>
+          <button type="submit" className="show-reply-submit2" onClick={this.onReplyClick}> Reply </button>
         </div>
-        <div>
-          <button type="button" className="cancel-button reply-button-cancel reply-buttons" onClick={this.onReplyCancel}>Cancel</button>
-          <button id="reply-submit" type="submit" className="reply-submit reply-buttons" onClick={this.onReplySubmit}>Submit</button>
+        <div className="reply-buttons">
+          <button type="button" className="cancel-button reply-button-cancel" onClick={this.onReplyCancel}>Cancel</button>
+          <button id="reply-submit" type="submit" className="reply-submit" onClick={this.onReplySubmit}>Submit</button>
           <p id="reply-warning" className="reply-button-cancel email-warning"> Error: must be logged in and reply must be made to accept reply</p>
         </div><br />
       </div>

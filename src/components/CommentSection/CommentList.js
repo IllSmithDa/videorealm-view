@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import ReplyComments from './ReplyComments';
-import reqURL from './RequestURL';
-import '../CSS/VideoLayout.css';
+import ReplyComments from '../ReplySection/ReplyComments';
+import reqURL from '../RequestURL';
+import './CommentSection.css';
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
 
@@ -142,17 +142,20 @@ export default class CommentList extends Component {
       <div>
         <textarea id="comment-textarea" maxLength="350" className="comment-text text-items" onChange={this.handleTextChange} placeholder="Add comment here" />
         <p className="comment-limit">{comment.length}/350 character length</p>
-        <button id="comment-button" type="submit" className="comment-button-item text-items all-buttons" onClick={this.submitComment}>Submit</button>
-        <h4 id="comment-header" className="comments-title text-items"><br /> Comments</h4>
-        {commentList.map((val) => {
-          return (
-            <div className="comments-container" key={val._id}>
-              <p className="text-items"><b>{val.username[0].toUpperCase() + val.username.slice(1)} </b>: {val.comment}</p>
-              <ReplyComments commentIndex={val.commentIndex} commentUsername={commentUsername} />
-            </div>
-          );
-        })}
-        <p id="more-comments" className="more-videos-item" onClick={this.seeMoreComments}> See More Comments</p>
+        <button id="comment-button" type="submit" className="comment-button-item" onClick={this.submitComment}>Submit</button>
+        <div className="written-comments-container">
+          <h1 id="comment-header">Comments</h1>
+          {commentList.map((val) => {
+            return (
+              <div className="comments-container" key={val._id}>
+                <p><b>{val.username[0].toUpperCase() + val.username.slice(1)}:</b></p>
+                <p>{val.comment}</p>
+                <ReplyComments commentIndex={val.commentIndex} commentUsername={commentUsername} />
+              </div>
+            );
+          })}
+          <p id="more-comments" className="more-videos-item" onClick={this.seeMoreComments}> See More Comments</p>
+        </div>
       </div>
     );
   }
