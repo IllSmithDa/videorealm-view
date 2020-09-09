@@ -102,7 +102,7 @@ export default class Navbar extends Component {
   }
 
   render() {
-    const { profileName, accountState, createState, loginState } = this.state;
+    const { profileName, accountState, createState, loginState, userName } = this.state;
     const renderLoginButton = () => {
       if (loginState === 'LOGIN') {
         return (
@@ -121,6 +121,24 @@ export default class Navbar extends Component {
         </div>
       );
     };
+    const renderMobileLogin = () => {
+      if (loginState === 'LOGIN') {
+        return (
+          <div className="dropdown-menu dropdown-container">
+            <a className="dropdown-item" href="/">HOME</a>
+            <span className="dropdown-item" id="login" role="button" tabIndex={0} onClick={this.loginPage}>{loginState}</span>
+            <span className="dropdown-item" id="create-account" role="button" tabIndex={-1} onClick={this.createUser}>SIGN UP FOR FREE</span>
+          </div>
+        );
+      }
+      return (
+        <div className="dropdown-menu dropdown-container">
+          <a className="dropdown-item" href="/">HOME</a>
+          <span className="dropdown-item" id="profile-button" type="submit" role="button" tabIndex={0} onClick={this.myProfile}>{profileName}</span>
+          <span className="dropdown-item" id="loginstate" type="submit" role="button" tabIndex={-1} onClick={this.loginPage}>{loginState}</span>
+        </div>
+      );
+    };
     return (
       <div className="navbar-container">
         <div className="navbar-grid">
@@ -128,7 +146,15 @@ export default class Navbar extends Component {
             <div className="navbar-home-container">
               <img className="navbar-icon-home" alt="home-page" src="https://img.icons8.com/dusk/64/000000/home-page.png" onClick={this.homePage} />
             </div>
-            <div className="navbar-mobile" />
+            <div className="mobile-button-container">
+              <div className="btn-group navbar-mobile-container ">
+                <button type="button" className="mobile-nav-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  &#9776;
+                </button>
+                {renderMobileLogin()}
+              </div>
+              <span>&#9776;</span>
+            </div>
           </div>
           <div>
             <div className="searchbar-grid">
