@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Player, BigPlayButton } from 'video-react';
-import reqURL from './RequestURL';
-import '../CSS/PageLayout.css';
-import '../CSS/VideoLayout.css';
+import reqURL from '../RequestURL';
+import './UserVideoList.css';
 
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
@@ -51,20 +50,23 @@ export default class UserVideoList extends Component {
         throw err;
       });
   }
-
+  goToLink = (link) => {
+    window.location.href = link;
+  }
   render() {
     const { videoList } = this.state;
     return (
-      <div className="video-container">
+      <div className="user-video-container">
         {videoList.map((post) => {
           return (
-            <div key={post.id} className="video-key">
-              <Link to={`/video/${post.videoID}`} className="video-div">
-                <img src={post.videoThumbURL} alt="video-thumb" className="video-preview-item" />
-                <p className="video-videoName">
-                  {post.videoName}
-                </p>
-              </Link>
+            <div key={post.id} className="user-video-item">
+              <img src={post.videoThumbURL} alt="video-thumb" onClick={() => { this.goToLink(`/video/${post.videoID}`)}}/>
+              <div>
+                <span onClick={() => { this.goToLink(`/video/${post.videoID}`)}}>{ post.videoName } </span>
+              </div>
+              <div>
+                <span onClick={() => { this.goToLink(`/profile/${post.userName}`)}}> {post.userName[0].toUpperCase() + post.userName.slice(1)}</span>
+              </div> 
             </div>
           );
         })}

@@ -6,22 +6,32 @@
     background-color: #2E4053;
     border-radius: 1rem;
 }
-.searchpage-container h1 {
+.searchpage-container h1, .searchpage-container p {
     font-family: Times, Arial, Helvetica, sans-serif;
     color: #FFF;
+}
+.searchpage-container h1 {
     font-size: 2rem;
+    margin: 0;
+}
+.searchpage-container p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-decoration: underline;
 }
 .searchpage-video-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr ;
-    column-gap: 1rem;
-    margin-top: 2rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 2rem;
 }
 .searchpage-video-item {
     width: 100%;
+    margin-top: 2rem;
 }
 .searchpage-video-item img {
     width: 100%;
+    border-radius: 5px;
     cursor: pointer;
 }
 

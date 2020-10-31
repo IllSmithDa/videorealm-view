@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Navbar from './Navbar/Navbar';
-import Footer from './Footer/Footer';
-import LoadingAnimation from './LoadingAnimation';
-import UserVideoList from './UserVideoList';
-import reqURL from './RequestURL';
-import '../CSS/LoadingAnimation.css';
-import '../CSS/PageLayout.css';
-import '../CSS/Profile.css';
-import '../CSS/VideoLayout.css';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
+import LoadingAnimation from '../LoadingAnimation';
+import UserVideoList from '../UserVideoList/UserVideoList';
+import reqURL from '../RequestURL';
+import './Profile.css';
+
 
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;
@@ -134,11 +132,11 @@ export default class Profile extends Component {
     return (
       <div>
         <Navbar />
-        <div className="Page-Container">
-          <h1 className="profile-title app-title-item">{profileName}</h1>
+        <div className="profilepage-container">
+          <h1>{profileName}</h1>
           <div className="profile-image-container">
             <button id="userImageUpload" type="submit" className="image-button" onClick={this.openImageModal}>Update Profile Picture</button>
-            <img className="profile-image" src={profilePictureSrc} alt="profilePicture" />
+            <img src={profilePictureSrc} alt="profilePicture" />
           </div>
           <div id="imageUploadModal" className="image-modal">
             <div className="modal-content">
@@ -161,7 +159,7 @@ export default class Profile extends Component {
               </form>
             </div>
           </div>
-          <h1 className="profile-title app-title-item"> {profileName}&apos;s Videos</h1>
+          <h1> {profileName}&apos;s Videos</h1>
           <UserVideoList username={currentUsername} />
         </div><br /><br /><br />
         <Footer />
