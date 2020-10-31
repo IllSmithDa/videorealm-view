@@ -5,7 +5,7 @@
 .navbar-grid {
   display: grid;
   grid-template-columns: 40px 1fr 250px;
-  width: 80%;
+  width: 1023px;
   margin:auto;
   height: 100%;
 }
@@ -43,7 +43,7 @@
 
 .navbar-home-container img{
   width: 30px;
-  height: 30px;
+  height: 30  px;
   cursor: pointer;
 }
 .searchbar-container input {
@@ -108,23 +108,21 @@
   background-color: #2E4053;
   width: 250px;
 }
-@media(max-width: 1200px) {
-  .navbar-grid {
-    width: 90%;
-  }
 
-}
 
-@media(max-width: 850px) {
+@media(max-width: 1023px) {
   .navbar-grid {
     width: 96%;
-    grid-template-columns: 50px 1fr;
+    display: flex;
+    justify-content: space-between;
   }
   .searchbar-container { 
+    padding-right:0.5rem;
     width: 100%;
   }
   .searchbar-container input {
-    width: 88%;
+    width: 350px;
+    
   }
   .navbar-header, .account-container, .navbar-home-container{
     display: none;

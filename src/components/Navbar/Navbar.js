@@ -153,7 +153,6 @@ export default class Navbar extends Component {
                 </button>
                 {renderMobileLogin()}
               </div>
-              <span>&#9776;</span>
             </div>
           </div>
           <div>

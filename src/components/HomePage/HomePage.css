@@ -1,5 +1,5 @@
 .homepage-container {
-  width: 80%;
+  width: 1023px;
   margin: auto;
   padding-bottom: 2rem;
 }
@@ -55,7 +55,7 @@
 }
 
 
-@media(max-width: 850px) {
+@media(max-width: 1023px) {
   .title-container h1 {
     font-size: 1.3rem;
   }
