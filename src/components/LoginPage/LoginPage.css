@@ -37,3 +37,8 @@
 .login-link-group p {
   margin-top: 1rem;
 }
+@media(max-width: 1023px) {
+  .login-page-container {
+    width: 90%;
+  }
+}
