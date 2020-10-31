@@ -1,12 +1,14 @@
 .video-page-container {
   width: 60%;
   margin: auto;
+  padding-top: 1rem;
 }
 .video-title {  
-  margin-bottom: 3rem;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 2.5rem;
-  font-weight: 700;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-family: Times, Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
   color: #FFF;
 }
 
@@ -100,19 +102,17 @@ input[type=range]::-moz-range-thumb {
   cursor: pointer;
 }
 .profile-link-container {
-  padding-left: 0.5rem;
   padding-top: 0.5rem;
 }
 .profile-link-container span {
   color: #FFF;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Times, Arial, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 1.2rem;
 }
 .video-date-item, .video-view-counter {
   color: #FFF;
-  font-family: Arial, Helvetica, sans-serif;
-  padding-left: 0.5rem;
+  font-family: Times, Arial, Helvetica, sans-serif;
   padding-top: 0.5rem;
 }
 .comment-comp-container, .footer-comp-container {

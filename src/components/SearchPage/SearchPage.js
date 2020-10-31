@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Player, BigPlayButton } from 'video-react';
 import axios from 'axios';
-import ReqUrl from './RequestURL';
-import Navbar from './Navbar/Navbar';
-import Footer from './Footer/Footer';
-import '../CSS/PageLayout.css';
+import ReqUrl from '../RequestURL';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
+import './SearchPage.css';
 
 axios.defaults.withCredentials = true;
 
@@ -69,26 +69,27 @@ export default class SearchPage extends Component {
         throw err;
       });
   }
-
+  goToLink = (link) => {
+    window.location.href = link;
+  }
   render() {
     const { videoList, searchItem } = this.state;
     return (
       <div>
         <Navbar />
-        <div className="Page-Container">
-          <h2 id="results" className="search-title">Search Results for &#39;{searchItem}&#39; </h2>
-          <div className="video-container">
+        <div className="searchpage-container">
+          <h1>Search Results for &#39;{searchItem}&#39; </h1>
+          <div className="searchpage-video-container">
             {videoList.map((post) => {
               return (
-                <div key={post.id} className="video-key">
-                  <Link to={`/video/${post.videoID}`} className="video-div" preload="none">
-                    <Player src={post.videoURL}>
-                      <BigPlayButton position="center" />
-                    </Player>
-                    <p className="video-videoName">{post.videoName} <br />
-                      {post.userName[0].toUpperCase() + post.userName.slice(1)}
-                    </p>
-                  </Link>
+                <div key={post.id} className="searchpage-video-item">
+                  <img src={post.videoThumbURL} alt="video-thumb" onClick={() => { this.goToLink(`/video/${post.videoID}`)}}/>
+                  <div>
+                    <span onClick={() => { this.goToLink(`/video/${post.videoID}`)}}>{ post.videoName } </span>
+                  </div>
+                  <div>
+                    <span onClick={() => { this.goToLink(`/profile/${post.userName}`)}}> {post.userName[0].toUpperCase() + post.userName.slice(1)}</span>
+                  </div> 
                 </div>
               );
             })}

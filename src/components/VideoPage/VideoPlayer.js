@@ -191,7 +191,6 @@ export default class VideoPlayer extends Component {
       <div>
         <Navbar />
         <div className="video-page-container">
-          <h1 className="video-title"><b>{ videoName }</b> </h1>
           <div>
             <video
               id="video-player"
@@ -253,6 +252,7 @@ export default class VideoPlayer extends Component {
             </div>
           </div>
           <div>
+          <h1 className="video-title"><b>{ videoName }</b> </h1>
             <Link className="profile-link-container" to={`/profile/${uploaderProfileName}`}>
               <span>{videoUploader}</span>
             </Link>

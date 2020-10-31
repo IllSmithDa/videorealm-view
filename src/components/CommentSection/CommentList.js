@@ -69,7 +69,7 @@ export default class CommentList extends Component {
     const { comment, userName } = this.state;
     if (!(/\S/).test(comment) || userName === '' || comment === '') {
       document.getElementById('comment-button').disabled = true;
-      document.getElementById('comment-button').style.backgroundColor = 'lightblue';
+      document.getElementById('comment-button').style.backgroundColor = '#AAABB8';
     }
   }
 

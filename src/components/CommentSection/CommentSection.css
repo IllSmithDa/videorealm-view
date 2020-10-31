@@ -4,33 +4,35 @@
   font-weight: 700;
   font-family: Arial, Helvetica, sans-serif;
   border: none;
-  color: #17202A;
+  color: #FFF;
   padding: 10px 32px;
   border-radius: 5px;
   text-decoration: none;
   margin-top: 0.5rem;
-  margin-left: 0.5rem;
   cursor: pointer;
 }
 .comment-limit {
   color: #FFF;
 }
-.comments-container {
-  background-color: #2E4053;
-}
+
 .written-comments-container {
   background-color: #2E4053;
   border-radius: 1rem;
   margin-top: 2rem;
-  padding: 1rem;
+  padding: 2rem;
 }
 .written-comments-container h1 {
   color: #FFF;
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
+  font-family: Times, Arial, Helvetica, sans-serif;
 }
 .comments-container {
   color: #FFF;
   font-size: 1.1rem;
-  margin: 1rem;
+  margin-top: 1rem;
+  background-color: #2E4053;
+}
+.comments-container p {
+  font-family: Times, Arial, Helvetica, sans-serif;
 }

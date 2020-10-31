@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, configure } from 'enzyme';
 import { expect } from 'chai';
 import Adapter from 'enzyme-adapter-react-16';
-import HomePage from '../components/HomePage';
+import HomePage from '../components/HomePage/HomePage';
 
 configure({ adapter: new Adapter() });
 const wrapper = shallow(<HomePage />);

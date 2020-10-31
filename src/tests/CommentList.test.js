@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { mount, configure, shallow } from 'enzyme';
 import sinon from 'sinon';
 import Adapter from 'enzyme-adapter-react-16';
-import CommentList from '../components/CommentList';
+import CommentList from '../components/CommentSection/CommentList';
 
 configure({ adapter: new Adapter() });
 

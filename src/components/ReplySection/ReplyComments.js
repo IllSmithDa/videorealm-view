@@ -23,7 +23,7 @@ export default class ReplyComments extends Component {
   componentDidMount() {
     const { commentIndex, commentUsername } = this.props;
     document.getElementsByClassName('reply-submit')[commentIndex].disabled = true;
-    document.getElementsByClassName('reply-submit')[commentIndex].style.backgroundColor = 'lightblue';
+    document.getElementsByClassName('reply-submit')[commentIndex].style.backgroundColor = '#AAABB8';
 
     if (commentUsername === '') {
       document.getElementsByClassName('reply-area')[commentIndex].disabled = true;
@@ -38,11 +38,14 @@ export default class ReplyComments extends Component {
     axios.post(`${reqURL}/getVideo`, reqVideoID)
       .then((videoData) => {
         // console.log('replies', videoData.data.comments[this.state.commentIndex].replies);
+        if (videoData.data.comments[commentIndex].replies.length === 0) {
+          document.getElementsByClassName('show-replies')[commentIndex].style.display = 'none';
+        }
         this.setState({
           videoUploader: videoData.data.userName,
           replyList: videoData.data.comments[commentIndex].replies,
         });
-        // console.log('uploader', this.state.videoUploader)
+        // console.log('uploader', this.state.videoUploader
       })
       .catch((err) => {
         throw err;
@@ -54,10 +57,10 @@ export default class ReplyComments extends Component {
     const { commentUsername, commentIndex } = this.props;
     if (commentUsername !== '' && replyStatement !== '') {
       document.getElementsByClassName('reply-submit')[commentIndex].disabled = false;
-      document.getElementsByClassName('reply-submit')[commentIndex].style.backgroundColor = 'rgb(50, 156, 255)';
+      document.getElementsByClassName('reply-submit')[commentIndex].style.backgroundColor = '#17202A';
     } else {
       document.getElementsByClassName('reply-submit')[commentIndex].disabled = true;
-      document.getElementsByClassName('reply-submit')[commentIndex].style.backgroundColor = 'lightblue';
+      document.getElementsByClassName('reply-submit')[commentIndex].style.backgroundColor = '#AAABB8';
     }
   }
 
@@ -79,12 +82,19 @@ export default class ReplyComments extends Component {
 
   onReplyCancel = () => {
     const { commentIndex } = this.props;
+    const { replyList } = this.state;
+    if (replyList.length === 0) {
+      document.getElementsByClassName('show-reply-submit')[commentIndex].style.display = 'inline';
+      document.getElementsByClassName('hide-replies')[commentIndex].style.display = 'none';
+      document.getElementsByClassName('show-reply-submit2')[commentIndex].style.display = 'none';
+    } else  {
+      document.getElementsByClassName('hide-replies')[commentIndex].style.display = 'inline';
+      document.getElementsByClassName('show-reply-submit2')[commentIndex].style.display = 'inline';
+      document.getElementsByClassName('reply-submit')[commentIndex].style.display = 'none';
+    }
     document.getElementsByClassName('cancel-button')[commentIndex].style.display = 'none';
     document.getElementsByClassName('reply-area')[commentIndex].style.display = 'none';
     document.getElementsByClassName('reply-submit')[commentIndex].style.display = 'none';
-    document.getElementsByClassName('show-reply-submit')[commentIndex].style.display = 'none';
-    document.getElementsByClassName('hide-replies')[commentIndex].style.display = 'inline';
-    document.getElementsByClassName('show-reply-submit2')[commentIndex].style.display = 'inline';
     document.getElementsByClassName('reply-counter')[commentIndex].style.display = 'none';
   }
 
@@ -170,8 +180,7 @@ export default class ReplyComments extends Component {
         <div className="reply-buttons">
           <button type="button" className="cancel-button reply-button-cancel" onClick={this.onReplyCancel}>Cancel</button>
           <button id="reply-submit" type="submit" className="reply-submit" onClick={this.onReplySubmit}>Submit</button>
-          <p id="reply-warning" className="reply-button-cancel email-warning"> Error: must be logged in and reply must be made to accept reply</p>
-        </div><br />
+        </div>
       </div>
     );
   }

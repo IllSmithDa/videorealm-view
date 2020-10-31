@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { mount, configure, shallow } from 'enzyme';
 import sinon from 'sinon';
 import Adapter from 'enzyme-adapter-react-16';
-import CreateUser from '../components/CreateUser';
+import CreateUser from '../components/CreateUserPage/CreateUser';
 
 configure({ adapter: new Adapter() });
 

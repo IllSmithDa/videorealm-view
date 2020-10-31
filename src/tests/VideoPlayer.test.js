@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { mount, configure, shallow } from 'enzyme';
 import sinon from 'sinon';
 import Adapter from 'enzyme-adapter-react-16';
-import VideoPlayer from '../components/VideoPlayer';
+import VideoPlayer from '../components/VideoPage/VideoPlayer';
 
 configure({ adapter: new Adapter() });
 
