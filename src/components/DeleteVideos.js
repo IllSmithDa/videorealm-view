@@ -4,7 +4,6 @@ import { Player, BigPlayButton } from 'video-react';
 import { Link } from 'react-router-dom';
 import reqURL from './RequestURL';
 import '../CSS/VideoLayout.css';
-import '../CSS/PageLayout.css';
 
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;

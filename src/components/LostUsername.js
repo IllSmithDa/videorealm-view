@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar/Navbar';
 import reqURL from './RequestURL';
-import '../CSS/PageLayout.css';
 
 export default class LostPassword extends Component {
   constructor() {

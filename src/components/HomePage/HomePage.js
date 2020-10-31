@@ -49,7 +49,7 @@ export default function HomePage() {
           <h1>Latest Videos </h1>
           <AllVideos />
         </div>
-      </div>
+      </div><br /><br /><br />
       <Footer />
     </div>
   );

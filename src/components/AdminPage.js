@@ -5,7 +5,6 @@ import Footer from './Footer/Footer';
 import reqURL from './RequestURL';
 import DeleteAllVid from './DeleteAllVid';
 import AllVideos from './AllVIdeos/AllVideos';
-import '../CSS/PageLayout.css';
 import '../CSS/Profile.css';
 
 

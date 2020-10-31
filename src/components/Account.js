@@ -10,7 +10,6 @@ import { addUsername, addDisplayname, checkLoginState } from '../actions';
 import AccountVideos from './AccountVideos';
 import DeleteVideos from './DeleteVideos';
 import '../CSS/LoadingAnimation.css';
-import '../CSS/PageLayout.css';
 import '../CSS/VideoLayout.css';
 // add credentials or else the session will not be saved
 axios.defaults.withCredentials = true;

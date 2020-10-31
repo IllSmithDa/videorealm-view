@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import reqURL from './RequestURL';
-import '../CSS/PageLayout.css';
 import '../CSS/VideoLayout.css';
 
 // add credentials or else the session will not be saved
