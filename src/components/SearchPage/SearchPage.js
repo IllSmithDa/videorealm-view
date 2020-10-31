@@ -95,7 +95,7 @@ export default class SearchPage extends Component {
             })}
           </div>
           <p id="more-results" className="more-videos-item" onClick={this.seeMoreResults}> See More videos </p>
-        </div><br /><br /><br />
+        </div>
         <Footer />
       </div>
     );

@@ -2,9 +2,11 @@
     width: 80%; 
     margin: auto;
     margin-top: 2rem;
+    margin-bottom: 2rem;
     padding: 2rem;
     background-color: #2E4053;
     border-radius: 1rem;
+    min-height: 100vh;
 }
 .searchpage-container h1, .searchpage-container p {
     font-family: Times, Arial, Helvetica, sans-serif;

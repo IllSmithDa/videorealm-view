@@ -3,6 +3,7 @@
     margin: auto;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    min-height: 100vh;
 }
 .profilepage-container h1{
     color: #FFF;
