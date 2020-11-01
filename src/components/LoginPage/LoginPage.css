@@ -1,13 +1,15 @@
 
 .login-page-container {
-  width: 60%;
+  width: 1023px;
   margin: auto;
-  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .app-title-item {
   color: #FFF;
-  margin-left: 0.5rem;
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
 }
 .form-group {
@@ -15,30 +17,31 @@
 }
 .form-group p {
   color: #FFF;
-  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .user-login-button {
-  background-color: #FFF;
+  background-color: #ADD8E6;
   font-size: 1rem;
   font-weight: 700;
   font-family: Arial, Helvetica, sans-serif;
   border: none;
-  color: #17202A;
+  color: #212529;
   padding: 10px 32px;
   border-radius: 5px;
   text-decoration: none;
   margin-top: 0.5rem;
-  margin-left: 0.5rem;
   cursor: pointer;
+  width: 200px;
 }
-.login-link-group {
-  padding-left: 0.5rem;
-}
+
 .login-link-group p {
   margin-top: 1rem;
 }
 @media(max-width: 1023px) {
   .login-page-container {
     width: 90%;
+  }
+  .app-title-item {
+    font-size: 1.3rem;
   }
 }

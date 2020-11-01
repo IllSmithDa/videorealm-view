@@ -5,9 +5,11 @@
 .navbar-grid {
   display: grid;
   grid-template-columns: 40px 1fr 250px;
+  grid-gap: 1rem;
   width: 1023px;
   margin:auto;
   height: 100%;
+  
 }
 .navbar-home-container, .account-container{
   display: flex;
@@ -15,8 +17,15 @@
   justify-content: center;
   height: 60px;
 }
+
 .navbar-home-container {
   align-items:left;
+  margin-right: 1rem;
+}
+.navbar-home-container img {
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
 }
 .account-container{
   text-align: right;
@@ -41,9 +50,9 @@
   background-color: #FFF;
 }
 
-.navbar-home-container img{
+.searchbar-container img {
   width: 30px;
-  height: 30  px;
+  height: 30px;
   cursor: pointer;
 }
 .searchbar-container input {
@@ -56,11 +65,18 @@
   border: 0;
   outline: none;
 }
-.searchbar-container img {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  text-decoration: none;
+.searchbar-container-mobile {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: auto 0 auto 0;
+  width: 42px;
+  height: 42px;
+  
+}
+.searchbar-container-mobile img {
+  display: none;
 }
 
 #create-account {
@@ -107,21 +123,40 @@
 .dropdown-container {
   background-color: #2E4053;
   width: 250px;
+  margin-right: 100px;
 }
 
 
 @media(max-width: 1023px) {
   .navbar-grid {
-    width: 96%;
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
+    display: block;
+  }
+  .searchbar-grid {
+    width: 98%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 50px 50px;
+    grid-gap: 0.3rem;
+  }
+  .searchbar-container-mobile img {
+    display: block;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .dropdown-menu {
+    left: -100px;
   }
   .searchbar-container { 
-    padding-right:0.5rem;
     width: 100%;
   }
+  .searchbar-container img{ 
+    display: none;  
+  }
   .searchbar-container input {
-    width: 350px;
+    width: 100%;
     
   }
   .navbar-header, .account-container, .navbar-home-container{
@@ -144,7 +179,7 @@
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
     font-weight: bold;  
-    margin:0;
+    margin-left:0;
 
   }
 }

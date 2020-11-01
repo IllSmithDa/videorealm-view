@@ -12,6 +12,7 @@
  }
  .video-item span {
    color: #FFF;
+   font-family: TImes, Arial, Helvetica, sans-serif;
  }
 .more-pop-videos {
   padding-top: 1rem;
@@ -20,16 +21,23 @@
   color:  #aed6f1;
   cursor: pointer;
   margin-top: 1rem;
+  outline:none;
+}
+.more-pop-videos span:hover{
+  text-decoration: underline;
 }
 .video-header {
   padding-top: 0.5rem;
 }
 .video-header span {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-family: Times, Arial, Helvetica, sans-serif;
 }
 @media(max-width: 1023px) {
   .pop-video-container {
     display: block;
+  }
+  .video-header span {
+  font-size: 1.2rem;
   }
 }

@@ -1,5 +1,4 @@
 .text-reply {
-  padding-left: 2rem;
   margin: 1rem;
 }
 .reply-buttons {
@@ -10,7 +9,7 @@
   color: #FFF;
   font-size: 1rem;
   font-weight: 700;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Times, Arial, Helvetica, sans-serif;
   border: none;
   padding: 8px 20px;
   border-radius: 5px;
@@ -18,4 +17,9 @@
   outline: none;
   margin-right: 0.5rem;
   cursor: pointer;
+}
+@media(max-width: 1023px) {
+  .reply-buttons button{
+    font-size: 0.9rem;
+  }
 }

@@ -104,10 +104,10 @@ export default class VideoPlayer extends Component {
     if (videoDoc.paused) {
       // play video and change text to Pause
       videoDoc.play();
-      playButton.src = require('../assets/pausebutton.png');
+      playButton.src = require('../assets/pause.png');
     } else {
       videoDoc.pause();
-      playButton.src = require('../assets/playbutton2.png');
+      playButton.src = require('../assets/playButton.png');
     }
   }
 
@@ -148,7 +148,7 @@ export default class VideoPlayer extends Component {
     const playButton = document.getElementById('play-pause');
     if (curtimetext.innerHTML === durtimetext.innerHTML) {
       // sets seeker back to beginning of video and turns pause into play
-      playButton.src = require('../assets/playbutton2.png');
+      playButton.src = require('../assets/playButton.png');
       seekSlider.value = 0;
     }
   }
@@ -164,10 +164,10 @@ export default class VideoPlayer extends Component {
     const muteButton = document.getElementById('mute-button');
     if (videoDoc.muted) {
       videoDoc.muted = false;
-      muteButton.src = require('../assets/mutebutton.png');
+      muteButton.src = require('../assets/muteOff.png');
     } else {
       videoDoc.muted = true;
-      muteButton.src = require('../assets/unmutebutton.png');
+      muteButton.src = require('../assets/muteOn.png');
     }
   }
 
@@ -205,7 +205,7 @@ export default class VideoPlayer extends Component {
             </video>
             <div id="video-controls" className="video-control-container">
               <img
-                src={require('../assets/playbutton2.png')}
+                src={require('../assets/playButton.png')}
                 alt="play-button"
                 className="play-icon"
                 onClick={this.playVideo}
@@ -224,7 +224,7 @@ export default class VideoPlayer extends Component {
                 </div>
               </div>
               <img
-                src={require('../assets/mutebutton.png')}
+                src={require('../assets/muteOff.png')}
                 className="mute-icon"
                 alt="mute-button"
                 id="mute-button"

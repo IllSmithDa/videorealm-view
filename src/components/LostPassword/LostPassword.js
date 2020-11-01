@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Navbar from './Navbar/Navbar';
-import reqURL from './RequestURL';
-
+import Navbar from '../Navbar/Navbar';
+import reqURL from '../RequestURL';
+import Footer from '../Footer/Footer';
+import "./LostPassword.css";
 export default class LostPassword extends Component {
   constructor() {
     super();
@@ -135,8 +136,10 @@ export default class LostPassword extends Component {
     return (
       <div>
         <Navbar />
-        <div className="Page-Container">
-          <h1 className="upload-title app-title-item "> Lost Password Retrieval</h1>
+        <div className="lostpw-container">
+          <div>
+            <h1> Lost Password Retrieval</h1>
+          </div>
           <div id="stage-1" className="add-margins">
             <p>
               <b><br />Please enter your account associated email here and a key for resetting your
@@ -185,6 +188,7 @@ export default class LostPassword extends Component {
             <p><b> Your have successfully reset your password. Please user your new password to log into your account</b></p>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

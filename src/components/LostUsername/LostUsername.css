@@ -1,0 +1,39 @@
+.lostuser-container {
+    min-height: 100vh;
+    width: 1023px;
+    margin:auto;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: left;
+}
+.lostuser-container p {
+    margin-bottom: 1rem;
+}
+.lostuser-container button{
+  background-color: #ADD8E6;
+  color:#212529;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: Times, Arial, Helvetica, sans-serif;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  outline: none;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+.lostuser-container input{
+  width: 100%;
+}
+
+.hide-element, #email-error, #badPassword, #repPassword, #key-error {
+    display: none;
+}
+@media(max-width: 1023px ) {
+    .lostuser-container {
+        max-width: 94%;
+    }
+}

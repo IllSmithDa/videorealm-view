@@ -2,7 +2,7 @@
   background-color: #aed6f1;
   font-size: 1rem;
   font-weight: 700;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Times, Arial, Helvetica, sans-serif;
   border: none;
   color: #FFF;
   padding: 10px 32px;
@@ -14,7 +14,9 @@
 .comment-limit {
   color: #FFF;
 }
-
+.comment-text {
+  width: 100%;
+}
 .written-comments-container {
   background-color: #2E4053;
   border-radius: 1rem;
@@ -23,8 +25,8 @@
 }
 .written-comments-container h1 {
   color: #FFF;
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 600;
   font-family: Times, Arial, Helvetica, sans-serif;
 }
 .comments-container {
@@ -32,7 +34,23 @@
   font-size: 1.1rem;
   margin-top: 1rem;
   background-color: #2E4053;
+  font-family: Times, Arial, Helvetica, sans-serif;
 }
 .comments-container p {
   font-family: Times, Arial, Helvetica, sans-serif;
+}
+
+@media(max-width: 1023px) {
+  .written-comments-container h1 {
+    font-size: 1.2rem;
+  }
+  .comments-container {
+    font-size: 0.9rem;
+  }
+  .comment-button-item { 
+    font-size: 0.9rem;
+  }
+  .written-comments-container {
+    margin-top: 1rem;
+  }
 }

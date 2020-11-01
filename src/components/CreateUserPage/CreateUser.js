@@ -166,7 +166,7 @@ export default class CreateUser extends Component {
             <h1> Create Your Videorealm Account </h1>
             <p className="text-items" htmlFor="name" id="username-message"> <b>Choose your username:</b></p>
             <p className="form-input">
-              <b>Username must be minumum 3 character with at least one letter. Cannot user special characters for username.</b>
+              Username must be minumum 3 character with at least one letter. Cannot user special characters for username.
             </p>
             <input type="name" maxLength="30" className="form-control form-input" id="name" value={usermame} onChange={this.handleSetUsername} />
             <p id="shortUsername" className="email-warning text-items">
@@ -176,11 +176,10 @@ export default class CreateUser extends Component {
             <p id="badUsername" className="email-warning text-items">Error: Username already exists</p>
           </div>
           <div className="newuser-form-group">
-            <p className="text-items" htmlFor="pwd"><b>Create your password:</b></p>
+            <p className="text-items" htmlFor="pwd"><b>Create your password:</b> </p>
             <p className="form-input">
-              <b>Password must be minimum 8 characters long and must include at least one number,
-                one letter and one special character
-              </b>
+              Password must be minimum 8 characters long and must include at least one number,
+              one letter and one special character
             </p>
             <input type="password" maxLength="50" className="form-control form-input" value={password} onChange={this.handleSetPassword} />
             <p id="badPassword" className="email-warning text-items">Error: Password does not meet criterias
@@ -202,9 +201,11 @@ export default class CreateUser extends Component {
             <input type="password" maxLength="50" className="form-control form-input" id="secretkey" value={secretKey} onChange={this.handleSecretKey} />
             <p id="badkey" className="email-warning text-items">That is not a correct beta key</p>
           </div><br />
-          <button type="submit" className="create-user-button" id="submit-button" onClick={this.requestKey}>Request Beta Key</button>
-          <button type="submit" className="create-user-button" id="submit-button" onClick={this.createUser}>Submit</button>
-        </div><br /><br /><br />
+          <div>
+            <button type="submit" className="create-user-button" id="submit-button" onClick={this.requestKey}>Request Beta Key</button>
+            <button type="submit" className="create-user-button" id="submit-button" onClick={this.createUser}>Submit</button>
+          </div>
+        </div>
         <Footer />
       </div>
     );

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import * as EmailValidator from 'email-validator';
 import axios from 'axios';
-import Navbar from './Navbar/Navbar';
-import reqURL from './RequestURL';
+import Footer from '../Footer/Footer';
+import Navbar from '../Navbar/Navbar';
+import reqURL from '../RequestURL';
+import './RequestKey.css'
 
 export default class RequestKey extends Component {
   constructor() {
@@ -43,7 +45,7 @@ export default class RequestKey extends Component {
     return (
       <div>
         <Navbar />
-        <div className="Page-Container">
+        <div className="reqkey-container">
           <h1 id="form-sucess" className="app-title-item add-bottom-margins hide-element"> Thank You for your participation!.
           An email will be sent to you if you are selected for the beta
           </h1>
@@ -62,6 +64,7 @@ export default class RequestKey extends Component {
             <button type="submit" className="reply-buttons add-margins" onClick={this.sendEmail}>Submit</button>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

@@ -77,9 +77,9 @@ class Login extends Component {
           </p>
           <button type="submit" className="user-login-button" onClick={this.loginUser}>Submit</button>
           <div className="login-link-group">
-            <Link to="/lostusername"><p>Forgot Username? </p></Link>
-            <Link to="/lostpassword"><p>Forgot Password? </p></Link>
-            <Link to="/createUser"><p> Sign Up For Free</p></Link>
+            <p><a href="/lostusername">Forgot Username? </a></p>
+            <p><a href="/lostpassword">Forgot Password? </a></p>
+            <p><a href="/createUser">Sign Up For Free  </a></p>
           </div>
         </div>
         <Footer />

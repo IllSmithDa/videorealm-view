@@ -19,21 +19,31 @@
 .more-all-videos span{
   color:  #aed6f1;
   cursor: pointer;
+  outline: none;
 }
+.more-all-videos span:hover{
+  text-decoration: underline;
+}
+
 .all-videos-header {
   margin-top: 0.5rem;
 }
 .all-videos-header span {
   color: #FFF;
-  font-size: 1.1rem;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 700;
+  font-size: 1rem;
+  font-family: TImes, Arial, Helvetica, sans-serif;
+  font-weight: 600;
 }
 .all-videos-username span {
   color: #FFF;
+  font-size: 1rem;
+  font-family: TImes, Arial, Helvetica, sans-serif;
 }
 @media(max-width: 1023px) {
   .all-videos-container {
     display: block;
+  }
+  .all-videos-header span {
+    font-size: 1.2rem;
   }
 }

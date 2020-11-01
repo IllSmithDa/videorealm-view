@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Navbar from './Navbar/Navbar';
-import reqURL from './RequestURL';
+import Footer from '../Footer/Footer';
+import Navbar from '../Navbar/Navbar';
+import reqURL from '../RequestURL';
+import './LostUsername.css'
 
-export default class LostPassword extends Component {
+export default class LostUsername extends Component {
   constructor() {
     super();
     this.state = {
@@ -78,7 +80,7 @@ export default class LostPassword extends Component {
     return (
       <div>
         <Navbar />
-        <div className="Page-Container">
+        <div className="lostuser-container">
           <h1 className="upload-title app-title-item "> Lost Username Retrieval</h1>
           <div id="stage-1" className="add-margins">
             <p>
@@ -110,6 +112,7 @@ export default class LostPassword extends Component {
             <p> Your username is: <b>{userName}</b></p>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

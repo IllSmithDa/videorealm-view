@@ -1,16 +1,11 @@
 .footer-container {
   width: 100%;
-  min-height: 100px;
+  min-height: 200px;
   background-color: #17202A;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 1rem;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 .footer-section {
   text-align: left;
   padding-top: 1.5rem;
@@ -31,16 +26,35 @@
   color: #FFF;
 }
 .trademark-set {  
-  width: 80%;
+  width: 1023px;
   margin: auto;
   text-align: center;
-  padding: 2rem;
-}
-.trademark-set p{
+  padding-top: 2rem;
   color: #FFF;
 }
-@media all and (max-width: 850px) {
+.icon-grid-set {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.trademark-set div {
+  margin: 1rem;
+}
+.trademark-set div p{
+  color: #FFF;
+}
+@media all and (max-width: 1023px) {
   .footer-grid {
     display:block;
+  }
+  .trademark-set {  
+    width: 96%;
+    padding: 1rem;
+  }
+  .icon-grid-set { 
+    display: block;
+    font-size: 0.8rem;
+  }
+  .trademark-set p {
+    font-size: 0.8rem;
   }
 }

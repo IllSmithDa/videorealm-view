@@ -9,10 +9,10 @@ import CreateUser from './components/CreateUserPage/CreateUser';
 import AdminPage from './components/AdminPage';
 import VideoPlayer from './components/VideoPage/VideoPlayer';
 import SearchPage from './components/SearchPage/SearchPage';
-import ErrorPage from './components/Errorpage';
-import LostPassword from './components/LostPassword';
-import LostUsername from './components/LostUsername';
-import RequestKey from './components/RequestKey';
+import ErrorPage from './components/Errorpage/Errorpage';
+import LostPassword from './components/LostPassword/LostPassword';
+import LostUsername from './components/LostUsername/LostUsername';
+import RequestKey from './components/RequestKey/RequestKey';
 import './CSS/App.css';
 
 axios.defaults.withCredentials = true;

@@ -144,22 +144,25 @@ export default class Navbar extends Component {
         <div className="navbar-grid">
           <div>
             <div className="navbar-home-container">
-              <img className="navbar-icon-home" alt="home-page" src="https://img.icons8.com/dusk/64/000000/home-page.png" onClick={this.homePage} />
-            </div>
-            <div className="mobile-button-container">
-              <div className="btn-group navbar-mobile-container ">
-                <button type="button" className="mobile-nav-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  &#9776;
-                </button>
-                {renderMobileLogin()}
-              </div>
+              <img className="navbar-icon-home" alt="home-page" src={require("../assets/videorealm-icon.png")} onClick={this.homePage} />
             </div>
           </div>
           <div>
             <div className="searchbar-grid">
               <div className="searchbar-container">
                 <input id="search-field" maxLength="350" type="text" onChange={this.handleSearchTerm} placeholder="Search for videos" />
-                <img className="navbar-icon-item" alt="search-video" onClick={this.searchForVideos} src="https://img.icons8.com/doodle/48/000000/search--v1.png" />
+                 <img alt="search-video" onClick={this.searchForVideos} src={require("../assets/search.png")} />
+              </div>
+              <div className="searchbar-container-mobile">
+                <img alt="search-video" onClick={this.searchForVideos} src={require("../assets/search.png")} />
+              </div>
+              <div className="mobile-button-container">
+                <div className="btn-group navbar-mobile-container ">
+                  <button type="button" className="mobile-nav-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    &#9776;
+                  </button>
+                  {renderMobileLogin()}
+                </div>
               </div>
             </div>
           </div>
