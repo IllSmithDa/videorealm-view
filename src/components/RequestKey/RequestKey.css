@@ -31,4 +31,7 @@
     .reqkey-container {
         max-width: 94%;
     }
+    .reqkey-container h1{
+        font-size: 1.2rem;
+    }
 }

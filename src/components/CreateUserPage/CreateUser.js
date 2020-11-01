@@ -202,7 +202,7 @@ export default class CreateUser extends Component {
             <p id="badkey" className="email-warning text-items">That is not a correct beta key</p>
           </div><br />
           <div>
-            <button type="submit" className="create-user-button" id="submit-button" onClick={this.requestKey}>Request Beta Key</button>
+            <button type="submit" className="create-user-button" id="submit-button" onClick={this.requestKey}>Get Beta Key</button>
             <button type="submit" className="create-user-button" id="submit-button" onClick={this.createUser}>Submit</button>
           </div>
         </div>
