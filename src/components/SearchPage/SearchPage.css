@@ -6,7 +6,7 @@
     padding: 1rem;
     background-color: #2E4053;
     border-radius: 1rem;
-    min-height: 100vh;
+    min-height: 90vh;
 }
 .searchpage-container h1, .searchpage-container p {
     font-family: Times, Arial, Helvetica, sans-serif;
@@ -58,6 +58,8 @@
     }
     .searchpage-video-container {
         display: block;
-;
+    }
+    .searchpage-container h1 {
+        font-size: 1.3rem;
     }
 }
