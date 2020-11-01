@@ -115,10 +115,11 @@
 .mobile-nav-button{
   width: 40px;
   height: 40px;
-  background-color: #17202A;
+  background-color: #2E4053;
   color: #FFF;
   border: none;
   outline: none;
+  border-radius: 5px;
 }
 .dropdown-container {
   background-color: #2E4053;

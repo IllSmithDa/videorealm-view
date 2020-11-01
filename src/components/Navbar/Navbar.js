@@ -151,7 +151,7 @@ export default class Navbar extends Component {
             <div className="searchbar-grid">
               <div className="searchbar-container">
                 <input id="search-field" maxLength="350" type="text" onChange={this.handleSearchTerm} placeholder="Search for videos" />
-                 <img alt="search-video" onClick={this.searchForVideos} src={require("../assets/search.png")} />
+                <img alt="search-video" onClick={this.searchForVideos} src={require("../assets/search.png")} />
               </div>
               <div className="searchbar-container-mobile">
                 <img alt="search-video" onClick={this.searchForVideos} src={require("../assets/search.png")} />
