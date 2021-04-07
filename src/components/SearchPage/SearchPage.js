@@ -69,9 +69,11 @@ export default class SearchPage extends Component {
         throw err;
       });
   }
+
   goToLink = (link) => {
     window.location.href = link;
   }
+
   render() {
     const { videoList, searchItem } = this.state;
     return (
@@ -83,13 +85,13 @@ export default class SearchPage extends Component {
             {videoList.map((post) => {
               return (
                 <div key={post.id} className="searchpage-video-item">
-                  <img src={post.videoThumbURL} alt="video-thumb" onClick={() => { this.goToLink(`/video/${post.videoID}`)}}/>
+                  <img src={post.videoThumbURL} alt="video-thumb" onClick={() => { this.goToLink(`/video/${post.videoID}`); }} />
                   <div>
-                    <span onClick={() => { this.goToLink(`/video/${post.videoID}`)}}>{ post.videoName } </span>
+                    <span role="button" tabIndex={0} onClick={() => { this.goToLink(`/video/${post.videoID}`); }}>{ post.videoName } </span>
                   </div>
                   <div>
-                    <span onClick={() => { this.goToLink(`/profile/${post.userName}`)}}> {post.userName[0].toUpperCase() + post.userName.slice(1)}</span>
-                  </div> 
+                    <span role="button" tabIndex={0} onClick={() => { this.goToLink(`/profile/${post.userName}`); }}> {post.userName[0].toUpperCase() + post.userName.slice(1)}</span>
+                  </div>
                 </div>
               );
             })}
