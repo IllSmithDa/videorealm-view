@@ -1,84 +1,60 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import reqURL from '../RequestURL';
+import videoData from '../Data/Videos';
 import './AllVideos.css';
 // add credentials or else the session will not be saved
-axios.defaults.withCredentials = true;
 
-export default class AllVideos extends Component {
-  constructor() {
-    super();
-    this.state = {
-      videoIndex: 0,
-      totalArr: [],
-      reachedEnd: false,
-    };
-  }
+export default function AllVideos() {
+  const [videoIndex, setVideoIndex] = useState(0);
+  const [videos, setVideos] = useState([]);
+  const [reachedEnd, setReachedEnd] = useState(false);
 
-  componentDidMount() {
-    const { videoIndex, reachedEnd } = this.state;
-    const index = { index: videoIndex, reachedEnd };
+  useEffect(() => {
+    const videosIds = videoData.allIds;
+    setVideoIndex(videoIndex + 4);
+    const videoIds = videosIds.slice(0, 4);
+    setVideos(videoIds);
+  }, []);
+
+  const seeMoreVideos = () => {
     // calls action to get all videos
-    axios.post(`${reqURL}/getAllVideos`, index)
-      .then((videoData) => {
-        this.setState({
-          videoIndex: videoIndex + 4,
-          totalArr: videoData.data.videoArr,
-          reachedEnd: videoData.data.reachedEnd,
-        });
-        //  console.log(videoData.data.reachedEnd);
-        // console.log(videoData.data.videoArr.length % 4);
-      })
-      .catch((err) => {
-        throw err;
-      });
-  }
-
-  seeMoreVideos = () => {
-    const { videoIndex, totalArr } = this.state;
-    const index = { index: videoIndex };
-    // calls action to get all videos
-    axios.post(`${reqURL}/getAllVideos`, index)
-      .then((videoData) => {
-        this.setState({
-          videoIndex: videoIndex + 4,
-          totalArr: totalArr.concat(videoData.data.videoArr),
-          reachedEnd: videoData.data.reachedEnd,
-        });
-      })
-      .catch((err) => {
-        throw err;
-      });
-  }
-
-  render() {
-    const { totalArr } = this.state;
-    return (
-      <div>
-        <div className="all-videos-container">
-          {totalArr.map((post) => {
-            return (
-              <div key={post.id} className="all-videos-item">
-                <Link to={`/video/${post.videoID}`} className="video-div">
-                  <img src={post.videoThumbURL} alt="video-thumb" className="video-preview-item" />
-                  <div className="all-videos-header">
-                    <span>{ post.videoName } </span>
-                  </div>
-                </Link>
-                <Link to={`/profile/${post.userName}`} class="all-videos-username">
-                  <span>{post.userName[0].toUpperCase() + post.userName.slice(1)}</span>
-                </Link>
-              </div>
-            );
-          })}
-        </div>
-        <div className="more-all-videos">
-          <span role="button" tabIndex="0" onClick={this.seeMoreVideos}> See More videos </span>
-        </div>
+    if (videoIndex + 4 >= videoData.allIds.length - 1) {
+      setReachedEnd(true);
+    }
+    setVideoIndex(videoIndex + 4);
+    const videoIds = videoData.allIds.slice(videoIndex, videoIndex + 4);
+    setVideos([...videos, ...videoIds]);
+  };
+  return (
+    <div>
+      <div className="all-videos-container">
+        {videos.map((id) => {
+          return (
+            <div key={id} className="all-videos-item">
+              <Link to={`/video/${videoData.byId[id].videoID}`} className="video-div">
+                <img src={videoData.byId[id].videoThumbURL} alt="video-thumb" className="video-preview-item" />
+                <div className="all-videos-header">
+                  <span>{ videoData.byId[id].videoName } </span>
+                </div>
+              </Link>
+              <Link to={`/profile/${videoData.byId[id].userName}`} className="all-videos-username">
+                <span>{videoData.byId[id].userName[0].toUpperCase() + videoData.byId[id].userName.slice(1)}</span>
+              </Link>
+            </div>
+          );
+        })}
       </div>
-    );
-  }
+      {reachedEnd ? <div />
+        : (
+          <div className="more-all-videos">
+            <span role="button" tabIndex="0" onClick={seeMoreVideos}> See More videos </span>
+          </div>
+        )
+      }
+    </div>
+  );
 }
 
 /*

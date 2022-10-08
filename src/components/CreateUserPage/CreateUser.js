@@ -30,106 +30,106 @@ export default class CreateUser extends Component {
   }
 
   createUser = () => {
-    let badPassword = false;
-    let badEmail = false;
-    let badUsername = false;
-    let badSecretKey = false;
-    const { username, email, password, repPassword } = this.state;
-
-    // check username length
-    if (username.length < 3 || username.length > 20 || /\W/.test(username) || /\s/.test(username)
-    || !/[a-zA-Z]/.test(username)) {
-      badUsername = true;
-      document.getElementById('shortUsername').style.display = 'block';
-    } else {
-      document.getElementById('shortUsername').style.display = 'none';
-      badUsername = false;
-    }
-    // check if email exists
-    if (!EmailValidator.validate(email)) {
-      document.getElementById('badEmail').style.display = 'block';
-      badEmail = true;
-    } else {
-      document.getElementById('badEmail').style.display = 'none';
-      badEmail = false;
-    }
-    if (password !== repPassword) {
-      document.getElementById('repPassword').style.display = 'block';
-      badPassword = true;
-    } else {
-      document.getElementById('repPassword').style.display = 'none';
-      badPassword = false;
-    }
-
-    // check password if it meets requirements
-    if (/\s/.test(password) || !/\d/.test(password) || !/\d/.test(password) || !/\W/.test(password)
-        || !/\d/.test(password) || password.length < 8 || password.length > 20 || !/[A-Z]/.test(password)) {
-      const paswordDoc = document.getElementById('badPassword');
-      paswordDoc.style.display = 'block';
-      badPassword = true;
-    } else {
-      const paswordDoc = document.getElementById('badPassword');
-      paswordDoc.style.display = 'none';
-    }
-    const usernameReq = { username };
-    const emailReq = { email };
-    axios.post(`${reqURL}/checkUsername`, usernameReq)
-      .then((data) => {
-        if (data.data.error) {
-          const userDoc = document.getElementById('badUsername');
-          userDoc.style.display = 'block';
-          badUsername = true;
-        } else {
-          const userDoc = document.getElementById('badUsername');
-          userDoc.style.display = 'none';
-        }
-        axios.post(`${reqURL}/checkEmail`, emailReq)
-          .then((emailData) => {
-            if (emailData.data.error) {
-              // console.log('error', data.data.err);
-              const emailDoc = document.getElementById('dupEmail');
-              emailDoc.style.display = 'block';
-              badEmail = true;
-            } else {
-              const emailDoc = document.getElementById('dupEmail');
-              emailDoc.style.display = 'none';
-            }
-            const { secretKey } = this.state;
-            const mySecretKey = { secretKey };
-            axios.post(`${reqURL}/checkSecretKey`, mySecretKey)
-              .then((secretData) => {
-                // console.log('data', secretData.data.error);
-                if (secretData.data.error) {
-                  document.getElementById('badkey').style.display = 'block';
-                  badSecretKey = true;
-                } else {
-                  document.getElementById('badkey').style.display = 'none';
-                  badSecretKey = false;
-                }
-                // if it passes all tests
-                if (!badPassword && !badEmail && !badUsername && !badSecretKey) {
-                  const userData = { username, password, email };
-                  axios
-                    .post(`${reqURL}/usercreate`, userData)
-                    .then(() => {
-                      window.location = `/profile/${username}`;
-                    })
-                    .catch((err) => {
-                      throw err;
-                    });
-                }
-              })
-              .catch((err) => {
-                throw err;
-              });
-          })
-          .catch((err) => {
-            throw err;
-          });
-      })
-      .catch((err) => {
-        throw err;
-      });
+    // let badPassword = false;
+    // let badEmail = false;
+    // let badUsername = false;
+    // let badSecretKey = false;
+    // const { username, email, password, repPassword } = this.state;
+    //
+    // // check username length
+    // if (username.length < 3 || username.length > 20 || /\W/.test(username) || /\s/.test(username)
+    // || !/[a-zA-Z]/.test(username)) {
+    //  badUsername = true;
+    //  document.getElementById('shortUsername').style.display = 'block';
+    // } else {
+    //  document.getElementById('shortUsername').style.display = 'none';
+    //  badUsername = false;
+    // }
+    // // check if email exists
+    // if (!EmailValidator.validate(email)) {
+    //  document.getElementById('badEmail').style.display = 'block';
+    //  badEmail = true;
+    // } else {
+    //  document.getElementById('badEmail').style.display = 'none';
+    //  badEmail = false;
+    // }
+    // if (password !== repPassword) {
+    //  document.getElementById('repPassword').style.display = 'block';
+    //  badPassword = true;
+    // } else {
+    //  document.getElementById('repPassword').style.display = 'none';
+    //  badPassword = false;
+    // }
+    //
+    // // check password if it meets requirements
+    // if (/\s/.test(password) || !/\d/.test(password) || !/\d/.test(password) || !/\W/.test(password)
+    //    || !/\d/.test(password) || password.length < 8 || password.length > 20 || !/[A-Z]/.test(password)) {
+    //  const paswordDoc = document.getElementById('badPassword');
+    //  paswordDoc.style.display = 'block';
+    //  badPassword = true;
+    // } else {
+    //  const paswordDoc = document.getElementById('badPassword');
+    //  paswordDoc.style.display = 'none';
+    // }
+    // const usernameReq = { username };
+    // const emailReq = { email };
+    // axios.post(`${reqURL}/checkUsername`, usernameReq)
+    //  .then((data) => {
+    //    if (data.data.error) {
+    //      const userDoc = document.getElementById('badUsername');
+    //      userDoc.style.display = 'block';
+    //      badUsername = true;
+    //    } else {
+    //      const userDoc = document.getElementById('badUsername');
+    //      userDoc.style.display = 'none';
+    //    }
+    //    axios.post(`${reqURL}/checkEmail`, emailReq)
+    //      .then((emailData) => {
+    //        if (emailData.data.error) {
+    //          // console.log('error', data.data.err);
+    //          const emailDoc = document.getElementById('dupEmail');
+    //          emailDoc.style.display = 'block';
+    //          badEmail = true;
+    //        } else {
+    //          const emailDoc = document.getElementById('dupEmail');
+    //          emailDoc.style.display = 'none';
+    //        }
+    //        const { secretKey } = this.state;
+    //        const mySecretKey = { secretKey };
+    //        axios.post(`${reqURL}/checkSecretKey`, mySecretKey)
+    //          .then((secretData) => {
+    //            // console.log('data', secretData.data.error);
+    //            if (secretData.data.error) {
+    //              document.getElementById('badkey').style.display = 'block';
+    //              badSecretKey = true;
+    //            } else {
+    //              document.getElementById('badkey').style.display = 'none';
+    //              badSecretKey = false;
+    //            }
+    //            // if it passes all tests
+    //            if (!badPassword && !badEmail && !badUsername && !badSecretKey) {
+    //              const userData = { username, password, email };
+    //              axios
+    //                .post(`${reqURL}/usercreate`, userData)
+    //                .then(() => {
+    //                  window.location = `/profile/${username}`;
+    //                })
+    //                .catch((err) => {
+    //                  throw err;
+    //                });
+    //            }
+    //          })
+    //          .catch((err) => {
+    //            throw err;
+    //          });
+    //      })
+    //      .catch((err) => {
+    //        throw err;
+    //      });
+    //  })
+    //  .catch((err) => {
+    //    throw err;
+    //  });
   }
 
   handleSetUsername = (event) => {

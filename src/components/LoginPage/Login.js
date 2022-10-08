@@ -30,22 +30,22 @@ class Login extends Component {
   }
 
   loginUser = () => {
-    const { username } = this.state;
-    const { password } = this.state;
-    const user = { username, password };
-    this.props.loginUser(user);
+    // const { username } = this.state;
+    // const { password } = this.state;
+    // const user = { username, password };
+    // this.props.loginUser(user);
 
-    axios.post(`${reqURL}/mongoLogin`, user)
-      .then((data) => {
-        if (data.data.error) {
-          document.getElementById('badLogin').style.display = 'block';
-        } else {
-          window.location = `/profile/${username}`;
-        }
-      })
-      .catch((err) => {
-        throw err;
-      });
+    // axios.post(`${reqURL}/mongoLogin`, user)
+    //  .then((data) => {
+    //    if (data.data.error) {
+    //      document.getElementById('badLogin').style.display = 'block';
+    //    } else {
+    //      window.location = `/profile/${username}`;
+    //    }
+    //  })
+    //  .catch((err) => {
+    //    throw err;
+    //  });
   }
 
   handleSetUsername = (event) => {
@@ -90,10 +90,6 @@ class Login extends Component {
 
 Login.defaultProps = {
   loginUser: () => {},
-};
-
-Login.propTypes = {
-  loginUser: Proptypes.func,
 };
 
 export default connect(null, loginUser)(Login);

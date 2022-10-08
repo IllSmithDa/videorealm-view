@@ -3,7 +3,7 @@ import axios from 'axios';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 import reqURL from '../RequestURL';
-import './LostUsername.css'
+import './LostUsername.css';
 
 export default class LostUsername extends Component {
   constructor() {
@@ -24,42 +24,42 @@ export default class LostUsername extends Component {
   }
 
   submitEmail = () => {
-    const { email } = this.state;
-    const myEmail = { email };
-    axios.post(`${reqURL}/sendUsernameEmail`, myEmail)
-      .then((userData) => {
-        if (userData.data.error) {
-          document.getElementById('email-error').style.display = 'block';
-        } else {
-          document.getElementById('stage-1').style.display = 'none';
-          document.getElementById('stage-2').style.display = 'block';
-          document.getElementById('key-retrieval').style.display = 'block';
-        }
-      })
-      .catch((err) => {
-        throw err;
-      });
+    // const { email } = this.state;
+    // const myEmail = { email };
+    // axios.post(`${reqURL}/sendUsernameEmail`, myEmail)
+    //   .then((userData) => {
+    //     if (userData.data.error) {
+    //       document.getElementById('email-error').style.display = 'block';
+    //     } else {
+    //       document.getElementById('stage-1').style.display = 'none';
+    //       document.getElementById('stage-2').style.display = 'block';
+    //       document.getElementById('key-retrieval').style.display = 'block';
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     throw err;
+    //   });
   }
 
   submitLostKey = () => {
-    const { lostKey } = this.state;
-    const key = { myKey: lostKey };
-    axios.post(`${reqURL}/missingUsername`, key)
-      .then((userData) => {
-        if (userData.data.error) {
-          document.getElementById('key-error').style.display = 'block';
-        } else {
-          document.getElementById('key-retrieval').style.display = 'none';
-          document.getElementById('stage-2').style.display = 'none';
-          document.getElementById('stage-3').style.display = 'block';
-          document.getElementById('key-error').style.display = 'none';
-          document.getElementById('key-alreadyhave').style.display = 'none';
-          this.setState({ userName: userData.data });
-        }
-      })
-      .catch((err) => {
-        throw err;
-      });
+    // const { lostKey } = this.state;
+    // const key = { myKey: lostKey };
+    // axios.post(`${reqURL}/missingUsername`, key)
+    //   .then((userData) => {
+    //     if (userData.data.error) {
+    //       document.getElementById('key-error').style.display = 'block';
+    //     } else {
+    //       document.getElementById('key-retrieval').style.display = 'none';
+    //       document.getElementById('stage-2').style.display = 'none';
+    //       document.getElementById('stage-3').style.display = 'block';
+    //       document.getElementById('key-error').style.display = 'none';
+    //       document.getElementById('key-alreadyhave').style.display = 'none';
+    //       this.setState({ userName: userData.data });
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     throw err;
+    //   });
   }
 
   enterAKey = () => {
@@ -85,7 +85,7 @@ export default class LostUsername extends Component {
           <div id="stage-1" className="add-margins">
             <p>
               <b><br />Please enter your account associated email here and a key for retieving to your
-              username will be sent to your email.<br />
+                username will be sent to your email.<br />
               </b>
             </p>
             <b>Email:</b> <input className="video-name-input" maxLength="350" onChange={this.emailHandler} /><br /><br />

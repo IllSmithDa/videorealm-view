@@ -1,9 +1,11 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
 import reqURL from '../RequestURL';
 import Footer from '../Footer/Footer';
-import "./LostPassword.css";
+import './LostPassword.css';
+
 export default class LostPassword extends Component {
   constructor() {
     super();
@@ -24,41 +26,41 @@ export default class LostPassword extends Component {
   }
 
   submitEmail = () => {
-    const { email } = this.state;
-    const myEmail = { email };
-    axios.post(`${reqURL}/sendPwEmail`, myEmail)
-      .then((userData) => {
-        if (userData.data.error) {
-          document.getElementById('email-error').style.display = 'block';
-        } else {
-          document.getElementById('stage-1').style.display = 'none';
-          document.getElementById('stage-2').style.display = 'block';
-          document.getElementById('key-retrieval2').style.display = 'block';
-        }
-      })
-      .catch((err) => {
-        throw err;
-      });
+    // const { email } = this.state;
+    // const myEmail = { email };
+    // axios.post(`${reqURL}/sendPwEmail`, myEmail)
+    //   .then((userData) => {
+    //     if (userData.data.error) {
+    //       document.getElementById('email-error').style.display = 'block';
+    //     } else {
+    //       document.getElementById('stage-1').style.display = 'none';
+    //       document.getElementById('stage-2').style.display = 'block';
+    //       document.getElementById('key-retrieval2').style.display = 'block';
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     throw err;
+    //   });
   }
 
   submitLostKey = () => {
-    const { lostKey } = this.state;
-    const key = { myKey: lostKey };
-    axios.post(`${reqURL}/checkMissingPWKey`, key)
-      .then((userData) => {
-        if (userData.data.error) {
-          document.getElementById('key-error').style.display = 'block';
-        } else {
-          document.getElementById('key-retrieval2').style.display = 'none';
-          document.getElementById('stage-2').style.display = 'none';
-          document.getElementById('stage-3').style.display = 'block';
-          document.getElementById('key-error').style.display = 'none';
-          document.getElementById('key-alreadyhave').style.display = 'none';
-        }
-      })
-      .catch((err) => {
-        throw err;
-      });
+    // const { lostKey } = this.state;
+    // const key = { myKey: lostKey };
+    // axios.post(`${reqURL}/checkMissingPWKey`, key)
+    //   .then((userData) => {
+    //     if (userData.data.error) {
+    //       document.getElementById('key-error').style.display = 'block';
+    //     } else {
+    //       document.getElementById('key-retrieval2').style.display = 'none';
+    //       document.getElementById('stage-2').style.display = 'none';
+    //       document.getElementById('stage-3').style.display = 'block';
+    //       document.getElementById('key-error').style.display = 'none';
+    //       document.getElementById('key-alreadyhave').style.display = 'none';
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     throw err;
+    //   });
   }
 
   enterAKey = () => {
@@ -143,7 +145,7 @@ export default class LostPassword extends Component {
           <div id="stage-1" className="add-margins">
             <p>
               <b><br />Please enter your account associated email here and a key for resetting your
-              password will be sent to your email.<br />
+                password will be sent to your email.<br />
               </b>
             </p>
             <b>Email:</b> <input className="video-name-input" maxLength="350" onChange={this.emailHandler} /><br /><br />
@@ -168,7 +170,7 @@ export default class LostPassword extends Component {
           <div id="stage-3" className="hide-element">
             <p className="add-margins">
               <b><br />Enter your new password here. Password must be 8 to 20 characters long and
-              must include at least one number, one letter and one special character
+                must include at least one number, one letter and one special character
               </b>
             </p>
             <div className="form-group">
